@@ -14,6 +14,7 @@ class Block {
     virtual void moveHorz(std::string dir) = 0;
     virtual void down();
     virtual void drop();
+    virtual ~Block();
 };
 
 #endif

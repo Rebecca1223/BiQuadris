@@ -9,6 +9,7 @@ class SBlock : public Block {
     void moveHorz(std::string dir) override;
     void down() override;
     void drop() override;
+    ~SBlock();
 };
 
 #endif

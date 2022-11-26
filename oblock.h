@@ -9,6 +9,7 @@ class OBlock : public Block {
     void moveHorz(std::string dir) override;
     void down() override;
     void drop() override;
+    ~OBlock();
 };
 
 #endif
