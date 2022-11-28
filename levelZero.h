@@ -12,6 +12,7 @@ class LevelZero : public Level {
   public:
     Block* createBlock() override;
     void readFile() override;
+    ~LevelZero();
 };
 
 #endif
