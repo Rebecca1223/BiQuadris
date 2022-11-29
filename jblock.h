@@ -5,10 +5,11 @@
 
 class JBlock : public Block {
   public:
-    void rotate() override;
-    void moveHorz(std::string dir) override;
-    void down() override;
-    void drop() override;
+    JBlock(int levelGen, bool actionHeavy, bool levelHeavy);
+    // void rotate() override;
+    // void moveHorz(std::string dir) override;
+    // void down() override;
+    // void drop() override;
     ~JBlock();
 };
 

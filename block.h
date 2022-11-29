@@ -10,10 +10,11 @@ class Block {
     bool actionHeavy, levelHeavy; 
 
   public:
-    virtual void rotate() = 0;
-    virtual void moveHorz(std::string dir) = 0;
-    virtual void down();
-    virtual void drop();
+    Block(int x, int y, int blockNum, int levelGen, char curRotation, bool actionHeavy, bool levelHeavy);
+    void rotate();
+    void moveHorz(std::string dir);
+    void down();
+    void drop();
     virtual ~Block();
 };
 

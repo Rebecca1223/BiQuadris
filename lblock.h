@@ -5,10 +5,11 @@
 
 class LBlock : public Block {
   public:
-    void rotate() override;
-    void moveHorz(std::string dir) override;
-    void down() override;
-    void drop() override;
+    LBlock(int levelGen, bool actionHeavy, bool levelHeavy);
+    // void rotate() override;
+    // void moveHorz(std::string dir) override;
+    // void down() override;
+    // void drop() override;
     ~LBlock();
 };
 
