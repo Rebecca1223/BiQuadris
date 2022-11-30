@@ -1,5 +1,6 @@
 #include "block.h"
 #include <string>
+#include <vector>
 
 Block::~Block() {}
 
@@ -33,4 +34,19 @@ void Block::down(){
 void Block::drop(){
     // i feel like this should be a while loop in main
     // while the move is valid, move the block down
+}
+
+int Block::getX(){
+    return x;
+}
+
+int Block::getY(){
+    return y;
+}
+
+int Block::getblockNum(){
+    return blockNum;
+}
+char Block::getRotation(){
+    return curRotation;
 }

@@ -1,6 +1,8 @@
 #ifndef _BLOCK_H_
 #define _BLOCK_H_
 #include <string>
+#include <vector>
+using namespace std;
 
 class Block {
   protected:
@@ -15,6 +17,11 @@ class Block {
     void moveHorz(std::string dir);
     void down();
     void drop();
+    int getX();
+    int getY();
+    int getblockNum();
+    char getRotation();
+    virtual vector<vector<string>> getVector() = 0;
     virtual ~Block();
 };
 
