@@ -13,6 +13,7 @@ class Level {
   public:
     virtual Block* createBlock() = 0;
     virtual void readFile() = 0;
+    virtual int getLevel() = 0;
     virtual ~Level();
 };
 

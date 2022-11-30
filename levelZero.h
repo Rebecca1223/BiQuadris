@@ -14,9 +14,10 @@ class LevelZero : public Level {
   std::vector<char> blockSequence;
 
   public:
-    LevelZero(string file);
+    LevelZero(std::string file);
     Block* createBlock() override;
     void readFile() override;
+    int getLevel() override;
     ~LevelZero();
 };
 
