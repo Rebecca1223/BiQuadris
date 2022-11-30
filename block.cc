@@ -6,7 +6,7 @@ Block::~Block() {}
 
 Block::Block(int x, int y, int blockNum, int levelGen, char curRotation, bool actionHeavy, bool levelHeavy) : x{x}, y{y}, blockNum{blockNum}, levelGen{levelGen}, curRotation{curRotation}, actionHeavy{actionHeavy}, levelHeavy{levelHeavy}{}
 
-void Block::rotate(){ // to the right
+void Block::cwrotate(){ // clockwise
     if(curRotation == 'N'){
         curRotation = 'E';
     }else if(curRotation == 'E'){
@@ -16,7 +16,18 @@ void Block::rotate(){ // to the right
     }else if(curRotation == 'W'){
         curRotation = 'N';
     }
-    y+=3;
+}
+
+void Block::ccwrotate(){ // counterclockwise
+    if(curRotation == 'N'){
+        curRotation = 'W';
+    }else if(curRotation == 'E'){
+        curRotation = 'N';
+    }else if(curRotation == 'S'){
+        curRotation = 'E';
+    }else if(curRotation == 'W'){
+        curRotation = 'S';
+    }
 }
 
 void Block::moveHorz(std::string dir){
@@ -49,4 +60,13 @@ int Block::getblockNum(){
 }
 char Block::getRotation(){
     return curRotation;
+}
+
+//if player does heavy, setActionHeavy for the block. if actionHeavy=true and moveHorz, the
+void Block::setActionHeavy(){
+    actionHeavy = true;
+}
+
+void Block::setLevelHeavy(){
+    levelHeavy = true;
 }

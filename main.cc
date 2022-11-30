@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <map>
 #include <sstream>
+#include "board.h"
+#include "block.h"
 
 using namespace std;
 
