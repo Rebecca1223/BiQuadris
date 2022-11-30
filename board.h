@@ -1,5 +1,10 @@
 #ifndef BOARD_H
 #define BOARD_H
+#include <vector>
+#include "subject.h"
+class Block;
+class Unit;
+class Level;
 
 // Header files
 class Board : public Subject {
@@ -22,6 +27,6 @@ class Board : public Subject {
 
         bool itsValid(int hShift, int vShift, int rotation);
         bool checkFilledRow();
-}
+};
 
 #endif
