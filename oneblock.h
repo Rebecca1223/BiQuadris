@@ -7,7 +7,7 @@
 class OneBlock : public Block {
   static const vector<vector<string>> rotationVector;
   public:
-    OneBlock(int levelGen, bool actionHeavy, bool levelHeavy);
+    OneBlock(int levelGen);
     // void rotate() override;
     // void moveHorz(std::string dir) override;
     // void down() override;

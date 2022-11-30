@@ -7,7 +7,7 @@ using namespace std;
 
 OneBlock::~OneBlock() {}
 
-OneBlock::OneBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(6, 15, 1, levelGen, 'N', actionHeavy, levelHeavy) {}
+OneBlock::OneBlock(int levelGen) : Block(6, 15, 1, levelGen, 'N', false, false) {}
 
 //vectors for the Oneblock
 const vector<vector<string>> OneBlock::rotationVector = {
