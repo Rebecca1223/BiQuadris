@@ -10,6 +10,7 @@ class LevelTwo : public Level {
   std::vector<char> blocksPool;
 
   public:
+    LevelTwo();
     Block* createBlock() override;
     void readFile() override;
     int getLevel() override;

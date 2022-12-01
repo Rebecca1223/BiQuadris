@@ -4,7 +4,7 @@
 
 Block::~Block() {}
 
-Block::Block(int x, int y, int blockNum, int levelGen, char curRotation, bool actionHeavy, bool levelHeavy) : x{x}, y{y}, blockNum{blockNum}, levelGen{levelGen}, curRotation{curRotation}, actionHeavy{actionHeavy}, levelHeavy{levelHeavy}{}
+Block::Block(int x, int y, int blockNum, int levelGen, char curRotation, bool actionHeavy, bool levelHeavy): x{x}, y{y}, blockNum{blockNum}, levelGen{levelGen}, curRotation{curRotation}, actionHeavy{actionHeavy}, levelHeavy{levelHeavy} {}
 
 void Block::cwrotate(){ // clockwise
     if(curRotation == 'N'){
