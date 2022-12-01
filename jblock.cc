@@ -7,7 +7,7 @@ using namespace std;
 
 JBlock::~JBlock() {}
 
-JBlock::JBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(1, 15, 4, levelGen, 'N', actionHeavy, levelHeavy) {}
+JBlock::JBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(1, 15, 4, levelGen, 0, actionHeavy, levelHeavy) {}
 
 //vectors for the jblock
 const vector<vector<string>> JBlock::rotationVector = {

@@ -7,7 +7,7 @@ using namespace std;
 
 OBlock::~OBlock() {}
 
-OBlock::OBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(1, 15, 4, levelGen, 'N', actionHeavy, levelHeavy) {}
+OBlock::OBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(1, 15, 4, levelGen, 0, actionHeavy, levelHeavy) {}
 
 //vectors for the Oblock
 const vector<vector<string>> OBlock::rotationVector = {

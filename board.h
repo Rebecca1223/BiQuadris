@@ -2,31 +2,32 @@
 #define BOARD_H
 #include <vector>
 #include "subject.h"
-class Block;
-class Unit;
-class Level;
+#include "unit.h"
+#include "level.h"
 
-// Header files
 class Board : public Subject {
-    int hiScore, curScore, width, height, curLevel, curBlock, nextBlock;
-    bool blind, heavy, force;
+    int hiScore, curScore, width, height, level, curBlock, nextBlock;
+    bool blind, heavy, force, withEffect;
     Block* curBlock; // Pointer to current block
 	Block* nextBlock; // Pointer to next block
 	Level* curLevel;
     vector<Block> placedBlocks;
-    vector<vector<Unit>> mainBoard;
+    vector<vector<unit>> mainBoard;
 
     public:
-        Board(int width, int height, int curLevel);
+        Board(int width, int height, int level, Level *curLevel);
         ~Board();
 
         void build();
         void reset();
         void placePiece(int x, int y, char type);
+        void placeBlock(Block& block);
+        void removePiece(int x, int y);
         void removeRow();
 
         bool itsValid(int hShift, int vShift, int rotation);
-        bool checkFilledRow();
+        bool checkFilledRow(int index);
+        void moveBlockInBoard(int hShift, int vShift, int rotation);
 };
 
 #endif

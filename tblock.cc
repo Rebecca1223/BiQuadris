@@ -7,7 +7,7 @@ using namespace std;
 
 TBlock::~TBlock() {}
 
-TBlock::TBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(1, 15, 4, levelGen, 'N', actionHeavy, levelHeavy) {}
+TBlock::TBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(1, 15, 4, levelGen, 0, actionHeavy, levelHeavy) {}
 
 //vectors for the Tblock
 const vector<vector<string>> TBlock::rotationVector = {

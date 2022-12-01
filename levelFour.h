@@ -5,7 +5,7 @@
 #include <string>
 
 class LevelFour : public Level {
-  int level, index;
+  int level, index, placedBlocks;
   bool randOn;
 //  std::ifstream &in;
   std::string sequenceFile;
@@ -16,6 +16,8 @@ class LevelFour : public Level {
     Block* createBlock() override;
     void readFile() override;
     int getLevel() override;
+    void addPlacedBlocks();
+    void resetPlacedBlocks();
     ~LevelFour();
 };
 
