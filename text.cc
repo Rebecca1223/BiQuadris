@@ -15,7 +15,10 @@ void Text::notify() {
   // input each char in both player's screens, need to get each Unit in mainBoard
   for (int i = 0; i < height; ++i) {
     for (int j = 0; j < width; ++j) {
-
+      // need getBoard for Board
+      // need getBlockType for Unit
+      b1->getBoard()[i][j].getBlockType = p1Screen[i][j];
+      b2->getBoard()[i][j].getBlockType = p2Screen[i][j];
     }
   }
 

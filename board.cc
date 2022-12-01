@@ -52,6 +52,7 @@ void Board::placeBlock(Block& block) {
 void Board::reset() {
     curScore = 0;
 
+    // instead of functions here, can we just directly change it here?
     this->setBlind(false);
     this->setHeavy(false);
     this->setForce(false);
