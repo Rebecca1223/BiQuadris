@@ -198,3 +198,7 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
 	curBlock->setY(curBlock->getY() + vShift);
 	curBlock->setRotation(finalRotation);
 }
+
+int Board::getHiScore() {return hiScore;}
+int Board::getCurLevel() {return level;}
+int Board::getCurScore() {return curScore;}

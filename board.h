@@ -28,6 +28,10 @@ class Board : public Subject {
         bool itsValid(int hShift, int vShift, int rotation);
         bool checkFilledRow(int index);
         void moveBlockInBoard(int hShift, int vShift, int rotation);
+
+        int getHiScore();
+        int getCurLevel();
+        int getCurScore();
 };
 
 #endif
