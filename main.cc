@@ -30,6 +30,11 @@ int main(int argc, char **argv) {
     {"sequence", "sequence"},
     {"restart" ,"restart"}
   };
+  int board1lvl = 0;
+  int board2lvl = 0;
+  Board* board1 = new Board(11, 18, board1lvl);
+  Board* board2 = new Board(11, 18, board2lvl);
+  int turnCount = 0;
 
   // setting the seed
   srand(7);
@@ -82,10 +87,20 @@ int main(int argc, char **argv) {
       }
     }
 
+    Board *curBoard;
+    if (turnCount % 2 == 0) {
+      curBoard = board1;
+    }else{
+      curBoard = board2;
+    }
 
     // number of times controlled by multiplier
     if (command == "left" || commands.at("left") == command) {
-      // call function
+      for(int i=0; i<multiplier; i++){
+        if (curboard->isvalid(1, 0, 0)){
+          curBoard->
+        }
+      }
     } else if (command == "right" || commands.at("right") == command) {
 
     } else if (command == "down" || commands.at("down") == command) {
