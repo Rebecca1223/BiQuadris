@@ -15,6 +15,8 @@ int main(){
 
     i->cwrotate();
     rot = i->getRotation(); //'S'
+    i->cwrotate();
+    rot = i->getRotation(); //'S'
 
     if(rot == 'N'){
         for(int j=0; j<4; j++){
