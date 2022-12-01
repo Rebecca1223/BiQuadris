@@ -2,12 +2,11 @@
 #define BOARD_H
 #include <vector>
 #include "subject.h"
-class Block;
-class Unit;
-class Level;
+#include "unit.h"
+#include "level.h"
 
 class Board : public Subject {
-    int hiScore, curScore, width, height, curLevel, curBlock, nextBlock;
+    int hiScore, curScore, width, height, level, curBlock, nextBlock;
     bool blind, heavy, force, withEffect;
     Block* curBlock; // Pointer to current block
 	Block* nextBlock; // Pointer to next block
@@ -16,7 +15,7 @@ class Board : public Subject {
     std::vector<std::vector<Unit>> mainBoard;
 
     public:
-        Board(int width, int height, int curLevel);
+        Board(int width, int height, int level, Level *curLevel);
         ~Board();
 
         void build();
@@ -27,7 +26,12 @@ class Board : public Subject {
         void removeRow();
 
         bool itsValid(int hShift, int vShift, int rotation);
-        bool checkFilledRow();
+        bool checkFilledRow(int index);
+        void moveBlockInBoard(int hShift, int vShift, int rotation);
+
+        int getHiScore();
+        int getCurLevel();
+        int getCurScore();
 };
 
 #endif

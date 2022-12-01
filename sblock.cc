@@ -7,7 +7,7 @@ using namespace std;
 
 SBlock::~SBlock() {}
 
-SBlock::SBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(1, 15, 4, levelGen, 'N', actionHeavy, levelHeavy) {}
+SBlock::SBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(1, 15, 4, levelGen, 0, actionHeavy, levelHeavy) {}
 
 //vectors for the Sblock
 const vector<vector<string>> SBlock::rotationVector = {

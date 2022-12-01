@@ -7,7 +7,7 @@ using namespace std;
 
 ZBlock::~ZBlock() {}
 
-ZBlock::ZBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(1, 15, 4, levelGen, 'N', actionHeavy, levelHeavy) {}
+ZBlock::ZBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(1, 15, 4, levelGen, 0, actionHeavy, levelHeavy) {}
 
 //vectors for the Zblock
 const vector<vector<string>> ZBlock::rotationVector = {

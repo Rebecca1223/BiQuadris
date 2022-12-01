@@ -7,7 +7,7 @@ using namespace std;
 
 LBlock::~LBlock() {}
 
-LBlock::LBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(1, 15, 4, levelGen, 'N', actionHeavy, levelHeavy) {}
+LBlock::LBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(1, 15, 4, levelGen, 0, actionHeavy, levelHeavy) {}
 
 //vectors for the Lblock
 const vector<vector<string>> LBlock::rotationVector = {

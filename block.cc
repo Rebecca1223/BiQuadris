@@ -4,29 +4,21 @@
 
 Block::~Block() {}
 
-Block::Block(int x, int y, int blockNum, int levelGen, char curRotation, bool actionHeavy, bool levelHeavy): x{x}, y{y}, blockNum{blockNum}, levelGen{levelGen}, curRotation{curRotation}, actionHeavy{actionHeavy}, levelHeavy{levelHeavy} {}
+Block::Block(int x, int y, int blockNum, int levelGen, int curRotation, bool actionHeavy, bool levelHeavy): x{x}, y{y}, blockNum{blockNum}, levelGen{levelGen}, curRotation{curRotation}, actionHeavy{actionHeavy}, levelHeavy{levelHeavy} {}
 
 void Block::cwrotate(){ // clockwise
-    if(curRotation == 'N'){
-        curRotation = 'E';
-    }else if(curRotation == 'E'){
-        curRotation = 'S';
-    }else if(curRotation == 'S'){
-        curRotation = 'W';
-    }else if(curRotation == 'W'){
-        curRotation = 'N';
+    if(curRotation == 3){
+        curRotation = 0;
+    }else{
+        curRotation+=1;
     }
 }
 
 void Block::ccwrotate(){ // counterclockwise
-    if(curRotation == 'N'){
-        curRotation = 'W';
-    }else if(curRotation == 'E'){
-        curRotation = 'N';
-    }else if(curRotation == 'S'){
-        curRotation = 'E';
-    }else if(curRotation == 'W'){
-        curRotation = 'S';
+    if(curRotation == 0){
+        curRotation = 3;
+    }else{
+        curRotation-=1;
     }
 }
 
@@ -51,15 +43,32 @@ int Block::getX(){
     return x;
 }
 
+void Block::setX(int x){
+    this->x = x;
+}
+
 int Block::getY(){
     return y;
+}
+
+void Block::setY(int y){
+    this->y = y;
 }
 
 int Block::getblockNum(){
     return blockNum;
 }
-char Block::getRotation(){
+
+void Block::setBlockNum(int blockNum){
+    this->blockNum = blockNum;
+}
+
+int Block::getRotation(){
     return curRotation;
+}
+
+void Block::setRotation(int rotation){
+    this->curRotation = curRotation;
 }
 
 //if player does heavy, setActionHeavy for the block. if actionHeavy=true and moveHorz, the

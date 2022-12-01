@@ -14,7 +14,7 @@ const vector<vector<string>> IBlock::rotationVector = {
 IBlock::~IBlock() {}
 
 // create block with x at 1, y at 15, blockNum=4, and direction N
-IBlock::IBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(1, 15, 4, levelGen, 'N', actionHeavy, levelHeavy) {}
+IBlock::IBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(1, 15, 4, levelGen, 0, actionHeavy, levelHeavy) {}
 
 // returns the type of block
 char IBlock::getType() { return 'I'; }
