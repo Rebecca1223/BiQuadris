@@ -6,10 +6,9 @@ class Block;
 class Unit;
 class Level;
 
-// Header files
 class Board : public Subject {
     int hiScore, curScore, width, height, curLevel, curBlock, nextBlock;
-    bool blind, heavy, force;
+    bool blind, heavy, force, withEffect;
     Block* curBlock; // Pointer to current block
 	Block* nextBlock; // Pointer to next block
 	Level* curLevel;
@@ -23,6 +22,8 @@ class Board : public Subject {
         void build();
         void reset();
         void placePiece(int x, int y, char type);
+        void placeBlock(Block& block);
+        void removePiece(int x, int y);
         void removeRow();
 
         bool itsValid(int hShift, int vShift, int rotation);
