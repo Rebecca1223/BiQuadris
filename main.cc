@@ -97,31 +97,73 @@ int main(int argc, char **argv) {
     // number of times controlled by multiplier
     if (command == "left" || commands.at("left") == command) {
       for(int i=0; i<multiplier; i++){
-        if (curboard->isvalid(1, 0, 0)){
-          curBoard->
+        if (curBoard->itsValid(-1, 0, 0)){
+          curBoard->moveBlockInBoard(-1, 0, 0);
+        }else{
+          break;
         }
       }
     } else if (command == "right" || commands.at("right") == command) {
-
+      for(int i=0; i<multiplier; i++){
+        if (curBoard->itsValid(1, 0, 0)){
+          curBoard->moveBlockInBoard(1, 0, 0);
+        }else{
+          break;
+        }
+      }
     } else if (command == "down" || commands.at("down") == command) {
-
+      for(int i=0; i<multiplier; i++){
+        if (curBoard->itsValid(0, 1, 0)){
+          curBoard->moveBlockInBoard(0, 1, 0);
+        }else{
+          break;
+        }
+      }
     } else if (command == "drop" || commands.at("drop") == command) {
+      bool valid = curBoard->itsValid(0, 1, 0);
+      while (valid == true){
+        curBoard->moveBlockInBoard(0,1,0);
+        valid = curBoard->itsValid(0, 1, 0);
+      }
+      // need to check if line is cleared here
 
+      // what if more than 1 drop
+      
     } else if (command == "clockwise" || commands.at("clockwise") == command) {
-
+      for(int i=0; i<multiplier; i++){
+        if (curBoard->itsValid(0, 0, 1)){
+          curBoard->moveBlockInBoard(0, 0, 1);
+        }else{
+          break;
+        }
+      }
     } else if (command == "counterclockwise" || commands.at("counterclockwise") == command) {
+      for(int i=0; i<multiplier; i++){
+        if (curBoard->itsValid(0, 0, -1)){
+          curBoard->moveBlockInBoard(0, 0, -1);
+        }else{
+          break;
+        }
+      }
+    //} else if (command == "levelup" || commands.at("levelup") == command) {
 
-    } else if (command == "levelup" || commands.at("levelup") == command) {
+    //} else if (command == "leveldown" || commands.at("leveldown") == command) {
 
-    } else if (command == "leveldown" || commands.at("leveldown") == command) {
+    //} else if (command == "norandom" || commands.at("norandom") == command) {
 
-    } else if (command == "norandom" || commands.at("norandom") == command) {
+    //} else if (command == "random" || commands.at("random") == command) {
 
-    } else if (command == "random" || commands.at("random") == command) {
-
-    } else if (command == "sequence" || commands.at("sequence") == command) {
+    //} else if (command == "sequence" || commands.at("sequence") == command) {
 
     } else if (command.length() == 1) {
+      bool levelHeavy = false;
+      bool effectHeavy = false;
+      int tempLevel = curBoard->getLevel();
+
+      if(tempLevel == 3 || tempLevel == 4){
+        levelHeavy == false;
+      }
+      
       // more stuff
       if (command == "I") {
         // create new block each, need to know fields

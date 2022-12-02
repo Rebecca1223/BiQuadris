@@ -34,11 +34,6 @@ void Block::down(){
     y-=1;
 }
 
-void Block::drop(){
-    // i feel like this should be a while loop in main
-    // while the move is valid, move the block down
-}
-
 int Block::getX(){
     return x;
 }
@@ -69,6 +64,10 @@ int Block::getRotation(){
 
 void Block::setRotation(int rotation){
     this->curRotation = curRotation;
+}
+
+bool Block::getActionHeavy(){
+    return actionHeavy;
 }
 
 //if player does heavy, setActionHeavy for the block. if actionHeavy=true and moveHorz, the

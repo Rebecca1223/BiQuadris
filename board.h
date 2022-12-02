@@ -15,7 +15,7 @@ class Board : public Subject {
     vector<vector<unit>> mainBoard;
 
     public:
-        Board(int width, int height, int level, Level *curLevel);
+        Board(int width, int height, int level);
         ~Board();
 
         void build();
@@ -24,6 +24,7 @@ class Board : public Subject {
         void placeBlock(Block& block);
         void removePiece(int x, int y);
         void removeRow();
+        int getLevel();
 
         bool itsValid(int hShift, int vShift, int rotation);
         bool checkFilledRow(int index);
