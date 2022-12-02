@@ -16,6 +16,9 @@ class Unit{
 
     bool getOcc();
     char getBlockType();
+
+    int getX();
+    int getY();
 };
 
 #endif

@@ -26,3 +26,11 @@ bool Unit::getOcc() {
 char Unit::getBlockType() {
     return blockType;
 }
+
+int Unit::getX() {
+    return x;
+}
+
+int Unit::getY() {
+    return y;
+}
