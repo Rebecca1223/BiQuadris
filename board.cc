@@ -206,16 +206,14 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
     for(int i=0; i<11; i++){
         for(int j=0; j<15; j++){
             for(int k=0; k<3; k++){
-                for(int l=0; l<3; l++){
-                    //if the mainBoard position is equal to the curent block position
-                    int blockSegPositionX = curBlock->getPositionVector()[k][l][0]+curBlock->getX()-1;
-                    int blockSegPositionY = curBlock->getPositionVector()[k][l][1]+curBlock->getX()-1;
-                    int unitPositionX = mainBoard[i][j].getX();
-                    int unitPositionY = mainBoard[i][j].getY();
-                    if(blockSegPositionX==unitPositionX &&  blockSegPositionY==unitPositionY){ 
-                        //set that unit to point to curBlock
-                        mainBoard[i][j].setUnitBlock(curBlock);
-                    }
+                //if the mainBoard position is equal to the curent block position
+                int blockSegPositionX = curBlock->getPositionVector()[finalRotation][k][0]+curBlock->getX()-1;
+                int blockSegPositionY = curBlock->getPositionVector()[finalRotation][k][1]+curBlock->getX()-1;
+                int unitPositionX = mainBoard[i][j].getX();
+                int unitPositionY = mainBoard[i][j].getY();
+                if(blockSegPositionX==unitPositionX &&  blockSegPositionY==unitPositionY){ 
+                    //set that unit to point to curBlock
+                    mainBoard[i][j].setUnitBlock(curBlock);
                 }
             }
         }
