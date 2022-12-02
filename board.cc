@@ -199,6 +199,15 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
             }
         }
     }
+    //remove block pointer to unit
+    for(int i=0; i<11; i++){
+        for(int j=0; j<15; j++){
+            if(mainBoard[i][j].getUnitBlock()==curBlock){
+                mainBoard[i][j].removeUnitBlock();
+            }
+        }
+    }
+
     curBlock->setX(curBlock->getX() + hShift);
 	curBlock->setY(curBlock->getY() + vShift);
 	curBlock->setRotation(finalRotation);

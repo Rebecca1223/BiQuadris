@@ -42,3 +42,7 @@ Block *Unit::getUnitBlock(){
 void Unit::setUnitBlock(Block *unitBlock){
     this->unitBlock = unitBlock;
 }
+
+void Unit::removeUnitBlock(){
+    this->unitBlock = nullptr;
+}
