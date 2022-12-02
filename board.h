@@ -11,8 +11,8 @@ class Board : public Subject {
     Block* curBlock; // Pointer to current block
 	Block* nextBlock; // Pointer to next block
 	Level* curLevel;
-    vector<Block> placedBlocks;
-    vector<vector<unit>> mainBoard;
+    std::vector<Block> placedBlocks;
+    std::vector<std::vector<Unit>> mainBoard;
 
     public:
         Board(int width, int height, int level, Level *curLevel);

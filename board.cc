@@ -20,7 +20,7 @@ void Board::build() {
     for (int i = 0; i < height; i++) {
         mainBoard.emplace_back(row);
         for (int j = 0; j < width; j++) {
-            mainBoard[i].emplace_back(unit(i, j, ' ', this, false));
+            mainBoard[i].emplace_back(Unit(i, j, ' ', this, false));
         }
     }
 }
@@ -57,9 +57,9 @@ void Board::placeBlock(Block& block) {
 void Board::reset() {
     curScore = 0;
 
-    this->blind = false;
-    this->heavy = false;
-    this->force = false;
+    this->setBlind(false);
+    this->setHeavy(false);
+    this->setForce(false);
 
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {

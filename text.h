@@ -12,6 +12,8 @@ class Text : public Observer {
   std::vector<std::vector<char>> p1Screen;
   std::vector<std::vector<char>> p2Screen;
   std::vector<std::vector<char>> blindScreen;
+  std::vector<std::vector<char>> p1NextBlock;
+  std::vector<std::vector<char>> p2NextBlock;
   std::ostream &out = std::cout;
 
   public:
