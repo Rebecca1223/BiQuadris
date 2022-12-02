@@ -215,3 +215,4 @@ void Board::setNextBlock(Block* nextBlock) {
         //notify();
 }
 vector<vector<Unit>> Board::getBoard() { return mainBoard; }
+Block* Board::getNextBlock() { return nextBlock; }

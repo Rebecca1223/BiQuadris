@@ -29,6 +29,7 @@ class Block {
     bool getActionHeavy();
     void setActionHeavy();
     void setLevelHeavy();
+    virtual char getType() = 0;
     virtual ~Block();
 };
 

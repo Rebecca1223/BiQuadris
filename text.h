@@ -14,6 +14,13 @@ class Text : public Observer {
   std::vector<std::vector<char>> blindScreen;
   std::vector<std::vector<char>> p1NextBlock;
   std::vector<std::vector<char>> p2NextBlock;
+  std::vector<std::vector<char>> initIBlock;
+  std::vector<std::vector<char>> initJBlock;
+  std::vector<std::vector<char>> initLBlock;
+  std::vector<std::vector<char>> initOBlock;
+  std::vector<std::vector<char>> initSBlock;
+  std::vector<std::vector<char>> initZBlock;
+  std::vector<std::vector<char>> initTBlock;
   std::ostream &out = std::cout;
 
   public:
