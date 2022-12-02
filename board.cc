@@ -57,9 +57,9 @@ void Board::placeBlock(Block& block) {
 void Board::reset() {
     curScore = 0;
 
-    this->blind = false;
-    this->heavy = false;
-    this->force = false;
+    this->setBlind(false);
+    this->setHeavy(false);
+    this->setForce(false);
 
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
@@ -202,3 +202,7 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
 	curBlock->setY(curBlock->getY() + vShift);
 	curBlock->setRotation(finalRotation);
 }
+
+int Board::getHiScore() {return hiScore;}
+int Board::getCurLevel() {return level;}
+int Board::getCurScore() {return curScore;}

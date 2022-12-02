@@ -11,8 +11,8 @@ class Board : public Subject {
     Block* curBlock; // Pointer to current block
 	Block* nextBlock; // Pointer to next block
 	Level* curLevel;
-    vector<Block> placedBlocks;
-    vector<vector<unit>> mainBoard;
+    std::vector<Block> placedBlocks;
+    std::vector<std::vector<Unit>> mainBoard;
 
     public:
         Board(int width, int height, int level);
@@ -29,6 +29,10 @@ class Board : public Subject {
         bool itsValid(int hShift, int vShift, int rotation);
         bool checkFilledRow(int index);
         void moveBlockInBoard(int hShift, int vShift, int rotation);
+
+        int getHiScore();
+        int getCurLevel();
+        int getCurScore();
 };
 
 #endif
