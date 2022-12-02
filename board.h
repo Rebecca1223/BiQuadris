@@ -36,6 +36,7 @@ class Board : public Subject {
         int getCurScore();
         Block *getCurBlock();
         std::vector<std::vector<Unit>> getBoard();
+        Block* getNextBlock();
 };
 
 #endif

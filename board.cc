@@ -210,3 +210,4 @@ int Board::getCurLevel() {return level;}
 int Board::getCurScore() {return curScore;}
 Block *Board::getCurBlock() {return curBlock;}
 vector<vector<Unit>> Board::getBoard() { return mainBoard; }
+Block* Board::getNextBlock() { return nextBlock; }

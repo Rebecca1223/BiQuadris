@@ -5,7 +5,36 @@
 using namespace std;
 
 Text::Text(Board* b1, Board* b2, int width, int height):
-b1{b1}, b2{b2}, width{width}, height{height} {}
+b1{b1}, b2{b2}, width{width}, height{height} {
+  initIBlock = {
+    {' ',' ',' ',' '},
+    {'I','I','I','I'},
+  };
+  initJBlock = {
+    {'J',' ',' ',' '},
+    {'J','J','J',' '},
+  };
+  initLBlock = {
+    {' ',' ','L',' '},
+    {'L','L','L',' '},
+  };
+  initOBlock = {
+    {'O','O',' ',' '},
+    {'O','O',' ',' '},
+  };
+  initSBlock = {
+    {' ','S','S',' '},
+    {'S','S',' ',' '},
+  };
+  initZBlock = {
+    {'Z','Z',' ',' '},
+    {' ','Z','Z',' '},
+  };
+  initTBlock = {
+    {'T','T','T',' '},
+    {' ','T',' ',' '},
+  };
+}
 
 // notify should apply changes to everything, units, board
 void Text::notify() {
@@ -17,8 +46,8 @@ void Text::notify() {
     for (int j = 0; j < width; ++j) {
       // need getBoard for Board
       // need getBlockType for Unit
-      b1->getBoard()[i][j].getBlockType = p1Screen[i][j];
-      b2->getBoard()[i][j].getBlockType = p2Screen[i][j];
+      p1Screen[i][j] = b1->getBoard()[i][j].getBlockType();
+      p2Screen[i][j] = b2->getBoard()[i][j].getBlockType();
     }
   }
 
@@ -43,16 +72,64 @@ void Text::notify() {
       for (int j = 0; j < width; ++j) {
         out << p2Screen[i][j];
       }
+      out << endl;
     }
   }
   out << colBorder << separatingSpace << colBorder << endl;
 
   // print next section for both players
   out << "Next:      " << separatingSpace << "Next:      " << endl;
-  char blockType;
-  // block is going to encased in 4x2 space
+  char p1blockType = b1->getNextBlock()->getType();
+  char p2blockType = b2->getNextBlock()->getType();
+  vector<vector<char>> p1Next;
+  vector<vector<char>> p2Next;
+  string nextSpace = "              ";
+
+  if (p1blockType == 'I') {
+    p1Next = initIBlock;
+  } else if (p1blockType == 'J') {
+    p1Next = initJBlock;
+  } else if (p1blockType == 'L') {
+    p1Next = initLBlock;
+  } else if (p1blockType == 'O') {
+    p1Next = initOBlock;
+  } else if (p1blockType == 'S') {
+    p1Next = initSBlock;
+  } else if (p1blockType == 'Z') {
+    p1Next = initZBlock;
+  } else if (p1blockType == 'T') {
+    p1Next = initTBlock;
+  }
+
+  if (p2blockType == 'I') {
+    p2Next = initIBlock;
+  } else if (p2blockType == 'J') {
+    p2Next = initJBlock;
+  } else if (p2blockType == 'L') {
+    p2Next = initLBlock;
+  } else if (p2blockType == 'O') {
+    p2Next = initOBlock;
+  } else if (p2blockType == 'S') {
+    p2Next = initSBlock;
+  } else if (p2blockType == 'Z') {
+    p2Next = initZBlock;
+  } else if (p2blockType == 'T') {
+    p2Next = initTBlock;
+  }
   
+  // block is going to encased in 4x2 space
+  for (int i = 0; i < 2; ++i) {
+    for (int j = 0; j < 4; ++j) {
+      out << p1Next[i][j];
+    }
+    out << nextSpace;
+    for (int j = 0; j < 4; ++j) {
+      out << p2Next[i][j];
+    }
+    out << endl;
+  }
 }
+
 
 // blindEffect is called somehwere, in notify?, 
 
@@ -90,6 +167,7 @@ void Text::blindEffect(int player) {
         out << p2Screen[i][j];
       }
     }
+    out << endl;
   }
 
 }
