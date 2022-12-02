@@ -153,7 +153,7 @@ bool Board::itsValid(int hShift, int vShift, int rotation) {
 
             if (here != ',') {
                 // Check if block exists
-                if (mainBoard[y][x].getOcc()) { 
+                if (true) { ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// the unit is occupied
                     if (curBlock->getVector()[curBlock->getRotation()][i + y][j + x] == ',') return false;
                     if (y < curBlock->getY() || x < curBlock->getX() || y > 3 + curBlock->getY() || x > 3 + curBlock->getX()) return false;
                 }
@@ -207,3 +207,4 @@ int Board::getHiScore() {return hiScore;}
 int Board::getCurLevel() {return level;}
 int Board::getCurScore() {return curScore;}
 Block *Board::getCurBlock() {return curBlock;}
+vector<vector<Unit>> Board::getBoard() { return mainBoard; }
