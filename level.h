@@ -1,12 +1,6 @@
 #ifndef _LEVEL_H_
 #define _LEVEL_H_
-#include "iblock.h"
-#include "jblock.h"
-#include "lblock.h"
-#include "oblock.h"
-#include "sblock.h"
-#include "zblock.h"
-#include "tblock.h"
+#include "block.h"
 class Block;
 
 class Level {
