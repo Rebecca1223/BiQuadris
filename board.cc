@@ -79,7 +79,7 @@ bool Board::checkFilledRow(int index) {
     bool filled = true;
 
     for (int i = 0; i < width; i++) {
-        if (true) { /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// the unit is unoccupied
+        if (!mainBoard[curBlock->getY() + index][i].getOcc()) {
             filled = false;
             break;
         }
@@ -103,8 +103,8 @@ void Board::removeRow() {
                 // Shift rows down
                 for (int i = shift; i > 0; i--) {
                     for (int j = 0; j < width; j++) {
-                        if (true) { //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// the mainBoard[i][j] unit is occupied
-                            // mainBoard[i+1][j].placePiece(mainBoard[i][j].getInfo().piece)
+                        if (mainBoard[i][j].getOcc()) { 
+                            mainBoard[i+1][j].placePiece(mainBoard[i][j].getBlockType());
                         } else {
                             mainBoard[i+1][j].removePiece();
                         }
@@ -149,7 +149,7 @@ bool Board::itsValid(int hShift, int vShift, int rotation) {
 
             if (here != ',') {
                 // Check if block exists
-                if (true) { ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// the unit is occupied
+                if (mainBoard[y][x].getOcc()) { 
                     if (curBlock->getVector()[curBlock->getRotation()][i + y][j + x] == ',') return false;
                     if (y < curBlock->getY() || x < curBlock->getX() || y > 3 + curBlock->getY() || x > 3 + curBlock->getX()) return false;
                 }
@@ -168,7 +168,7 @@ bool Board::itsValid(int hShift, int vShift, int rotation) {
                 int y = curBlock->getY() + i;
 
                 if (here != ',') {
-                    if (true) return false; //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// the mainBoard[y][x] unit is unoccupied
+                    if (mainBoard[y][x].getOcc()) return false; 
                     if (x < 0 || y < 0 || y > height || x > width) return false;
                 }
             }

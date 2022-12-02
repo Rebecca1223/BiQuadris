@@ -2,7 +2,9 @@
 #define _UNIT_H_
 #include "board.h"
 
-class unit{
+class Board;
+
+class unit : public Subject {
     int x, y;
     char blockType;
     Board *subBoard;
@@ -10,9 +12,13 @@ class unit{
   public:
     unit(int x, int y, char blockType, Board *subBoard, bool occ);
     ~unit();
-    unit getUnit() const;
+
     void placePiece(char c);
     void removePiece();
+
+    bool getOcc();
+
+    char getBlockType();
 };
 
 #endif

@@ -7,10 +7,6 @@ unit::~unit(){
     delete subBoard;
 }
 
-unit unit::getUnit() const{
-    return unit(x, y, blockType, subBoard, occ);
-}
-
 void unit::placePiece(char c){
     occ = true;
     blockType = c;
@@ -21,4 +17,12 @@ void unit::removePiece(){
     occ = false;
     blockType = ' ';
     //notify();
+}
+
+bool unit::getOcc() {
+    return occ;
+}
+
+char unit::getBlockType() {
+    return blockType;
 }
