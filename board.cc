@@ -20,7 +20,7 @@ void Board::build() {
     for (int i = 0; i < height; i++) {
         mainBoard.emplace_back(row);
         for (int j = 0; j < width; j++) {
-            mainBoard[i].emplace_back(Unit(i, j, ' ', this, false));
+            mainBoard[i].emplace_back(Unit(i, j, ' ', this, false, nullptr));
         }
     }
 }
@@ -52,6 +52,7 @@ void Board::removePiece(int x, int y) {
 // Adds Block to the vector of placed blocks
 void Board::placeBlock(Block& block) {
     placedBlocks.emplace_back(block);
+    ////
 }
 
 void Board::reset() {
@@ -201,6 +202,14 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
     curBlock->setX(curBlock->getX() + hShift);
 	curBlock->setY(curBlock->getY() + vShift);
 	curBlock->setRotation(finalRotation);
+    // add block pointer to unit
+    for(int i=0; i<11; i++){
+        for(int j=0; j<15; j++){
+            if(i==mainBoard[i][j].getX() && j==mainBoard[i][j].getY()){
+                mainBoard[i][j].setUnitBlock(curBlock);
+            }
+        }
+    }
 }
 
 bool Board::isBlind() {return blind;}

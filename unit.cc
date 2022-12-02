@@ -1,7 +1,7 @@
 #include "board.h"
 #include "unit.h"
 
-Unit::Unit(int x, int y, char blockType, Board *subBoard, bool occ) : x{x}, y{y}, blockType{blockType}, subBoard{subBoard}, occ{occ}{}
+Unit::Unit(int x, int y, char blockType, Board *subBoard, bool occ, Block *unitBlock) : x{x}, y{y}, blockType{blockType}, subBoard{subBoard}, occ{occ}, unitBlock{nullptr}{}
 
 Unit::~Unit(){
     delete subBoard;
@@ -25,4 +25,12 @@ bool Unit::getOcc() {
 
 char Unit::getBlockType() {
     return blockType;
+}
+
+Block *Unit::getUnitBlock(){
+    return unitBlock;
+}
+
+void Unit::setUnitBlock(Block *unitBlock){
+    this->unitBlock = unitBlock;
 }

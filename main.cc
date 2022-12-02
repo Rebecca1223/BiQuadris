@@ -125,9 +125,9 @@ int main(int argc, char **argv) {
         curBoard->moveBlockInBoard(0,1,0);
         valid = curBoard->itsValid(0, 1, 0);
       }
-      // need to check if line is cleared here
-
-      // what if more than 1 drop
+      ////////////////////////////////////////////////////////////////////// need to check if line is cleared here
+      
+      ////////////////////////////////////////////////////////////////////// what if more than 1 drop
       
     } else if (command == "clockwise" || commands.at("clockwise") == command) {
       for(int i=0; i<multiplier; i++){
@@ -145,15 +145,15 @@ int main(int argc, char **argv) {
           break;
         }
       }
-    //} else if (command == "levelup" || commands.at("levelup") == command) {
+    ////////////////////////////////////////////////////////} else if (command == "levelup" || commands.at("levelup") == command) {
 
-    //} else if (command == "leveldown" || commands.at("leveldown") == command) {
+    ////////////////////////////////////////////////////////} else if (command == "leveldown" || commands.at("leveldown") == command) {
 
-    //} else if (command == "norandom" || commands.at("norandom") == command) {
+    ////////////////////////////////////////////////////////} else if (command == "norandom" || commands.at("norandom") == command) {
 
-    //} else if (command == "random" || commands.at("random") == command) {
+    ////////////////////////////////////////////////////////} else if (command == "random" || commands.at("random") == command) {
 
-    //} else if (command == "sequence" || commands.at("sequence") == command) {
+    ////////////////////////////////////////////////////////} else if (command == "sequence" || commands.at("sequence") == command) {
 
     } else if (command.length() == 1) {
       bool levelHeavy = false;
@@ -186,9 +186,7 @@ int main(int argc, char **argv) {
         block = new TBlock(tempLevel, actionHeavy, levelHeavy);
       }
       
-    } else if (command == "restart" || commands.at("restart") == command) {
-      // restart game
-
+    } else if (command == "restart" || commands.at("restart") == command) { // restart game
       // reset boards
       board1->reset();
       board2->reset();
@@ -196,8 +194,8 @@ int main(int argc, char **argv) {
       turnCount = 0;
       startLevel = 0;
 
-      // reset blocks
-      
+      ///////////////////////////////////////////////////////////////////////////// reset blocks
+
       break;
     }
 
