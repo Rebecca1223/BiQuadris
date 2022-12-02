@@ -160,7 +160,7 @@ int main(int argc, char **argv) {
 
       Block *curBlock = curBoard->getCurBlock();
       bool actionHeavy = curBlock->getActionHeavy();
-      
+
       int tempLevel = curBoard->getLevel();
 
       if(tempLevel == 3 || tempLevel == 4){
@@ -168,23 +168,37 @@ int main(int argc, char **argv) {
       }
 
       // more stuff
+      Block *block;
       if (command == "I") {
-        // create new block each, need to know fields
+        // create new block each with respective fields
+        block = new IBlock(tempLevel, actionHeavy, levelHeavy);
       } else if (command == "J") {
-
+        block = new JBlock(tempLevel, actionHeavy, levelHeavy);
       } else if (command == "L") {
-
+        block = new LBlock(tempLevel, actionHeavy, levelHeavy);
       } else if (command == "O") {
-
+        block = new OBlock(tempLevel, actionHeavy, levelHeavy);
       } else if (command == "S") {
-
+        block = new SBlock(tempLevel, actionHeavy, levelHeavy);
       } else if (command == "Z") {
-
+        block = new ZBlock(tempLevel, actionHeavy, levelHeavy);
       } else if (command == "T") {
-
+        block = new TBlock(tempLevel, actionHeavy, levelHeavy);
       }
+      
     } else if (command == "restart" || commands.at("restart") == command) {
       // restart game
+
+      // reset boards
+      board1->reset();
+      board2->reset();
+
+      turnCount = 0;
+      startLevel = 0;
+
+      // reset blocks
+      
+      break;
     }
 
     // when/where do we want to check lines?
