@@ -26,7 +26,7 @@ void Board::build() {
 }
 
 // Board Constructor
-Board::Board(int width, int height, int level, Level* curLevel) : width{width}, height{height}, hiScore{0}, curScore{0}, level{level}, blind{false}, heavy{false}, force{false}, withEffect{false}, curBlock{nullptr}, nextBlock{nullptr}, curLevel{nullptr} {
+Board::Board(int width, int height, int level) : width{width}, height{height}, hiScore{0}, curScore{0}, level{level}, blind{false}, heavy{false}, force{false}, withEffect{false}, curBlock{nullptr}, nextBlock{nullptr}, curLevel{nullptr} {
 	this->build();
 }
 
@@ -134,6 +134,10 @@ void Board::removeRow() {
 
     delete curBlock;
     if(total > 1) withEffect = true;
+}
+
+int Board::getLevel(){
+    return level;
 }
 
 bool Board::itsValid(int hShift, int vShift, int rotation) {

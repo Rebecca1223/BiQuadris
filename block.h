@@ -17,7 +17,6 @@ class Block {
     void ccwrotate();
     void moveHorz(std::string dir);
     void down();
-    void drop();
     int getX();
     void setX(int x);
     int getY();
@@ -27,6 +26,7 @@ class Block {
     int getRotation();
     void setRotation(int rotation);
     virtual vector<vector<string>> getVector() = 0;
+    bool getActionHeavy();
     void setActionHeavy();
     void setLevelHeavy();
     virtual ~Block();
