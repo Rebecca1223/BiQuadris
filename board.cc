@@ -209,4 +209,9 @@ int Board::getHiScore() {return hiScore;}
 int Board::getCurLevel() {return level;}
 int Board::getCurScore() {return curScore;}
 Block *Board::getCurBlock() {return curBlock;}
+void Board::setCurBlock(Block* curBlock) {this->curBlock = curBlock;}
+void Board::setNextBlock(Block* nextBlock) {
+        this->nextBlock = nextBlock;
+        //notify();
+}
 vector<vector<Unit>> Board::getBoard() { return mainBoard; }

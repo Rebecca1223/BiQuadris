@@ -10,7 +10,7 @@ void Block::cwrotate(){ // clockwise
     if(curRotation == 3){
         curRotation = 0;
     }else{
-        curRotation+=1;
+        curRotation++;
     }
 }
 
@@ -18,20 +18,20 @@ void Block::ccwrotate(){ // counterclockwise
     if(curRotation == 0){
         curRotation = 3;
     }else{
-        curRotation-=1;
+        curRotation--;
     }
 }
 
 void Block::moveHorz(std::string dir){
     if(dir == "right"){
-        x+=1;
+        x++;
     }else{
-        x-=1;
+        x--;
     }
 }
 
 void Block::down(){
-    y-=1;
+    y--;
 }
 
 int Block::getX(){
