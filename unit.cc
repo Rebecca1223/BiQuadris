@@ -7,7 +7,7 @@ Unit::~Unit(){
     delete subBoard;
 }
 
-void unit::placePiece(char c){
+void Unit::placePiece(char c){
     occ = true;
     blockType = c;
     //notify();
@@ -19,10 +19,10 @@ void Unit::removePiece(){
     //notify();
 }
 
-bool unit::getOcc() {
+bool Unit::getOcc() {
     return occ;
 }
 
-char unit::getBlockType() {
+char Unit::getBlockType() {
     return blockType;
 }

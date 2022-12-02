@@ -57,9 +57,9 @@ void Board::placeBlock(Block& block) {
 void Board::reset() {
     curScore = 0;
 
-    this->setBlind(false);
-    this->setHeavy(false);
-    this->setForce(false);
+    this->blind = false;
+    this->heavy = false;
+    this->force = false;
 
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {

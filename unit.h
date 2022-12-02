@@ -2,7 +2,7 @@
 #define _UNIT_H_
 class Board;
 
-class unit{
+class Unit{
     int x, y;
     char blockType;
     Board *subBoard;
@@ -13,6 +13,9 @@ class unit{
     Unit getUnit() const;
     void placePiece(char c);
     void removePiece();
+
+    bool getOcc();
+    char getBlockType();
 };
 
 #endif
