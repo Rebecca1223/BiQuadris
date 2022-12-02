@@ -205,7 +205,7 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
     // add block pointer to unit
     for(int i=0; i<11; i++){
         for(int j=0; j<15; j++){
-            if(i==mainBoard[i][j].getX() && j==mainBoard[i][j].getY()){
+            if(cur==mainBoard[i][j].getX() && j==mainBoard[i][j].getY()){ //////////////////////////////////////////////////////////////////////////////////
                 mainBoard[i][j].setUnitBlock(curBlock);
             }
         }
@@ -218,4 +218,10 @@ int Board::getHiScore() {return hiScore;}
 int Board::getCurLevel() {return level;}
 int Board::getCurScore() {return curScore;}
 Block *Board::getCurBlock() {return curBlock;}
+void Board::setCurBlock(Block* curBlock) {this->curBlock = curBlock;}
+void Board::setNextBlock(Block* nextBlock) {
+        this->nextBlock = nextBlock;
+        //notify();
+}
 vector<vector<Unit>> Board::getBoard() { return mainBoard; }
+Block* Board::getNextBlock() { return nextBlock; }

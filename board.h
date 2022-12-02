@@ -25,6 +25,8 @@ class Board : public Subject {
         void removePiece(int x, int y);
         void removeRow();
         void moveBlockInBoard(int hShift, int vShift, int rotation);
+        void setCurBlock(Block* curBlock);
+        void setNextBlock(Block* nextBlock);
 
         bool itsValid(int hShift, int vShift, int rotation);
         bool checkFilledRow(int index);
@@ -36,6 +38,7 @@ class Board : public Subject {
         int getCurScore();
         Block *getCurBlock();
         std::vector<std::vector<Unit>> getBoard();
+        Block* getNextBlock();
 };
 
 #endif
