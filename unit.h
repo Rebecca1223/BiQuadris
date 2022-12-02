@@ -8,8 +8,11 @@ class Unit {
     Board *subBoard;
     bool occ;
   public:
-    Unit(int x, int y, char blockType, Board *subBoard);
+    Unit(int x, int y, char blockType, Board *subBoard, bool occ);
     ~Unit();
+    Unit getUnit() const;
+    void placePiece(char c);
+    void removePiece();
 };
 
 #endif

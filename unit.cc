@@ -1,23 +1,23 @@
 #include "board.h"
 #include "unit.h"
 
-Unit::Unit(int x, int y, char blockType, Board *subBoard) : x{x}, y{y}, blockType{blockType}, subBoard{subBoard}{}
+Unit::Unit(int x, int y, char blockType, Board *subBoard, bool occ) : x{x}, y{y}, blockType{blockType}, subBoard{subBoard}, occ{occ}{}
 
 Unit::~Unit(){
     delete subBoard;
 }
 
-unit unit::getUnit() const{
-    return unit(x, y, blockType, subBoard, occ);
+Unit Unit::getUnit() const{
+    return Unit(x, y, blockType, subBoard, occ);
 }
 
-void unit::placePiece(char c){
+void Unit::placePiece(char c){
     occ = true;
     blockType = c;
     //notify();
 }
 
-void unit::removePiece(){
+void Unit::removePiece(){
     occ = false;
     blockType = ' ';
     //notify();
