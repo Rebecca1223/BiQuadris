@@ -24,12 +24,13 @@ class Board : public Subject {
         void placeBlock(Block& block);
         void removePiece(int x, int y);
         void removeRow();
-        int getLevel();
+        void moveBlockInBoard(int hShift, int vShift, int rotation);
 
         bool itsValid(int hShift, int vShift, int rotation);
         bool checkFilledRow(int index);
-        void moveBlockInBoard(int hShift, int vShift, int rotation);
+        bool isBlind();
 
+        int getLevel();
         int getHiScore();
         int getCurLevel();
         int getCurScore();

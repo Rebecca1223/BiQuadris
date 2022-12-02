@@ -153,7 +153,7 @@ bool Board::itsValid(int hShift, int vShift, int rotation) {
 
             if (here != ',') {
                 // Check if block exists
-                if (true) { ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// the unit is occupied
+                if (mainBoard[y][x].getOcc()) { 
                     if (curBlock->getVector()[curBlock->getRotation()][i + y][j + x] == ',') return false;
                     if (y < curBlock->getY() || x < curBlock->getX() || y > 3 + curBlock->getY() || x > 3 + curBlock->getX()) return false;
                 }
@@ -202,6 +202,8 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
 	curBlock->setY(curBlock->getY() + vShift);
 	curBlock->setRotation(finalRotation);
 }
+
+bool Board::isBlind() {return blind;}
 
 int Board::getHiScore() {return hiScore;}
 int Board::getCurLevel() {return level;}
