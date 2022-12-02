@@ -157,13 +157,16 @@ int main(int argc, char **argv) {
 
     } else if (command.length() == 1) {
       bool levelHeavy = false;
-      bool effectHeavy = false;
+
+      Block *curBlock = curBoard->getCurBlock();
+      bool actionHeavy = curBlock->getActionHeavy();
+      
       int tempLevel = curBoard->getLevel();
 
       if(tempLevel == 3 || tempLevel == 4){
         levelHeavy == false;
       }
-      
+
       // more stuff
       if (command == "I") {
         // create new block each, need to know fields

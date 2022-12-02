@@ -16,7 +16,7 @@ void Board::build() {
     if (mainBoard.size() != 0) mainBoard.clear(); // If there exists a previous board
 
     // fill up the board
-    vector<unit> row;
+    vector<Unit> row;
     for (int i = 0; i < height; i++) {
         mainBoard.emplace_back(row);
         for (int j = 0; j < width; j++) {
@@ -39,13 +39,13 @@ Board::~Board() {
 
 // Places a specific unit piece at coordinates (x, y)
 void Board::placePiece(int x, int y, char type) {
-    unit &temp = mainBoard[x][y];
+    Unit &temp = mainBoard[x][y];
     temp.placePiece(type);
 }
 
 // Removes the specific unit at coordinates (x, y)
 void Board::removePiece(int x, int y) {
-    unit &temp = mainBoard[x][y];
+    Unit &temp = mainBoard[x][y];
 	temp.placePiece(' ');
 }
 
@@ -206,3 +206,4 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
 int Board::getHiScore() {return hiScore;}
 int Board::getCurLevel() {return level;}
 int Board::getCurScore() {return curScore;}
+Block *Board::getCurBlock() {return curBlock;}

@@ -33,6 +33,7 @@ class Board : public Subject {
         int getHiScore();
         int getCurLevel();
         int getCurScore();
+        Block *getCurBlock();
 };
 
 #endif
