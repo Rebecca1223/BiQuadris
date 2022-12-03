@@ -22,6 +22,7 @@ class Block {
     int getY();
     void setY(int y);
     int getblockNum();
+    int getlevelGen();
     void setBlockNum(int blockNum);
     int getRotation();
     void setRotation(int rotation);

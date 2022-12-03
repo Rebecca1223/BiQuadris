@@ -52,6 +52,10 @@ void Block::setY(int y){
     this->y = y;
 }
 
+int Block::getlevelGen(){
+    return levelGen;
+}
+
 int Block::getblockNum(){
     return blockNum;
 }
