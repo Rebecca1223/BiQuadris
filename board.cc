@@ -4,10 +4,11 @@
 #include "block.h"
 #include "unit.h"
 #include "level.h"
-#include "levelzero.h"
-#include "levelone.h"
-#include "leveltwo.h"
-#include "levelthree.h"
+#include "levelZero.h"
+#include "levelOne.h"
+#include "levelTwo.h"
+#include "levelThree.h"
+#include "levelFour.h"
 
 using namespace std;
 
@@ -138,10 +139,6 @@ void Board::removeRow() {
     if(total > 1) withEffect = true;
 }
 
-int Board::getLevel(){
-    return level;
-}
-
 bool Board::itsValid(int hShift, int vShift, int rotation) {
     ///////////////////////////////////////////////////////////        ***Level 4 Streak Counter Here***                 ////////////////////////////////////////////////////////
 
@@ -243,3 +240,20 @@ void Board::setNextBlock(Block* nextBlock) {
 }
 vector<vector<Unit>> Board::getBoard() { return mainBoard; }
 Block* Board::getNextBlock() { return nextBlock; }
+
+void Board::setCurLevel(int setLevel, bool rand, string sequenceFile = "") {
+    delete curLevel;
+    if (setLevel == 0) {
+        curLevel = new LevelZero(sequenceFile);
+    } else if (setLevel == 1) {
+        curLevel = new LevelOne();
+    } else if (setLevel == 2) {
+        curLevel = new LevelTwo();
+    } else if (setLevel == 3) {
+        curLevel = new LevelThree(rand, sequenceFile);
+    } else if (setLevel == 4) {
+        curLevel = new LevelFour(rand, sequenceFile);
+    }
+    this->level = setLevel;
+    notifyObservers();
+}

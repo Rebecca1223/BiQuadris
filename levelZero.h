@@ -8,7 +8,6 @@
 
 class LevelZero : public Level {
   int level, index;
-  bool randOn;
  // std::ifstream &in;
   string sequenceFile;
   std::vector<char> blockSequence;

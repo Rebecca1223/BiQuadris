@@ -5,8 +5,6 @@
 
 class LevelOne : public Level {
   int level;
- // bool randOn;
- // std::ifstream &in;
   std::vector<char> blocksPool;
 
   public:

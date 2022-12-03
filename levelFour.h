@@ -7,7 +7,6 @@
 class LevelFour : public Level {
   int level, index, placedBlocks;
   bool randOn;
-//  std::ifstream &in;
   std::string sequenceFile;
   std::vector<char> blocksPool;
 
