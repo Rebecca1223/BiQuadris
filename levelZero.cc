@@ -7,7 +7,7 @@
 using namespace std;
 
 
-LevelZero::LevelZero(string file): level{0}, index{0}, randOn{false},
+LevelZero::LevelZero(string file): level{0}, index{0},
 sequenceFile{file} {}
 
 void LevelZero::readFile() {

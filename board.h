@@ -32,13 +32,13 @@ class Board : public Subject {
         bool checkFilledRow(int index);
         bool isBlind();
 
-        int getLevel();
         int getHiScore();
         int getCurLevel();
         int getCurScore();
         Block *getCurBlock();
         std::vector<std::vector<Unit>> getBoard();
         Block* getNextBlock();
+        void setCurLevel(int level, bool rand, string sequenceFile = "");
 };
 
 #endif

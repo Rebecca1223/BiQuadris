@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <map>
 #include <sstream>
+#include <fstream>
 #include "board.h"
 #include "block.h"
 #include "text.h"
@@ -32,6 +33,7 @@ int main(int argc, char **argv) {
     {"sequence", "sequence"},
     {"restart" ,"restart"}
   };
+  vector<string> sequenceCommands;
   int board1lvl = 0;
   int board2lvl = 0;
   Board* board1 = new Board(11, 18, board1lvl);
@@ -63,35 +65,31 @@ int main(int argc, char **argv) {
       }
     }
   }
-  // initialize two boards
-  // initialize text, graphics, and set observers
+
+  //if (graphicsOn) {
+  //  graphicDisplay
+  //}
+
+  if (startLevel == 0) {
+    board1->setCurLevel(startLevel, false, p1LevelZeroFile);
+    board2->setCurLevel(startLevel, false, p2LevelZeroFile);
+  } else if (startLevel == 1 || startLevel == 2) {
+    board1->setCurLevel(startLevel, false);
+    board2->setCurLevel(startLevel, false);
+  } else {
+    board1->setCurLevel(startLevel, true);
+    board2->setCurLevel(startLevel, true);
+  }
+
+
+
+  // get first new blocks???
 
 // Command loop
   string command;
   int n;
   int multiplier;
   while (true) {
-    cin >> command;
-    
-    if (command == "rename") {
-      string commandName, aliasName;
-      cin >> commandName;
-      cin >> aliasName;
-
-      commands[commandName] = aliasName;
-    }
-
-    // check for multiplier, then save it, and remove it
-    istringstream iss{command};
-    if (iss >> n) { multiplier = n; }
-    int len = command.length();
-    for (int i = 0; i < len; ++i) {
-      if (isdigit(command[i])) {
-        command.erase(i);
-      } else {
-        break;
-      }
-    }
 
     Board *curBoard;
     if (turnCount % 2 == 0) {
@@ -100,115 +98,180 @@ int main(int argc, char **argv) {
       curBoard = board2;
     }
 
-    // number of times controlled by multiplier
-    if (command == "left" || commands.at("left") == command) {
-      for(int i=0; i<multiplier; i++){
-        if (curBoard->itsValid(-1, 0, 0)){
-          curBoard->moveBlockInBoard(-1, 0, 0);
-        }else{
-          break;
-        }
-      }
-    } else if (command == "right" || commands.at("right") == command) {
-      for(int i=0; i<multiplier; i++){
-        if (curBoard->itsValid(1, 0, 0)){
-          curBoard->moveBlockInBoard(1, 0, 0);
-        }else{
-          break;
-        }
-      }
-    } else if (command == "down" || commands.at("down") == command) {
-      for(int i=0; i<multiplier; i++){
-        if (curBoard->itsValid(0, 1, 0)){
-          curBoard->moveBlockInBoard(0, 1, 0);
-        }else{
-          break;
-        }
-      }
-    } else if (command == "drop" || commands.at("drop") == command) {
-      bool valid = curBoard->itsValid(0, 1, 0);
-      while (valid == true){
-        curBoard->moveBlockInBoard(0,1,0);
-        valid = curBoard->itsValid(0, 1, 0);
-      }
-      // need to check if line is cleared here
-
-      // what if more than 1 drop
-      
-    } else if (command == "clockwise" || commands.at("clockwise") == command) {
-      for(int i=0; i<multiplier; i++){
-        if (curBoard->itsValid(0, 0, 1)){
-          curBoard->moveBlockInBoard(0, 0, 1);
-        }else{
-          break;
-        }
-      }
-    } else if (command == "counterclockwise" || commands.at("counterclockwise") == command) {
-      for(int i=0; i<multiplier; i++){
-        if (curBoard->itsValid(0, 0, -1)){
-          curBoard->moveBlockInBoard(0, 0, -1);
-        }else{
-          break;
-        }
-      }
-    //} else if (command == "levelup" || commands.at("levelup") == command) {
-
-    //} else if (command == "leveldown" || commands.at("leveldown") == command) {
-
-    //} else if (command == "norandom" || commands.at("norandom") == command) {
-
-    //} else if (command == "random" || commands.at("random") == command) {
-
-    //} else if (command == "sequence" || commands.at("sequence") == command) {
-
-    } else if (command.length() == 1) {
-      bool levelHeavy = false;
-
-      Block *curBlock = curBoard->getCurBlock();
-      bool actionHeavy = curBlock->getActionHeavy();
-
-      int tempLevel = curBoard->getLevel();
-
-      if(tempLevel == 3 || tempLevel == 4){
-        levelHeavy == false;
-      }
-
-      // more stuff
-      Block *block;
-      if (command == "I") {
-        // create new block each with respective fields
-        block = new IBlock(tempLevel, actionHeavy, levelHeavy);
-      } else if (command == "J") {
-        block = new JBlock(tempLevel, actionHeavy, levelHeavy);
-      } else if (command == "L") {
-        block = new LBlock(tempLevel, actionHeavy, levelHeavy);
-      } else if (command == "O") {
-        block = new OBlock(tempLevel, actionHeavy, levelHeavy);
-      } else if (command == "S") {
-        block = new SBlock(tempLevel, actionHeavy, levelHeavy);
-      } else if (command == "Z") {
-        block = new ZBlock(tempLevel, actionHeavy, levelHeavy);
-      } else if (command == "T") {
-        block = new TBlock(tempLevel, actionHeavy, levelHeavy);
+    while (true) {
+      if (sequenceCommands.empty()) {
+        cin >> command;
+      } else {
+        command = sequenceCommands.front();
+        sequenceCommands.erase(sequenceCommands.begin());
       }
       
-    } else if (command == "restart" || commands.at("restart") == command) {
-      // restart game
+      if (command == "rename") {
+        string commandName, aliasName;
+        cin >> commandName;
+        cin >> aliasName;
 
-      // reset boards
-      board1->reset();
-      board2->reset();
+        commands[commandName] = aliasName;
+      }
 
-      turnCount = 0;
-      startLevel = 0;
+      // check for multiplier, then save it, and remove it
+      istringstream iss{command};
+      if (iss >> n) { multiplier = n; }
+      int len = command.length();
+      for (int i = 0; i < len; ++i) {
+        if (isdigit(command[i])) {
+          command.erase(i);
+        } else {
+          break;
+        }
+      }
 
-      // reset blocks
-      
-      break;
+      // number of times controlled by multiplier
+      if (command == "left" || commands.at("left") == command) {
+        for(int i=0; i<multiplier; i++){
+          if (curBoard->itsValid(-1, 0, 0)){
+            curBoard->moveBlockInBoard(-1, 0, 0);
+          }else{
+            break;
+          }
+        }
+      } else if (command == "right" || commands.at("right") == command) {
+        for(int i=0; i<multiplier; i++){
+          if (curBoard->itsValid(1, 0, 0)){
+            curBoard->moveBlockInBoard(1, 0, 0);
+          }else{
+            break;
+          }
+        }
+      } else if (command == "down" || commands.at("down") == command) {
+        for(int i=0; i<multiplier; i++){
+          if (curBoard->itsValid(0, 1, 0)){
+            curBoard->moveBlockInBoard(0, 1, 0);
+          }else{
+            break;
+          }
+        }
+      } else if (command == "drop" || commands.at("drop") == command) {
+        bool valid = curBoard->itsValid(0, 1, 0);
+        while (valid == true){
+          curBoard->moveBlockInBoard(0,1,0);
+          valid = curBoard->itsValid(0, 1, 0);
+        }
+        // need to check if line is cleared here
+
+        // what if more than 1 drop
+        
+      } else if (command == "clockwise" || commands.at("clockwise") == command) {
+        for(int i=0; i<multiplier; i++){
+          if (curBoard->itsValid(0, 0, 1)){
+            curBoard->moveBlockInBoard(0, 0, 1);
+          }else{
+            break;
+          }
+        }
+      } else if (command == "counterclockwise" || commands.at("counterclockwise") == command) {
+        for(int i=0; i<multiplier; i++){
+          if (curBoard->itsValid(0, 0, -1)){
+            curBoard->moveBlockInBoard(0, 0, -1);
+          }else{
+            break;
+          }
+        }
+      } else if (command == "levelup" || commands.at("levelup") == command) {
+        int level = curBoard->getCurLevel();
+
+        for (int i = 0; i < multiplier; ++i) {
+          if (level == 4) break;
+          ++level;
+        }
+        curBoard->setCurLevel(level, true); // true for level 3 + 4, set random to false using norandom
+        continue;
+
+      } else if (command == "leveldown" || commands.at("leveldown") == command) {
+        int level = curBoard->getCurLevel();
+
+        for (int i = 0; i < multiplier; ++i) {
+          if (level == 0) break;
+          --level;
+        }
+        curBoard->setCurLevel(level, true); // same logic as levelup
+        continue;
+
+      } else if (command == "norandom" || commands.at("norandom") == command) {
+        string file;
+        cin >> file;
+        int level = curBoard->getCurLevel();
+
+        if (level == 3 || level == 4) curBoard->setCurLevel(level, false, file);
+        continue;
+
+      } else if (command == "random" || commands.at("random") == command) {
+        int level = curBoard->getCurLevel();
+
+        if (level == 3 || level == 4) curBoard->setCurLevel(level, true);
+        continue;
+
+      } else if (command == "sequence" || commands.at("sequence") == command) {
+        string fileName;
+        string command;
+        cin >> fileName;
+        ifstream file;
+
+        while (file >> command) {
+          sequenceCommands.emplace_back(command);
+        }
+        continue;
+
+      } else if (command.length() == 1) {
+        bool levelHeavy = false;
+
+        Block *curBlock = curBoard->getCurBlock();
+        bool actionHeavy = curBlock->getActionHeavy();
+
+        int tempLevel = curBoard->getCurLevel();
+
+        if(tempLevel == 3 || tempLevel == 4){
+          levelHeavy == false;
+        }
+
+        // more stuff
+        Block *block;
+        if (command == "I") {
+          // create new block each with respective fields
+          block = new IBlock(tempLevel, actionHeavy, levelHeavy);
+        } else if (command == "J") {
+          block = new JBlock(tempLevel, actionHeavy, levelHeavy);
+        } else if (command == "L") {
+          block = new LBlock(tempLevel, actionHeavy, levelHeavy);
+        } else if (command == "O") {
+          block = new OBlock(tempLevel, actionHeavy, levelHeavy);
+        } else if (command == "S") {
+          block = new SBlock(tempLevel, actionHeavy, levelHeavy);
+        } else if (command == "Z") {
+          block = new ZBlock(tempLevel, actionHeavy, levelHeavy);
+        } else if (command == "T") {
+          block = new TBlock(tempLevel, actionHeavy, levelHeavy);
+        }
+        
+      } else if (command == "restart" || commands.at("restart") == command) {
+        // restart game
+
+        // reset boards
+        board1->reset();
+        board2->reset();
+
+        turnCount = 0;
+        startLevel = 0;
+
+        // reset blocks
+        
+        break;
+      }
     }
+  }
 
     // when/where do we want to check lines?
     // when/where do we want to check and apply special actions?
-  }  
+  
 
 }
