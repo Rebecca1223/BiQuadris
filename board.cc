@@ -38,15 +38,15 @@ Board::~Board() {
 }
 
 // Places a specific unit piece at coordinates (x, y)
-void Board::placePiece(int x, int y, char type) {
+void Board::placePiece(int x, int y, char type, Block* block) {        ///////////////////////////////////////////////////////////// what is this function for and when do we ever need it?
     Unit &temp = mainBoard[x][y];
-    temp.placePiece(type);
+    temp.placePiece(type, block);
 }
 
 // Removes the specific unit at coordinates (x, y)
-void Board::removePiece(int x, int y) {
+void Board::removePiece(int x, int y) {                             ///////////////////////////////////////////////////////////// what is this function for and when do we ever need it?
     Unit &temp = mainBoard[x][y];
-	temp.placePiece(' ');
+	temp.placePiece(' ', nullptr);
 }
 
 // Adds Block to the vector of placed blocks
@@ -100,12 +100,13 @@ void Board::removeRow() {
                 total++;
 
                 // Check if entire block is cleared
+                
 
                 // Shift rows down
                 for (int i = shift; i > 0; i--) {
                     for (int j = 0; j < width; j++) {
                         if (mainBoard[i][j].getOcc()) { 
-                            mainBoard[i+1][j].placePiece(mainBoard[i][j].getBlockType());
+                            mainBoard[i+1][j].placePiece(mainBoard[i][j].getBlockType(), mainBoard[i][j].getUnitBlock());
                         } else {
                             mainBoard[i+1][j].removePiece();
                         }
@@ -195,7 +196,7 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
             char here = curBlock->getVector()[finalRotation][i][j];
             //if a value exist, we place that on the board
             if(here != ','){
-                mainBoard[curBlock->getX()+i+hShift][curBlock->getY()+j+vShift].placePiece(here);
+                mainBoard[curBlock->getX()+i+hShift][curBlock->getY()+j+vShift].placePiece(here, nullptr);
             }
         }
     }
@@ -203,7 +204,7 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
     for(int i=0; i<11; i++){
         for(int j=0; j<15; j++){
             if(mainBoard[i][j].getUnitBlock()==curBlock){
-                mainBoard[i][j].removeUnitBlock();
+                mainBoard[i][j].removePiece();    
             }
         }
     }
@@ -222,7 +223,7 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
                 int unitPositionY = mainBoard[i][j].getY();
                 if(blockSegPositionX==unitPositionX &&  blockSegPositionY==unitPositionY){ 
                     //set that unit to point to curBlock
-                    mainBoard[i][j].setUnitBlock(curBlock);
+                    mainBoard[i][j].placePiece(curBlock->getType(), curBlock);  
                 }
             }
         }

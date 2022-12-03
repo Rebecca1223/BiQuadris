@@ -7,15 +7,17 @@ Unit::~Unit(){
     delete subBoard;
 }
 
-void Unit::placePiece(char c){
+void Unit::placePiece(char c, Block *unitBlock){
     occ = true;
     blockType = c;
+    this->unitBlock = unitBlock;
     //notify();
 }
 
 void Unit::removePiece(){
     occ = false;
     blockType = ' ';
+    this->unitBlock = nullptr;
     //notify();
 }
 
@@ -39,10 +41,10 @@ Block *Unit::getUnitBlock(){
     return unitBlock;
 }
 
-void Unit::setUnitBlock(Block *unitBlock){
-    this->unitBlock = unitBlock;
-}
+//void Unit::setUnitBlock(Block *unitBlock){
+//    this->unitBlock = unitBlock;
+//}
 
-void Unit::removeUnitBlock(){
-    this->unitBlock = nullptr;
-}
+//void Unit::removeUnitBlock(){
+//    this->unitBlock = nullptr;
+//}

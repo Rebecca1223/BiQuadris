@@ -20,7 +20,7 @@ class Board : public Subject {
 
         void build();
         void reset();
-        void placePiece(int x, int y, char type);
+        void placePiece(int x, int y, char type, Block* block);
         void placeBlock(Block& block);
         void removePiece(int x, int y);
         void removeRow();

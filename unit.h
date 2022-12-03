@@ -12,7 +12,7 @@ class Unit{
     Unit(int x, int y, char blockType, Board *subBoard, bool occ, Block *unitBlock);
     ~Unit();
     Unit getUnit() const;
-    void placePiece(char c);
+    void placePiece(char c, Block *unitBlock);
     void removePiece();
 
     bool getOcc();
@@ -21,8 +21,8 @@ class Unit{
     int getX();
     int getY();
     Block *getUnitBlock();
-    void setUnitBlock(Block *unitBlock);
-    void removeUnitBlock();
+    //void setUnitBlock(Block *unitBlock);
+    //void removeUnitBlock();
 };
 
 #endif
