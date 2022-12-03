@@ -18,7 +18,7 @@ void Unit::removePiece(){
     occ = false;
     blockType = ' ';
     this->unitBlock = nullptr;
-    //notify();
+    //notifyObservers();
 }
 
 bool Unit::getOcc() {

@@ -24,6 +24,7 @@ void Board::build() {
             mainBoard[i].emplace_back(Unit(i, j, ' ', this, false, nullptr));
         }
     }
+    notifyObservers();
 }
 
 // Board Constructor
@@ -75,6 +76,7 @@ void Board::reset() {
     delete nextBlock;
 
     placedBlocks.clear();
+    notifyObservers();
 }
 
 bool Board::checkFilledRow(int index) {
@@ -100,8 +102,12 @@ void Board::removeRow() {
                 int shift = curBlock->getY() + i - 1;
                 total++;
 
+                // subtracting blockNum from all the blocks in that row
+                for(int j=0; j<11; j++){
+                    
+                }
+
                 // Check if entire block is cleared
-                
 
                 // Shift rows down
                 for (int i = shift; i > 0; i--) {
@@ -137,6 +143,7 @@ void Board::removeRow() {
 
     delete curBlock;
     if(total > 1) withEffect = true;
+    notifyObservers();
 }
 
 bool Board::itsValid(int hShift, int vShift, int rotation) {
@@ -225,6 +232,7 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
             }
         }
     }
+    notifyObservers();
 }
 
 bool Board::isBlind() {return blind;}
