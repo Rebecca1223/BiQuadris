@@ -109,6 +109,7 @@ void Board::removeRow() {
                     // Check if entire block is cleared and update score
                     if(newBlockNum == 0){
                         curScore += (mainBoard[i][j].getUnitBlock()->getlevelGen()+1) * (mainBoard[i][j].getUnitBlock()->getlevelGen()+1);
+                        notifyObservers();
                     }
                 }
 
@@ -132,14 +133,14 @@ void Board::removeRow() {
 
     if (total > 0) {
         curScore = curScore + ((level + total) * (level + total));
-        //notify();
+        notifyObservers();
         ///////////////////////////////////////////////////////////        ***Reset Level 4 Streak Here***                 ////////////////////////////////////////////////////////
 
-        for (int i = 0; i < placedBlocks.size(); i++) {
-            for (int j = 0; j < 4; j++) {
-                placedBlocks[i][j].setY(placedBlocks[i][j].getY() + total);
-            }
-        }
+        // for (int i = 0; i < placedBlocks.size(); i++) {
+        //     for (int j = 0; j < 4; j++) {
+        //         placedBlocks[i][j].setY(placedBlocks[i][j].getY() + total);
+        //     }
+        // }
     }
 
     //////////////////////////////////////////////////////////         ***Increase Streak for Level 4***           /////////////////////////////////////////////////////

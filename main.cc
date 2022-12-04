@@ -159,7 +159,11 @@ int main(int argc, char **argv) {
           curBoard->moveBlockInBoard(0,1,0);
           valid = curBoard->itsValid(0, 1, 0);
         }
-        // need to check if line is cleared here
+        int row = curBoard->getCurBlock()->getY();
+        // check if line is cleared here
+        if(curBoard->checkFilledRow(row)){
+          curBoard->removeRow();
+        }
 
         // what if more than 1 drop
         
