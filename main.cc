@@ -12,6 +12,7 @@
 using namespace std;
 
 int main(int argc, char **argv) {
+  cout << "hi" << endl;
   bool graphicsOn = true;
   int player1 = 1;
   int player2 = 2;
@@ -36,13 +37,16 @@ int main(int argc, char **argv) {
   vector<string> sequenceCommands;
   int board1lvl = 0;
   int board2lvl = 0;
+  cout << "here0" << endl;
   Board* board1 = new Board(11, 18, board1lvl);
+  cout << "here1" << endl;
   Board* board2 = new Board(11, 18, board2lvl);
   int turnCount = 0;
   Text textDisplay{board1, board2, 11, 18};
-  Graphics* graphicDisplay = nullptr;
+  //Graphics* graphicDisplay = nullptr;
   board1->attach(&textDisplay);
   board2->attach(&textDisplay);
+  cout << "here1" << endl;
 
   // setting the seed
   srand(7);
@@ -65,7 +69,7 @@ int main(int argc, char **argv) {
       }
     }
   }
-
+  cout << "here2" << endl;
   //if (graphicsOn) {
   //  graphicDisplay
   //}
@@ -81,6 +85,7 @@ int main(int argc, char **argv) {
     board2->setCurLevel(startLevel, true);
   }
 
+cout << "here3" << endl;
   // get first new blocks???
   board1->setCurBlock((board1->getCurLevel())->createBlock());
   board2->setCurBlock((board2->getCurLevel())->createBlock());

@@ -9,27 +9,40 @@
 #include "levelTwo.h"
 #include "levelThree.h"
 #include "levelFour.h"
+#include <iostream>
 
 using namespace std;
 
 // build() initiates board elements
 void Board::build() {
     if (mainBoard.size() != 0) mainBoard.clear(); // If there exists a previous board
-
+    cout << "b1" << endl;
     // fill up the board
-    vector<Unit> row;
+    
     for (int i = 0; i < height; i++) {
+        cout << "b2" << endl;
+        vector<Unit> row;
+        cout << "b2.1" << endl;
         mainBoard.emplace_back(row);
+        cout << "b2.2" << endl;
         for (int j = 0; j < width; j++) {
-            mainBoard[i].emplace_back(Unit(i, j, ' ', this, false, nullptr));
+            cout << "b2.3" << endl;
+            mainBoard[i].emplace_back(Unit(i, j, ' ', this, false, nullptr)); // problem here
+            cout << "b2.4" << endl;
         }
     }
+    cout << "b3" << endl;
     notifyObservers();
+    cout << "b4" << endl;
 }
 
 // Board Constructor
 Board::Board(int width, int height, int level) : width{width}, height{height}, hiScore{0}, curScore{0}, level{level}, blind{false}, heavy{false}, force{false}, withEffect{false}, curBlock{nullptr}, nextBlock{nullptr}, curLevel{nullptr} {
+    cout << "board ctor" << endl;
 	this->build();
+    cout << "after board ctor" << endl;
+
+    // potential problem with ctor
 }
 
 // Board Destructor
