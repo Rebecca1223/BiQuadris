@@ -104,7 +104,7 @@ class OneBlock : public Block {
     // void moveHorz(std::string dir) override;
     // void down() override;
     // void drop() override;
-    char getType();
+    char getType() override;
     vector<vector<string>> getVector() override;
     vector<vector<vector<int>>> getPositionVector() override;
     ~OneBlock();

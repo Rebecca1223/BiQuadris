@@ -6,7 +6,7 @@
 #include "level.h"
 
 class Board : public Subject {
-    int hiScore, curScore, width, height, level, curBlock, nextBlock;
+    int hiScore, curScore, width, height, level;
     bool blind, heavy, force, withEffect;
     Block* curBlock; // Pointer to current block
 	Block* nextBlock; // Pointer to next block

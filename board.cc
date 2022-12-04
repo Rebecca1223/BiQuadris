@@ -254,7 +254,7 @@ void Board::setNextBlock(Block* nextBlock) {
 vector<vector<Unit>> Board::getBoard() { return mainBoard; }
 Block* Board::getNextBlock() { return nextBlock; }
 
-void Board::setCurLevel(int setLevel, bool rand, string sequenceFile = "") {
+void Board::setCurLevel(int setLevel, bool rand, string sequenceFile) {
     delete curLevel;
     if (setLevel == 0) {
         curLevel = new LevelZero(sequenceFile);
