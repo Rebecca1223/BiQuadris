@@ -268,9 +268,13 @@ vector<vector<Unit>> Board::getBoard() { return mainBoard; }
 Block* Board::getNextBlock() { return nextBlock; }
 
 void Board::setCurLevel(int setLevel, bool rand, string sequenceFile) {
+    cout << "yay" << endl;
     delete curLevel;
+    cout << "hi" << endl;
     if (setLevel == 0) {
+        cout << "yoe" << endl;
         curLevel = new LevelZero(sequenceFile);
+        cout << "done" << endl;
     } else if (setLevel == 1) {
         curLevel = new LevelOne();
     } else if (setLevel == 2) {
@@ -281,5 +285,7 @@ void Board::setCurLevel(int setLevel, bool rand, string sequenceFile) {
         curLevel = new LevelFour(rand, sequenceFile);
     }
     this->level = setLevel;
-    notifyObservers();
+    cout << "before" << endl;
+   // notifyObservers();
+    cout << "after" << endl;
 }

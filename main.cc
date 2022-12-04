@@ -50,9 +50,11 @@ int main(int argc, char **argv) {
 
   // setting the seed
   srand(7);
+  cout << "after srand" << endl;
 
+  cout << argc << endl;
   // flags in the beginning, in command line
-  for (int i = 0; i < argc; ++i) {
+  for (int i = 1; i < argc; ++i) {
     string flag = argv[i];
     if (flag == "-text") {
       graphicsOn = false;
@@ -74,8 +76,11 @@ int main(int argc, char **argv) {
   //  graphicDisplay
   //}
 
+
   if (startLevel == 0) {
+    cout << "start" << endl;
     board1->setCurLevel(startLevel, false, p1LevelZeroFile);
+    cout << "next" << endl;
     board2->setCurLevel(startLevel, false, p2LevelZeroFile);
   } else if (startLevel == 1 || startLevel == 2) {
     board1->setCurLevel(startLevel, false);
@@ -87,15 +92,16 @@ int main(int argc, char **argv) {
 
 cout << "here3" << endl;
   // get first new blocks???
-  board1->setCurBlock((board1->getCurLevel())->createBlock());
-  board2->setCurBlock((board2->getCurLevel())->createBlock());
-  board1->setNextBlock((board1->getCurLevel())->createBlock());
-  board2->setNextBlock((board2->getCurLevel())->createBlock());
+cout << board1->getCurLevel()->getLevel() << endl;
+board1->setCurBlock((board1->getCurLevel())->createBlock());
+board2->setCurBlock((board2->getCurLevel())->createBlock());
+board1->setNextBlock((board1->getCurLevel())->createBlock());
+board2->setNextBlock((board2->getCurLevel())->createBlock());
 
 // Command loop
   string command;
   int n;
-  int multiplier;
+  int multiplier = 1;
   while (true) {
 
     Board *curBoard;
@@ -105,6 +111,8 @@ cout << "here3" << endl;
       curBoard = board2;
     }
 
+    cout << "1" << endl;
+    
     while (true) {
       if (sequenceCommands.empty()) {
         cin >> command;
@@ -113,6 +121,8 @@ cout << "here3" << endl;
         sequenceCommands.erase(sequenceCommands.begin());
       }
       
+      cout << "2" << endl;
+
       if (command == "rename") {
         string commandName, aliasName;
         cin >> commandName;
@@ -121,27 +131,36 @@ cout << "here3" << endl;
         commands[commandName] = aliasName;
       }
 
+      cout << "3" << endl;
       // check for multiplier, then save it, and remove it
       istringstream iss{command};
-      if (iss >> n) { multiplier = n; }
-      int len = command.length();
-      for (int i = 0; i < len; ++i) {
-        if (isdigit(command[i])) {
-          command.erase(i);
-        } else {
-          break;
+      if (iss >> n) { 
+        multiplier = n; 
+        int len = command.length();
+        for (int i = 0; i < len; ++i) {
+          if (isdigit(command[i])) {
+            command.erase(i);
+          } else {
+            break;
+          }
         }
       }
+      
+      cout << "4" << endl;
 
       // number of times controlled by multiplier
       if (command == "left" || commands.at("left") == command) {
+        cout << "in here" << endl;
         for(int i=0; i<multiplier; i++){
+          cout << "herehere" << endl;
           if (curBoard->itsValid(-1, 0, 0)){
+            cout << "hiiii" << endl;
             curBoard->moveBlockInBoard(-1, 0, 0);
           }else{
             break;
           }
         }
+        cout << "done" << endl;
       } else if (command == "right" || commands.at("right") == command) {
         for(int i=0; i<multiplier; i++){
           if (curBoard->itsValid(1, 0, 0)){

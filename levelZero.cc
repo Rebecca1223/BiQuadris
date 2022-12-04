@@ -8,7 +8,9 @@ using namespace std;
 
 
 LevelZero::LevelZero(string file): level{0}, index{0},
-sequenceFile{file} {}
+sequenceFile{file} {
+  readFile();
+}
 
 void LevelZero::readFile() {
   char block;
