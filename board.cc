@@ -241,7 +241,8 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
 bool Board::isBlind() {return blind;}
 
 int Board::getHiScore() {return hiScore;}
-int Board::getCurLevel() {return level;}
+Level* Board::getCurLevel() {return curLevel;}
+int Board::getLevel() { return level; }
 int Board::getCurScore() {return curScore;}
 Block *Board::getCurBlock() {return curBlock;}
 void Board::setCurBlock(Block* curBlock) {this->curBlock = curBlock;}

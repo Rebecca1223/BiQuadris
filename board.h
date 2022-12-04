@@ -33,7 +33,8 @@ class Board : public Subject {
         bool isBlind();
 
         int getHiScore();
-        int getCurLevel();
+        Level* getCurLevel();
+        int getLevel();
         int getCurScore();
         Block *getCurBlock();
         std::vector<std::vector<Unit>> getBoard();

@@ -131,8 +131,6 @@ void Text::notify() {
 }
 
 
-// blindEffect is called somehwere, in notify?, 
-
 // player is the player that gets blinded
 void Text::blindEffect(int player) {
   string separatingSpace = "       ";

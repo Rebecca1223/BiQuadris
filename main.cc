@@ -81,9 +81,11 @@ int main(int argc, char **argv) {
     board2->setCurLevel(startLevel, true);
   }
 
-
-
   // get first new blocks???
+  board1->setCurBlock((board1->getCurLevel())->createBlock());
+  board2->setCurBlock((board2->getCurLevel())->createBlock());
+  board1->setNextBlock((board1->getCurLevel())->createBlock());
+  board2->setNextBlock((board2->getCurLevel())->createBlock());
 
 // Command loop
   string command;
@@ -178,7 +180,7 @@ int main(int argc, char **argv) {
           }
         }
       } else if (command == "levelup" || commands.at("levelup") == command) {
-        int level = curBoard->getCurLevel();
+        int level = curBoard->getLevel();
 
         for (int i = 0; i < multiplier; ++i) {
           if (level == 4) break;
@@ -188,7 +190,7 @@ int main(int argc, char **argv) {
         continue;
 
       } else if (command == "leveldown" || commands.at("leveldown") == command) {
-        int level = curBoard->getCurLevel();
+        int level = curBoard->getLevel();
 
         for (int i = 0; i < multiplier; ++i) {
           if (level == 0) break;
@@ -200,13 +202,13 @@ int main(int argc, char **argv) {
       } else if (command == "norandom" || commands.at("norandom") == command) {
         string file;
         cin >> file;
-        int level = curBoard->getCurLevel();
+        int level = curBoard->getLevel();
 
         if (level == 3 || level == 4) curBoard->setCurLevel(level, false, file);
         continue;
 
       } else if (command == "random" || commands.at("random") == command) {
-        int level = curBoard->getCurLevel();
+        int level = curBoard->getLevel();
 
         if (level == 3 || level == 4) curBoard->setCurLevel(level, true);
         continue;
@@ -228,7 +230,7 @@ int main(int argc, char **argv) {
         Block *curBlock = curBoard->getCurBlock();
         bool actionHeavy = curBlock->getActionHeavy();
 
-        int tempLevel = curBoard->getCurLevel();
+        int tempLevel = curBoard->getLevel();
 
         if(tempLevel == 3 || tempLevel == 4){
           levelHeavy == false;
@@ -252,6 +254,8 @@ int main(int argc, char **argv) {
         } else if (command == "T") {
           block = new TBlock(tempLevel, actionHeavy, levelHeavy);
         }
+
+        curBoard->setCurBlock(block);
         
       } else if (command == "restart" || commands.at("restart") == command) {
         // restart game
