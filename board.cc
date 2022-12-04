@@ -103,7 +103,7 @@ void Board::removeRow() {
                 total++;
 
                 // subtracting blockNum from all the blocks in that row
-                for(int j=0; j<11; j++){
+                for(int j=0; j<width; j++){
                     int newBlockNum = mainBoard[i][j].getUnitBlock()->getblockNum() - 1;
                     mainBoard[i][j].getUnitBlock()->setBlockNum(newBlockNum);
                     // Check if entire block is cleared and update score

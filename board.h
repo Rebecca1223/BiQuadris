@@ -4,6 +4,9 @@
 #include "subject.h"
 #include "unit.h"
 #include "level.h"
+class Block;
+class Unit;
+class Level;
 
 class Board : public Subject {
     int hiScore, curScore, width, height, level;
