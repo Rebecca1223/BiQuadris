@@ -36,8 +36,8 @@ class Block {
 };
 
 class IBlock : public Block {
-  static const vector<vector<string>> rotationVector;
-  static const vector<vector<vector<int>>> positionVector;
+  static vector<vector<string>> rotationVector;
+  static vector<vector<vector<int>>> positionVector;
   public:
     IBlock(int levelGen, bool actionHeavy, bool levelHeavy);
     // void rotate() override;
@@ -51,8 +51,8 @@ class IBlock : public Block {
 };
 
 class JBlock : public Block {
-  static const vector<vector<string>> rotationVector;
-  static const vector<vector<vector<int>>> positionVector;
+  static vector<vector<string>> rotationVector;
+  static vector<vector<vector<int>>> positionVector;
   public:
     JBlock(int levelGen, bool actionHeavy, bool levelHeavy);
     // void rotate() override;
@@ -66,8 +66,8 @@ class JBlock : public Block {
 };
 
 class LBlock : public Block {
-  static const vector<vector<string>> rotationVector;
-  static const vector<vector<vector<int>>> positionVector;
+  static vector<vector<string>> rotationVector;
+  static vector<vector<vector<int>>> positionVector;
   public:
     LBlock(int levelGen, bool actionHeavy, bool levelHeavy);
     // void rotate() override;
@@ -81,8 +81,8 @@ class LBlock : public Block {
 };
 
 class OBlock : public Block {
-  static const vector<vector<string>> rotationVector;
-  static const vector<vector<vector<int>>> positionVector;
+  static vector<vector<string>> rotationVector;
+  static vector<vector<vector<int>>> positionVector;
   public:
     OBlock(int levelGen, bool actionHeavy, bool levelHeavy);
     // void rotate() override;
@@ -96,8 +96,8 @@ class OBlock : public Block {
 };
 
 class OneBlock : public Block {
-  static const vector<vector<string>> rotationVector;
-  static const vector<vector<vector<int>>> positionVector;
+  static vector<vector<string>> rotationVector;
+  static vector<vector<vector<int>>> positionVector;
   public:
     OneBlock(int levelGen);
     // void rotate() override;
@@ -111,8 +111,8 @@ class OneBlock : public Block {
 };
 
 class SBlock : public Block {
-  static const vector<vector<string>> rotationVector;
-  static const vector<vector<vector<int>>> positionVector;
+  static vector<vector<string>> rotationVector;
+  static vector<vector<vector<int>>> positionVector;
   public:
     SBlock(int levelGen, bool actionHeavy, bool levelHeavy);
     // void rotate() override;
@@ -126,8 +126,8 @@ class SBlock : public Block {
 };
 
 class TBlock : public Block {
-  static const vector<vector<string>> rotationVector;
-  static const vector<vector<vector<int>>> positionVector;
+  static vector<vector<string>> rotationVector;
+  static vector<vector<vector<int>>> positionVector;
   public:
     TBlock(int levelGen, bool actionHeavy, bool levelHeavy);
     // void rotate() override;
@@ -141,8 +141,8 @@ class TBlock : public Block {
 };
 
 class ZBlock : public Block {
-  static const vector<vector<string>> rotationVector;
-  static const vector<vector<vector<int>>> positionVector;
+  static vector<vector<string>> rotationVector;
+  static vector<vector<vector<int>>> positionVector;
   public:
     ZBlock(int levelGen, bool actionHeavy, bool levelHeavy);
     // void rotate() override;

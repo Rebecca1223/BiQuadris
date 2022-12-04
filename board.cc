@@ -52,10 +52,10 @@ void Board::removePiece(int x, int y) {                             ////////////
 }
 
 // Adds Block to the vector of placed blocks
-void Board::placeBlock(Block& block) {
-    placedBlocks.emplace_back(block);
+//void Board::placeBlock(Block& block) {
+//    placedBlocks.emplace_back(block);
     ////
-}
+//}
 
 void Board::reset() {
     curScore = 0;
@@ -245,7 +245,7 @@ int Board::getHiScore() {return hiScore;}
 Level* Board::getCurLevel() {return curLevel;}
 int Board::getLevel() { return level; }
 int Board::getCurScore() {return curScore;}
-Block *Board::getCurBlock() {return curBlock;}
+Block* Board::getCurBlock() {return curBlock;}
 void Board::setCurBlock(Block* curBlock) {this->curBlock = curBlock;}
 void Board::setNextBlock(Block* nextBlock) {
         this->nextBlock = nextBlock;

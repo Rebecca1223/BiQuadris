@@ -87,13 +87,13 @@ void Block::setLevelHeavy(){
 
 //IBLOCK
 //vectors for the iblock
-const vector<vector<string>> IBlock::rotationVector = {
+vector<vector<string>> IBlock::rotationVector = {
     {",,,,", ",,,,", ",,,,", "IIII"},
     {"I,,,", "I,,,", "I,,,", "I,,,"},
     {",,,,", ",,,,", ",,,,", "IIII"},
     {"I,,,", "I,,,", "I,,,", "I,,,"}
 };
-const vector<vector<vector<int>>> IBlock::positionVector = {
+vector<vector<vector<int>>> IBlock::positionVector = {
     {{1, 1}, {2, 1}, {3, 1}, {4, 1}},
     {{1, 4}, {1, 3}, {1, 2}, {1, 1}},
     {{1, 4}, {1, 3}, {1, 2}, {1, 1}},
@@ -124,14 +124,14 @@ JBlock::~JBlock() {}
 JBlock::JBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(1, 15, 4, levelGen, 0, actionHeavy, levelHeavy) {}
 
 //vectors for the jblock
-const vector<vector<string>> JBlock::rotationVector = {
+vector<vector<string>> JBlock::rotationVector = {
     {",,,,", ",,,,", "J,,,", "JJJ,"},
     {",,,,", "JJ,,", "J,,,", "J,,,"},
     {",,,,", ",,,,", "JJJ,", ",,J,"},
     {",,,,", ",J,,", ",J,,", "JJ,,"}
 };
 
-const vector<vector<vector<int>>> JBlock::positionVector = {
+vector<vector<vector<int>>> JBlock::positionVector = {
     {{1, 2}, {1, 1}, {2, 1},{3, 1}},
     {{1, 3}, {2, 3}, {1, 2},{1, 1}},
     {{1, 2}, {2, 2}, {3, 2},{3, 1}},
@@ -157,14 +157,14 @@ LBlock::~LBlock() {}
 LBlock::LBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(1, 15, 4, levelGen, 0, actionHeavy, levelHeavy) {}
 
 //vectors for the Lblock
-const vector<vector<string>> LBlock::rotationVector = {
+vector<vector<string>> LBlock::rotationVector = {
     {",,,,", ",,,,", ",,L,", "LLL,"},
     {",,,,", "L,,,", "L,,,", "LL,,"},
     {",,,,", ",,,,", "LLL,", "L,,,"},
     {",,,,", "LL,,", ",L,,", ",L,,"}
 };
 
-const vector<vector<vector<int>>> LBlock::positionVector = {
+vector<vector<vector<int>>> LBlock::positionVector = {
     {{3, 2}, {1, 1}, {2, 1}, {3, 1}},
     {{1, 3}, {1, 2}, {1, 1}, {2, 1}},
     {{1, 2}, {2, 2}, {3, 2}, {1, 1}},
@@ -190,14 +190,14 @@ OBlock::~OBlock() {}
 OBlock::OBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(1, 15, 4, levelGen, 0, actionHeavy, levelHeavy) {}
 
 //vectors for the Oblock
-const vector<vector<string>> OBlock::rotationVector = {
+vector<vector<string>> OBlock::rotationVector = {
     {",,,,", ",,,,", "OO,,", "OO,,"},
     {",,,,", ",,,,", "OO,,", "OO,,"},
     {",,,,", ",,,,", "OO,,", "OO,,"},
     {",,,,", ",,,,", "OO,,", "OO,,"}
 };
 
-const vector<vector<vector<int>>> OBlock::positionVector = {
+vector<vector<vector<int>>> OBlock::positionVector = {
     {{1, 2}, {2, 2}, {1, 1}, {2, 1}},
     {{1, 2}, {2, 2}, {1, 1}, {2, 1}},
     {{1, 2}, {2, 2}, {1, 1}, {2, 1}},
@@ -223,14 +223,14 @@ OneBlock::~OneBlock() {}
 OneBlock::OneBlock(int levelGen) : Block(6, 15, 1, levelGen, 0, false, false) {}
 
 //vectors for the Oneblock
-const vector<vector<string>> OneBlock::rotationVector = {
+vector<vector<string>> OneBlock::rotationVector = {
     {",,,,", ",,,,", ",,,,", "*,,,"},
     {",,,,", ",,,,", ",,,,", "*,,,"},
     {",,,,", ",,,,", ",,,,", "*,,,"},
     {",,,,", ",,,,", ",,,,", "*,,,"}
 };
 
-const vector<vector<vector<int>>> OneBlock::positionVector = {
+vector<vector<vector<int>>> OneBlock::positionVector = {
     {{1, 1}, {0, 0}, {0, 0}, {0, 0}},
     {{1, 1}, {0, 0}, {0, 0}, {0, 0}},
     {{1, 1}, {0, 0}, {0, 0}, {0, 0}},
@@ -256,14 +256,14 @@ SBlock::~SBlock() {}
 SBlock::SBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(1, 15, 4, levelGen, 0, actionHeavy, levelHeavy) {}
 
 //vectors for the Sblock
-const vector<vector<string>> SBlock::rotationVector = {
+vector<vector<string>> SBlock::rotationVector = {
     {",,,,", ",,,,", ",SS,", "SS,,"},
     {",,,,", "S,,,", "SS,,", ",S,,"},
     {",,,,", ",,,,", ",SS,", "SS,,"},
     {",,,,", "S,,,", "SS,,", ",S,,"}
 };
 
-const vector<vector<vector<int>>> SBlock::positionVector = {
+vector<vector<vector<int>>> SBlock::positionVector = {
     {{2, 2}, {3, 2}, {1, 1}, {2, 1}},
     {{1, 3}, {1, 2}, {2, 2}, {2, 1}},
     {{2, 2}, {3, 2}, {1, 1}, {2, 1}},
@@ -289,14 +289,14 @@ TBlock::~TBlock() {}
 TBlock::TBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(1, 15, 4, levelGen, 0, actionHeavy, levelHeavy) {}
 
 //vectors for the Tblock
-const vector<vector<string>> TBlock::rotationVector = {
+vector<vector<string>> TBlock::rotationVector = {
     {",,,,", ",,,,", "TTT,", ",T,,"},
     {",,,,", ",T,,", "TT,,", ",T,,"},
     {",,,,", ",,,,", ",T,,", "TTT,"},
     {",,,,", "T,,,", "TT,,", "T,,,"}
 };
 
-const vector<vector<vector<int>>> TBlock::positionVector = {
+vector<vector<vector<int>>> TBlock::positionVector = {
     {{1, 2}, {2, 2}, {3, 2}, {2, 1}},
     {{2, 3}, {1, 2}, {2, 2}, {2, 1}},
     {{2, 2}, {1, 1}, {1, 2}, {1, 3}},
@@ -322,14 +322,14 @@ ZBlock::~ZBlock() {}
 ZBlock::ZBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(1, 15, 4, levelGen, 0, actionHeavy, levelHeavy) {}
 
 //vectors for the Zblock
-const vector<vector<string>> ZBlock::rotationVector = {
+vector<vector<string>> ZBlock::rotationVector = {
     {",,,,", ",,,,", "ZZ,,", ",ZZ,"},
     {",,,,", ",Z,,", "ZZ,,", "Z,,,"},
     {",,,,", ",,,,", "ZZ,,", ",ZZ,"},
     {",,,,", ",Z,,", "ZZ,,", "Z,,,"}
 };
 
-const vector<vector<vector<int>>> ZBlock::positionVector = {
+vector<vector<vector<int>>> ZBlock::positionVector = {
     {{1, 2}, {2, 2}, {2, 1}, {3, 1}},
     {{2, 3}, {1, 2}, {2, 2}, {1, 1}},
     {{1, 2}, {2, 2}, {2, 1}, {3, 1}},
