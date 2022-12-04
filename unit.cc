@@ -1,10 +1,8 @@
 #include "unit.h"
 
-Unit::Unit(int x, int y, char blockType, Board *subBoard, bool occ, Block *unitBlock) : x{x}, y{y}, blockType{blockType}, subBoard{subBoard}, occ{occ}, unitBlock{nullptr}{}
+Unit::Unit(int x, int y, char blockType, bool occ, Block *unitBlock) : x{x}, y{y}, blockType{blockType}, occ{occ}, unitBlock{nullptr}{}
 
-Unit::~Unit(){
-    delete subBoard;
-}
+Unit::~Unit(){}
 
 void Unit::placePiece(char c, Block *unitBlock){
     occ = true;

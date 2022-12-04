@@ -27,7 +27,7 @@ void Board::build() {
         cout << "b2.2" << endl;
         for (int j = 0; j < width; j++) {
             cout << "b2.3" << endl;
-            mainBoard[i].emplace_back(Unit(i, j, ' ', this, false, nullptr)); // problem here
+            mainBoard[i].emplace_back(Unit(i, j, ' ', false, nullptr)); // problem here
             cout << "b2.4" << endl;
         }
     }
