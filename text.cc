@@ -1,6 +1,7 @@
 #include "text.h"
 #include "board.h"
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -38,22 +39,32 @@ b1{b1}, b2{b2}, width{width}, height{height} {
 
 // notify should apply changes to everything, units, board
 void Text::notify() {
+  cout << "hi" << endl;
   string separatingSpace = "       ";
   string colBorder = "-----------";
 
   // input each char in both player's screens, need to get each Unit in mainBoard
   for (int i = 0; i < height; ++i) {
+    vector<char> p1row;
+    vector<char> p2row;
     for (int j = 0; j < width; ++j) {
       // need getBoard for Board
       // need getBlockType for Unit
-      p1Screen[i][j] = b1->getBoard()[i][j].getBlockType();
-      p2Screen[i][j] = b2->getBoard()[i][j].getBlockType();
+      cout << "before" << endl;
+     // cout << b1->getBoard()[i][j].getBlockType() << endl;
+      cout << "after1" << endl;
+      p1row.emplace_back(b1->getBoard()[i][j].getBlockType());
+      cout << "after" << endl;
+      p2row.emplace_back(b2->getBoard()[i][j].getBlockType());
     }
+    cout << i << endl;
+    p1Screen.emplace_back(p1row);
+    p2Screen.emplace_back(p2row);
   }
 
 
   // print level, hiscore, score for both players
-  out << "Level:    " << b1->getCurLevel() << separatingSpace << "Level:    " << b2->getCurLevel() << endl;
+  out << "Level:    " << b1->getLevel() << separatingSpace << "Level:    " << b2->getLevel() << endl;
   out << "HiScore:  " << b1->getHiScore() << separatingSpace << "HiScore:  " << b2->getHiScore() << endl;
   out << "Score:    " << b1->getCurScore() << separatingSpace << "Score:    " << b2->getCurScore() << endl;
   out << colBorder << separatingSpace << colBorder << endl;
@@ -80,6 +91,7 @@ void Text::notify() {
   // print next section for both players
   out << "Next:      " << separatingSpace << "Next:      " << endl;
   char p1blockType = b1->getNextBlock()->getType();
+  cout << "after" << endl;
   char p2blockType = b2->getNextBlock()->getType();
   vector<vector<char>> p1Next;
   vector<vector<char>> p2Next;

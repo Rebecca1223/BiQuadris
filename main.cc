@@ -49,9 +49,11 @@ int main(int argc, char **argv) {
   cout << "here2" << endl;
   // setting the seed
   srand(7);
-  
+  cout << "after srand" << endl;
+
+  cout << argc << endl;
   // flags in the beginning, in command line
-  for (int i = 0; i < argc; ++i) {
+  for (int i = 1; i < argc; ++i) {
     string flag = argv[i];
     if (flag == "-text") {
       graphicsOn = false;
@@ -73,28 +75,32 @@ int main(int argc, char **argv) {
   //  graphicDisplay
   //}
 
+
   if (startLevel == 0) {
-    board1->setCurLevel(startLevel, false, p1LevelZeroFile);
-    board2->setCurLevel(startLevel, false, p2LevelZeroFile);
+    cout << "start" << endl;
+    board1->setCurLevel(startLevel, false, 0, p1LevelZeroFile);
+    cout << "next" << endl;
+    board2->setCurLevel(startLevel, false, 0, p2LevelZeroFile);
   } else if (startLevel == 1 || startLevel == 2) {
-    board1->setCurLevel(startLevel, false);
-    board2->setCurLevel(startLevel, false);
+    board1->setCurLevel(startLevel, false, 0);
+    board2->setCurLevel(startLevel, false, 0);
   } else {
-    board1->setCurLevel(startLevel, true);
-    board2->setCurLevel(startLevel, true);
+    board1->setCurLevel(startLevel, true, 0);
+    board2->setCurLevel(startLevel, true, 0);
   }
 
   cout << "here4" << endl;
   // get first new blocks???
-  board1->setCurBlock((board1->getCurLevel())->createBlock());
-  board2->setCurBlock((board2->getCurLevel())->createBlock());
-  board1->setNextBlock((board1->getCurLevel())->createBlock());
-  board2->setNextBlock((board2->getCurLevel())->createBlock());
+cout << board1->getCurLevel()->getLevel() << endl;
+board1->setCurBlock((board1->getCurLevel())->createBlock());
+board2->setCurBlock((board2->getCurLevel())->createBlock());
+board1->setNextBlock((board1->getCurLevel())->createBlock());
+board2->setNextBlock((board2->getCurLevel())->createBlock());
 
 // Command loop
   string command;
   int n;
-  int multiplier;
+  int multiplier = 1;
   while (true) {
 
     Board *curBoard;
@@ -104,6 +110,8 @@ int main(int argc, char **argv) {
       curBoard = board2;
     }
 
+    cout << "1" << endl;
+    
     while (true) {
       if (sequenceCommands.empty()) {
         cin >> command;
@@ -112,6 +120,8 @@ int main(int argc, char **argv) {
         sequenceCommands.erase(sequenceCommands.begin());
       }
       
+      cout << "2" << endl;
+
       if (command == "rename") {
         string commandName, aliasName;
         cin >> commandName;
@@ -120,27 +130,36 @@ int main(int argc, char **argv) {
         commands[commandName] = aliasName;
       }
 
+      cout << "3" << endl;
       // check for multiplier, then save it, and remove it
       istringstream iss{command};
-      if (iss >> n) { multiplier = n; }
-      int len = command.length();
-      for (int i = 0; i < len; ++i) {
-        if (isdigit(command[i])) {
-          command.erase(i);
-        } else {
-          break;
+      if (iss >> n) { 
+        multiplier = n; 
+        int len = command.length();
+        for (int i = 0; i < len; ++i) {
+          if (isdigit(command[i])) {
+            command.erase(i);
+          } else {
+            break;
+          }
         }
       }
+      
+      cout << "4" << endl;
 
       // number of times controlled by multiplier
       if (command == "left" || commands.at("left") == command) {
+        cout << "in here" << endl;
         for(int i=0; i<multiplier; i++){
+          cout << "herehere" << endl;
           if (curBoard->itsValid(-1, 0, 0)){
+            cout << "hiiii" << endl;
             curBoard->moveBlockInBoard(-1, 0, 0);
           }else{
             break;
           }
         }
+        cout << "done" << endl;
       } else if (command == "right" || commands.at("right") == command) {
         for(int i=0; i<multiplier; i++){
           if (curBoard->itsValid(1, 0, 0)){
@@ -194,7 +213,7 @@ int main(int argc, char **argv) {
           if (level == 4) break;
           ++level;
         }
-        curBoard->setCurLevel(level, true); // true for level 3 + 4, set random to false using norandom
+        curBoard->setCurLevel(level, true, 1); // true for level 3 + 4, set random to false using norandom
         continue;
 
       } else if (command == "leveldown" || commands.at("leveldown") == command) {
@@ -204,7 +223,7 @@ int main(int argc, char **argv) {
           if (level == 0) break;
           --level;
         }
-        curBoard->setCurLevel(level, true); // same logic as levelup
+        curBoard->setCurLevel(level, true, 1); // same logic as levelup
         continue;
 
       } else if (command == "norandom" || commands.at("norandom") == command) {
@@ -212,13 +231,13 @@ int main(int argc, char **argv) {
         cin >> file;
         int level = curBoard->getLevel();
 
-        if (level == 3 || level == 4) curBoard->setCurLevel(level, false, file);
+        if (level == 3 || level == 4) curBoard->setCurLevel(level, false, 0, file);
         continue;
 
       } else if (command == "random" || commands.at("random") == command) {
         int level = curBoard->getLevel();
 
-        if (level == 3 || level == 4) curBoard->setCurLevel(level, true);
+        if (level == 3 || level == 4) curBoard->setCurLevel(level, true, 0);
         continue;
 
       } else if (command == "sequence" || commands.at("sequence") == command) {

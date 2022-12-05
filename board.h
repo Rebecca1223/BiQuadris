@@ -42,7 +42,7 @@ class Board : public Subject {
         Block *getCurBlock();
         std::vector<std::vector<Unit>> getBoard();
         Block* getNextBlock();
-        void setCurLevel(int level, bool rand, string sequenceFile = "");
+        void setCurLevel(int level, bool rand, int state, string sequenceFile = "");
 };
 
 #endif
