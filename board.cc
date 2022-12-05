@@ -16,27 +16,21 @@ using namespace std;
 // build() initiates board elements
 void Board::build() {
     if (mainBoard.size() != 0) mainBoard.clear(); // If there exists a previous board
-    cout << "b1" << endl;
     // fill up the board
     
     for (int i = 0; i < height; i++) {
-        cout << "b2" << endl;
         vector<Unit> row;
         mainBoard.emplace_back(row);
         for (int j = 0; j < width; j++) {
             mainBoard[i].emplace_back(Unit(i, j, ' ', false, nullptr)); // problem here
         }
     }
-    cout << "b3" << endl;
     notifyObservers();
-    cout << "b4" << endl;
 }
 
 // Board Constructor
 Board::Board(int width, int height, int level) : width{width}, height{height}, hiScore{0}, curScore{0}, level{level}, blind{false}, heavy{false}, force{false}, withEffect{false}, curBlock{nullptr}, nextBlock{nullptr}, curLevel{nullptr} {
-    cout << "board ctor" << endl;
 	this->build();
-    cout << "after board ctor" << endl;
 
     // potential problem with ctor
 }
@@ -163,21 +157,14 @@ bool Board::itsValid(int hShift, int vShift, int rotation) {
     ///////////////////////////////////////////////////////////        ***Level 4 Streak Counter Here***                 ////////////////////////////////////////////////////////
 
     int reducedRotation = (curBlock->getRotation() + rotation) % 4;
-    cout << "after" << endl;
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
             int x = curBlock->getX() + hShift + j;
             int y = curBlock->getY() + vShift + i;
             char here = curBlock->getVector()[reducedRotation][i][j];
-            cout << "after1" << endl;
-            cout << curBlock->getY() << endl;
             if (here != ',') {
                 // Check if block exists
-                cout << "before" << endl;
-                cout << y << endl;
-                cout << x << endl;
                 if (mainBoard[y][x].getOcc()) { 
-                    cout << "after2" << endl;
                     if (curBlock->getVector()[curBlock->getRotation()][i + y][j + x] == ',') return false;
                     if (y < curBlock->getY() || x < curBlock->getX() || y > 3 + curBlock->getY() || x > 3 + curBlock->getX()) return false;
                 }
@@ -187,7 +174,6 @@ bool Board::itsValid(int hShift, int vShift, int rotation) {
             }
         }
     }
-    cout << "here" << endl;
 
     if (rotation == 0 && hShift == 0 && vShift == 0) {
         for (int i = 0; i < 4; i++) {
@@ -210,15 +196,19 @@ bool Board::itsValid(int hShift, int vShift, int rotation) {
 //moves the block on the board, given horizontal shift, vertical shift, and rotation
 void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
     // calculate the rotation
+    cout << "wtf1" << endl;
     int finalRotation = (curBlock->getRotation() + rotation) % 4;
 
     // check every space in block vector
     for(int i=0; i<4; i++){
         for (int j = 0; j < 4; j++) {
+            cout << "wtf2" << endl;
             // to get the value at the index so we can put that on the board
             char here = curBlock->getVector()[finalRotation][i][j];
+            cout << "wtf3" << endl;
             //if a value exist, we place that on the board
             if(here != ','){
+                cout << "wtf4" << endl;
                 mainBoard[curBlock->getX()+i+hShift][curBlock->getY()+j+vShift].placePiece(here, nullptr);
             }
         }
@@ -270,13 +260,9 @@ vector<vector<Unit>> Board::getBoard() { return mainBoard; }
 Block* Board::getNextBlock() { return nextBlock; }
 
 void Board::setCurLevel(int setLevel, bool rand, int state, string sequenceFile) {
-    cout << "yay" << endl;
     delete curLevel;
-    cout << "hi" << endl;
     if (setLevel == 0) {
-        cout << "yoe" << endl;
         curLevel = new LevelZero(sequenceFile);
-        cout << "done" << endl;
     } else if (setLevel == 1) {
         curLevel = new LevelOne();
     } else if (setLevel == 2) {
@@ -287,10 +273,7 @@ void Board::setCurLevel(int setLevel, bool rand, int state, string sequenceFile)
         curLevel = new LevelFour(rand, sequenceFile);
     }
     this->level = setLevel;
-    cout << "before" << endl;
     if (state != 0) {
         notifyObservers();
     }
-    
-    cout << "after" << endl;
 }

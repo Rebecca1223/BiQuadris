@@ -39,7 +39,6 @@ b1{b1}, b2{b2}, width{width}, height{height} {
 
 // notify should apply changes to everything, units, board
 void Text::notify() {
-  cout << "hi" << endl;
   string separatingSpace = "       ";
   string colBorder = "-----------";
 
@@ -50,14 +49,10 @@ void Text::notify() {
     for (int j = 0; j < width; ++j) {
       // need getBoard for Board
       // need getBlockType for Unit
-      cout << "before" << endl;
      // cout << b1->getBoard()[i][j].getBlockType() << endl;
-      cout << "after1" << endl;
       p1row.emplace_back(b1->getBoard()[i][j].getBlockType());
-      cout << "after" << endl;
       p2row.emplace_back(b2->getBoard()[i][j].getBlockType());
     }
-    cout << i << endl;
     p1Screen.emplace_back(p1row);
     p2Screen.emplace_back(p2row);
   }
@@ -91,7 +86,6 @@ void Text::notify() {
   // print next section for both players
   out << "Next:      " << separatingSpace << "Next:      " << endl;
   char p1blockType = b1->getNextBlock()->getType();
-  cout << "after" << endl;
   char p2blockType = b2->getNextBlock()->getType();
   vector<vector<char>> p1Next;
   vector<vector<char>> p2Next;

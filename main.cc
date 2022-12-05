@@ -12,7 +12,6 @@
 using namespace std;
 
 int main(int argc, char **argv) {
-  cout << "hi" << endl;
   bool graphicsOn = true;
   int player1 = 1;
   int player2 = 2;
@@ -37,19 +36,15 @@ int main(int argc, char **argv) {
   vector<string> sequenceCommands;
   int board1lvl = 0;
   int board2lvl = 0;
-  cout << "here0" << endl;
   Board* board1 = new Board(11, 18, board1lvl);
-  cout << "here1" << endl;
   Board* board2 = new Board(11, 18, board2lvl);
   int turnCount = 0;
   Text textDisplay{board1, board2, 11, 18};
   //Graphics* graphicDisplay = nullptr;
   board1->attach(&textDisplay);
   board2->attach(&textDisplay);
-  cout << "here2" << endl;
   // setting the seed
   srand(7);
-  cout << "after srand" << endl;
 
   cout << argc << endl;
   // flags in the beginning, in command line
@@ -70,16 +65,13 @@ int main(int argc, char **argv) {
       }
     }
   }
-  cout << "here3" << endl;
   //if (graphicsOn) {
   //  graphicDisplay
   //}
 
 
   if (startLevel == 0) {
-    cout << "start" << endl;
     board1->setCurLevel(startLevel, false, 0, p1LevelZeroFile);
-    cout << "next" << endl;
     board2->setCurLevel(startLevel, false, 0, p2LevelZeroFile);
   } else if (startLevel == 1 || startLevel == 2) {
     board1->setCurLevel(startLevel, false, 0);
@@ -89,7 +81,6 @@ int main(int argc, char **argv) {
     board2->setCurLevel(startLevel, true, 0);
   }
 
-  cout << "here4" << endl;
   // get first new blocks???
 cout << board1->getCurLevel()->getLevel() << endl;
 board1->setCurBlock((board1->getCurLevel())->createBlock());
@@ -149,9 +140,7 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
 
       // number of times controlled by multiplier
       if (command == "left" || commands.at("left") == command) {
-        cout << "in here" << endl;
         for(int i=0; i<multiplier; i++){
-          cout << "herehere" << endl;
           if (curBoard->itsValid(-1, 0, 0)){
             cout << "hiiii" << endl;
             curBoard->moveBlockInBoard(-1, 0, 0);
@@ -159,7 +148,6 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
             break;
           }
         }
-        cout << "done" << endl;
       } else if (command == "right" || commands.at("right") == command) {
         for(int i=0; i<multiplier; i++){
           if (curBoard->itsValid(1, 0, 0)){
