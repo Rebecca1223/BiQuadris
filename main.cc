@@ -154,15 +154,18 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
             break;
           }
         }
+        curBoard->notifyObservers();
       }
       if (command == "right" || commands.at("right") == command) {
         for(int i=0; i<multiplier; i++){
           if (curBoard->itsValid(1, 0, 0)){
+            cout << "valid" << endl;
             curBoard->moveBlockInBoard(1, 0, 0);
           }else{
             break;
           }
         }
+        curBoard->notifyObservers();
       }
       if (command == "down" || commands.at("down") == command) {
         for(int i=0; i<multiplier; i++){
@@ -178,13 +181,16 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
         while (valid == true){
           curBoard->moveBlockInBoard(0,1,0);
           valid = curBoard->itsValid(0, 1, 0);
+          
         }
+        curBoard->notifyObservers();
         int row = curBoard->getCurBlock()->getY();
         // check if line is cleared here
         if(curBoard->checkFilledRow(row)){
           curBoard->removeRow();
         }
-        curBoard->notifyObservers();
+        break;
+        
 
         // what if more than 1 drop
         
