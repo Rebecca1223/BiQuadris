@@ -178,8 +178,16 @@ bool Board::itsValid(int hShift, int vShift, int rotation) {
             if (here != ',') {
                 // Check if block exists
                 if (mainBoard[y][x].getOcc()) { 
-                    if (curBlock->getVector()[curBlock->getRotation()][i + vShift][j + hShift] == ',') return false;
-                    if (y < curBlock->getY() || x < curBlock->getX() || y > 3 + curBlock->getY() || x > 3 + curBlock->getX()) return false;
+                    cout << curBlock->getRotation() << endl;
+                    cout << i + y << endl;
+                    cout << j+x << endl;
+                    if (curBlock->getVector()[curBlock->getRotation()][i + vShift][j + hShift] == ',') {
+                        return false;
+                    }
+                    
+                    if (y < curBlock->getY() || x < curBlock->getX() || y > 3 + curBlock->getY() || x > 3 + curBlock->getX()) {
+                        return false;
+                    }
                 }
 
                 // Check if it goes off board
@@ -187,6 +195,7 @@ bool Board::itsValid(int hShift, int vShift, int rotation) {
             }
         }
     }
+    cout << "here5" << endl;
 
     if (rotation == 0 && hShift == 0 && vShift == 0) {
         for (int i = 0; i < 4; i++) {
@@ -221,7 +230,7 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
             //if a value exist, we place that on the board
             if(here != ','){
                 cout << "v: " << curBlock->getY()+i+vShift << "   ";
-                cout << "h: " << curBlock->getX()+j+vShift << endl;
+                cout << "h: " << curBlock->getX()+j+hShift << endl;
 
                 mainBoard[curBlock->getY()+i+vShift][curBlock->getX()+j+hShift].placePiece(here, nullptr);
             }
@@ -239,6 +248,8 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
     curBlock->setX(curBlock->getX() + hShift);
 	curBlock->setY(curBlock->getY() + vShift);
 	curBlock->setRotation(finalRotation);
+    cout << "y: " << curBlock->getY() << "   ";
+    cout << "x: " << curBlock->getX() << endl;
     // add block pointer to unit
     // for(int i=0; i<11; i++){
     //     for(int j=0; j<15; j++){
