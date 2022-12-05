@@ -157,14 +157,20 @@ board2->moveBlockInBoard(0, 0, 0);
         curBoard->notifyObservers();
       }
       if (command == "right" || commands.at("right") == command) {
+        cout << "something" << endl;
         for(int i=0; i<multiplier; i++){
+          cout << "something1" << endl;
+          cout << multiplier << endl;
           if (curBoard->itsValid(1, 0, 0)){
             cout << "valid" << endl;
             curBoard->moveBlockInBoard(1, 0, 0);
           }else{
+            cout << "else" << endl;
             break;
           }
+          cout << "after if" << endl;
         }
+        cout << "something2" << endl;
         curBoard->notifyObservers();
       }
       if (command == "down" || commands.at("down") == command) {
