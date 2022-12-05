@@ -79,15 +79,15 @@ int main(int argc, char **argv) {
 
   if (startLevel == 0) {
     cout << "start" << endl;
-    board1->setCurLevel(startLevel, false, p1LevelZeroFile);
+    board1->setCurLevel(startLevel, false, 0, p1LevelZeroFile);
     cout << "next" << endl;
-    board2->setCurLevel(startLevel, false, p2LevelZeroFile);
+    board2->setCurLevel(startLevel, false, 0, p2LevelZeroFile);
   } else if (startLevel == 1 || startLevel == 2) {
-    board1->setCurLevel(startLevel, false);
-    board2->setCurLevel(startLevel, false);
+    board1->setCurLevel(startLevel, false, 0);
+    board2->setCurLevel(startLevel, false, 0);
   } else {
-    board1->setCurLevel(startLevel, true);
-    board2->setCurLevel(startLevel, true);
+    board1->setCurLevel(startLevel, true, 0);
+    board2->setCurLevel(startLevel, true, 0);
   }
 
 cout << "here3" << endl;
@@ -214,7 +214,7 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
           if (level == 4) break;
           ++level;
         }
-        curBoard->setCurLevel(level, true); // true for level 3 + 4, set random to false using norandom
+        curBoard->setCurLevel(level, true, 1); // true for level 3 + 4, set random to false using norandom
         continue;
 
       } else if (command == "leveldown" || commands.at("leveldown") == command) {
@@ -224,7 +224,7 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
           if (level == 0) break;
           --level;
         }
-        curBoard->setCurLevel(level, true); // same logic as levelup
+        curBoard->setCurLevel(level, true, 1); // same logic as levelup
         continue;
 
       } else if (command == "norandom" || commands.at("norandom") == command) {
@@ -232,13 +232,13 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
         cin >> file;
         int level = curBoard->getLevel();
 
-        if (level == 3 || level == 4) curBoard->setCurLevel(level, false, file);
+        if (level == 3 || level == 4) curBoard->setCurLevel(level, false, 0, file);
         continue;
 
       } else if (command == "random" || commands.at("random") == command) {
         int level = curBoard->getLevel();
 
-        if (level == 3 || level == 4) curBoard->setCurLevel(level, true);
+        if (level == 3 || level == 4) curBoard->setCurLevel(level, true, 0);
         continue;
 
       } else if (command == "sequence" || commands.at("sequence") == command) {
