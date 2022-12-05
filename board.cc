@@ -230,9 +230,10 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
             //if a value exist, we place that on the board
             if(here != ','){
                 cout << "v: " << curBlock->getY()+i+vShift << "   ";
-                cout << "h: " << curBlock->getX()+j+hShift << endl;
+                cout << "h: " << curBlock->getX()+j+hShift << "   ";
 
-                mainBoard[curBlock->getY()+i+vShift][curBlock->getX()+j+hShift].placePiece(here, nullptr);
+                mainBoard[curBlock->getY()+i+vShift][curBlock->getX()+j+hShift].placePiece(here, curBlock);
+                cout << "bt: " << mainBoard[curBlock->getY()+i+vShift][curBlock->getX()+j+hShift].getBlockType() << endl;
             }
         }
     }
