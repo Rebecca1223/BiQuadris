@@ -89,7 +89,6 @@ board1->setNextBlock((board1->getCurLevel())->createBlock());
 board2->setNextBlock((board2->getCurLevel())->createBlock());
 //board1->moveBlockInBoard(0, 0, 0);
 
-
 // Command loop
   string command;
   int n;
@@ -105,14 +104,6 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
     curBoard->moveBlockInBoard(0, 0, 0);
 
     cout << "1" << endl;
-
-    for(int i=0; i<4; i++){
-      for(int j=0; j<4; j++){
-        int tempp = curBoard->getCurBlock()->getRotation();
-        cout << curBoard->getCurBlock()->getVector()[tempp][i][j];
-      } 
-      cout << endl;
-    }
     
     while (true) {
       if (sequenceCommands.empty()) {
@@ -186,6 +177,7 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
         if(curBoard->checkFilledRow(row)){
           curBoard->removeRow();
         }
+        curBoard->notifyObservers();
 
         // what if more than 1 drop
         

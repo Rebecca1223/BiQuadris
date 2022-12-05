@@ -26,6 +26,7 @@ class Board : public Subject {
         void placePiece(int x, int y, char type, Block* block);
         void placeBlock(Block& block);
         void removePiece(int x, int y);
+        void removeBlock();
         void removeRow();
         void moveBlockInBoard(int hShift, int vShift, int rotation);
         void setCurBlock(Block* curBlock);

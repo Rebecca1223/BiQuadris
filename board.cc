@@ -54,6 +54,19 @@ void Board::removePiece(int x, int y) {                             ////////////
 	temp.placePiece(' ', nullptr);
 }
 
+void Board::removeBlock(){
+    for(int i=0; i<4; i++){
+        for(int j=0; j<4; j++){
+            int tempRot = curBlock->getRotation();
+            char tempVal = curBlock->getVector()[tempRot][i][j];
+            
+            if (tempVal != ','){
+                mainBoard[i+curBlock->getY()][j+curBlock->getX()].removePiece();
+            }
+        }
+    }
+}
+
 // Adds Block to the vector of placed blocks
 //void Board::placeBlock(Block& block) {
 //    placedBlocks.emplace_back(block);
@@ -195,21 +208,22 @@ bool Board::itsValid(int hShift, int vShift, int rotation) {
 
 //moves the block on the board, given horizontal shift, vertical shift, and rotation
 void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
+    this->removeBlock();
     // calculate the rotation
-    //cout << "wtf1" << endl;
     int finalRotation = (curBlock->getRotation() + rotation) % 4;
+    cout << "rotation: " << finalRotation << endl;
 
     // check every space in block vector
     for(int i=0; i<4; i++){
         for (int j = 0; j < 4; j++) {
-            //cout << "wtf2" << endl;
             // to get the value at the index so we can put that on the board
             char here = curBlock->getVector()[finalRotation][i][j];
-            //cout << "wtf3" << endl;
             //if a value exist, we place that on the board
             if(here != ','){
-                //cout << "wtf4" << endl;
-                mainBoard[curBlock->getX()+i+hShift][curBlock->getY()+j+vShift].placePiece(here, nullptr);
+                cout << "v: " << curBlock->getY()+i+vShift << "   ";
+                cout << "h: " << curBlock->getX()+j+vShift << endl;
+
+                mainBoard[curBlock->getY()+i+vShift][curBlock->getX()+j+hShift].placePiece(here, nullptr);
             }
         }
     }
@@ -226,22 +240,22 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
 	curBlock->setY(curBlock->getY() + vShift);
 	curBlock->setRotation(finalRotation);
     // add block pointer to unit
-    for(int i=0; i<11; i++){
-        for(int j=0; j<15; j++){
-            for(int k=0; k<3; k++){
-                //if the mainBoard position is equal to the curent block position
-                int blockSegPositionX = curBlock->getPositionVector()[finalRotation][k][0]+curBlock->getX()-1;
-                int blockSegPositionY = curBlock->getPositionVector()[finalRotation][k][1]+curBlock->getX()-1;
-                int unitPositionX = mainBoard[i][j].getX();
-                int unitPositionY = mainBoard[i][j].getY();
-                if(blockSegPositionX==unitPositionX &&  blockSegPositionY==unitPositionY){ 
-                    //set that unit to point to curBlock
-                    mainBoard[i][j].placePiece(curBlock->getType(), curBlock);  
-                }
-            }
-        }
-    }
-    notifyObservers();
+    // for(int i=0; i<11; i++){
+    //     for(int j=0; j<15; j++){
+    //         for(int k=0; k<3; k++){
+    //             //if the mainBoard position is equal to the curent block position
+    //             int blockSegPositionX = curBlock->getPositionVector()[finalRotation][k][0]+curBlock->getX()-1;
+    //             int blockSegPositionY = curBlock->getPositionVector()[finalRotation][k][1]+curBlock->getX()-1;
+    //             int unitPositionX = mainBoard[i][j].getX();
+    //             int unitPositionY = mainBoard[i][j].getY();
+    //             if(blockSegPositionX==unitPositionX &&  blockSegPositionY==unitPositionY){ 
+    //                 //set that unit to point to curBlock
+    //                 mainBoard[i][j].placePiece(curBlock->getType(), curBlock);  
+    //             }
+    //         }
+    //     }
+    // }
+ //   notifyObservers();
 }
 
 bool Board::isBlind() {return blind;}
