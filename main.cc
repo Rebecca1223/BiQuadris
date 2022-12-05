@@ -46,7 +46,6 @@ int main(int argc, char **argv) {
   // setting the seed
   srand(7);
 
-  cout << argc << endl;
   // flags in the beginning, in command line
   for (int i = 1; i < argc; ++i) {
     string flag = argv[i];
@@ -82,10 +81,11 @@ int main(int argc, char **argv) {
   }
 
   // get first new blocks???
-cout << board1->getCurLevel()->getLevel() << endl;
 board1->setCurBlock((board1->getCurLevel())->createBlock());
+cout << board1->getCurBlock()->getType() << endl;
 board2->setCurBlock((board2->getCurLevel())->createBlock());
 board1->setNextBlock((board1->getCurLevel())->createBlock());
+cout << board1->getNextBlock()->getType() << endl;
 board2->setNextBlock((board2->getCurLevel())->createBlock());
 
 // Command loop
@@ -100,8 +100,6 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
     }else{
       curBoard = board2;
     }
-
-    cout << "1" << endl;
     
     while (true) {
       if (sequenceCommands.empty()) {
@@ -110,8 +108,6 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
         command = sequenceCommands.front();
         sequenceCommands.erase(sequenceCommands.begin());
       }
-      
-      cout << "2" << endl;
 
       if (command == "rename") {
         string commandName, aliasName;
@@ -121,7 +117,6 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
         commands[commandName] = aliasName;
       }
 
-      cout << "3" << endl;
       // check for multiplier, then save it, and remove it
       istringstream iss{command};
       if (iss >> n) { 
@@ -136,13 +131,11 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
         }
       }
       
-      cout << "4" << endl;
 
       // number of times controlled by multiplier
       if (command == "left" || commands.at("left") == command) {
         for(int i=0; i<multiplier; i++){
           if (curBoard->itsValid(-1, 0, 0)){
-            cout << "hiiii" << endl;
             curBoard->moveBlockInBoard(-1, 0, 0);
           }else{
             break;

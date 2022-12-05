@@ -196,19 +196,15 @@ bool Board::itsValid(int hShift, int vShift, int rotation) {
 //moves the block on the board, given horizontal shift, vertical shift, and rotation
 void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
     // calculate the rotation
-    cout << "wtf1" << endl;
     int finalRotation = (curBlock->getRotation() + rotation) % 4;
 
     // check every space in block vector
     for(int i=0; i<4; i++){
         for (int j = 0; j < 4; j++) {
-            cout << "wtf2" << endl;
             // to get the value at the index so we can put that on the board
             char here = curBlock->getVector()[finalRotation][i][j];
-            cout << "wtf3" << endl;
             //if a value exist, we place that on the board
             if(here != ','){
-                cout << "wtf4" << endl;
                 mainBoard[curBlock->getX()+i+hShift][curBlock->getY()+j+vShift].placePiece(here, nullptr);
             }
         }

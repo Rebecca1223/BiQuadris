@@ -22,8 +22,6 @@ void Subject::detach(Observer *o) {
 
 void Subject::notifyObservers() {
   for (auto o : observers) {
-    cout << "before notify" << endl;
     o->notify();
-    cout << "after notify" << endl;
   }
 }
