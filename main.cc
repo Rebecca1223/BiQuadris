@@ -103,6 +103,7 @@ board2->moveBlockInBoard(0, 0, 0);
     }else{
       curBoard = board2;
     }
+    curBoard->notifyObservers();
    // curBoard->moveBlockInBoard(0, 0, 0);
 
 /*
@@ -160,17 +161,15 @@ board2->moveBlockInBoard(0, 0, 0);
         cout << "something" << endl;
         for(int i=0; i<multiplier; i++){
           cout << "something1" << endl;
-          cout << multiplier << endl;
           if (curBoard->itsValid(1, 0, 0)){
             cout << "valid" << endl;
             curBoard->moveBlockInBoard(1, 0, 0);
+            cout << "aftermove" << endl;
           }else{
             cout << "else" << endl;
             break;
           }
-          cout << "after if" << endl;
         }
-        cout << "something2" << endl;
         curBoard->notifyObservers();
       }
       if (command == "down" || commands.at("down") == command) {
