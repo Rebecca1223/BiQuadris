@@ -178,7 +178,7 @@ bool Board::itsValid(int hShift, int vShift, int rotation) {
             if (here != ',') {
                 // Check if block exists
                 if (mainBoard[y][x].getOcc()) { 
-                    if (curBlock->getVector()[curBlock->getRotation()][i + y][j + x] == ',') return false;
+                    if (curBlock->getVector()[curBlock->getRotation()][i + vShift][j + hShift] == ',') return false;
                     if (y < curBlock->getY() || x < curBlock->getX() || y > 3 + curBlock->getY() || x > 3 + curBlock->getX()) return false;
                 }
 
