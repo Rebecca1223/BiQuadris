@@ -3,6 +3,7 @@
 #include <fstream>
 #include <vector>
 #include "block.h"
+#include <iostream>
 
 using namespace std;
 
@@ -17,19 +18,42 @@ void LevelZero::readFile() {
   ifstream file{sequenceFile};
   while (file >> block) {
     blockSequence.emplace_back(block);
+   // cout << block << endl;
   }
 }
 
 Block* LevelZero::createBlock() {
   // call readFile outside, only once
-  if (blockSequence[index] == 'I') return new IBlock{0, false, false};
-  if (blockSequence[index] == 'J') return new JBlock{0, false, false};
-  if (blockSequence[index] == 'L') return new LBlock{0, false, false};
-  if (blockSequence[index] == 'O') return new OBlock{0, false, false};
-  if (blockSequence[index] == 'S') return new SBlock{0, false, false};
-  if (blockSequence[index] == 'Z') return new ZBlock{0, false, false};
-  if (blockSequence[index] == 'T') return new TBlock{0, false, false};
-  ++index;
+  
+  if (blockSequence[index] == 'I') {
+    ++index;
+    return new IBlock{0, false, false};
+  }
+  if (blockSequence[index] == 'J') {
+    ++index;
+    return new JBlock{0, false, false};
+  }
+  if (blockSequence[index] == 'L') {
+    ++index;
+    return new LBlock{0, false, false};
+  }
+  if (blockSequence[index] == 'O') {
+    ++index;
+    return new OBlock{0, false, false};
+  }
+  if (blockSequence[index] == 'S') {
+    ++index;
+    return new SBlock{0, false, false};
+  }
+  if (blockSequence[index] == 'Z') {
+    ++index;
+    return new ZBlock{0, false, false};
+  }
+  if (blockSequence[index] == 'T') {
+    ++index;
+    return new TBlock{0, false, false};
+  }
+  
 }
 
 int LevelZero::getLevel() { return level; }

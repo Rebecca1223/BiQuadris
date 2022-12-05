@@ -205,7 +205,6 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
             char here = curBlock->getVector()[finalRotation][i][j];
             //if a value exist, we place that on the board
             if(here != ','){
-                cout << "wtf4" << endl;
                 mainBoard[curBlock->getX()+i+hShift][curBlock->getY()+j+vShift].placePiece(here, nullptr);
             }
         }

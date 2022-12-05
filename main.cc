@@ -82,12 +82,14 @@ int main(int argc, char **argv) {
 
   // get first new blocks???
 board1->setCurBlock((board1->getCurLevel())->createBlock());
-cout << board1->getCurBlock()->getType() << endl;
+//cout << board1->getCurBlock()->getType() << endl;
 board2->setCurBlock((board2->getCurLevel())->createBlock());
+//cout << board2->getCurBlock()->getType() << endl;
 board1->setNextBlock((board1->getCurLevel())->createBlock());
-cout << board1->getNextBlock()->getType() << endl;
+//cout << board1->getNextBlock()->getType() << endl;
 board2->setNextBlock((board2->getCurLevel())->createBlock());
 //board1->moveBlockInBoard(0, 0, 0);
+//board2->moveBlockInBoard(0, 0, 0);
 
 
 // Command loop
@@ -104,15 +106,14 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
     }
     curBoard->moveBlockInBoard(0, 0, 0);
 
-    cout << "1" << endl;
-
+/*
     for(int i=0; i<4; i++){
       for(int j=0; j<4; j++){
         int tempp = curBoard->getCurBlock()->getRotation();
         cout << curBoard->getCurBlock()->getVector()[tempp][i][j];
       } 
       cout << endl;
-    }
+    } */
     
     while (true) {
       if (sequenceCommands.empty()) {
@@ -154,7 +155,8 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
             break;
           }
         }
-      } else if (command == "right" || commands.at("right") == command) {
+      }
+      if (command == "right" || commands.at("right") == command) {
         for(int i=0; i<multiplier; i++){
           if (curBoard->itsValid(1, 0, 0)){
             curBoard->moveBlockInBoard(1, 0, 0);
@@ -162,7 +164,8 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
             break;
           }
         }
-      } else if (command == "down" || commands.at("down") == command) {
+      }
+      if (command == "down" || commands.at("down") == command) {
         for(int i=0; i<multiplier; i++){
           if (curBoard->itsValid(0, 1, 0)){
             curBoard->moveBlockInBoard(0, 1, 0);
@@ -170,7 +173,8 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
             break;
           }
         }
-      } else if (command == "drop" || commands.at("drop") == command) {
+      }
+      if (command == "drop" || commands.at("drop") == command) {
         bool valid = curBoard->itsValid(0, 1, 0);
         while (valid == true){
           curBoard->moveBlockInBoard(0,1,0);
@@ -184,7 +188,8 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
 
         // what if more than 1 drop
         
-      } else if (command == "clockwise" || commands.at("clockwise") == command) {
+      }
+      if (command == "clockwise" || commands.at("clockwise") == command) {
         for(int i=0; i<multiplier; i++){
           if (curBoard->itsValid(0, 0, 1)){
             curBoard->moveBlockInBoard(0, 0, 1);
@@ -192,7 +197,8 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
             break;
           }
         }
-      } else if (command == "counterclockwise" || commands.at("counterclockwise") == command) {
+      }
+      if (command == "counterclockwise" || commands.at("counterclockwise") == command) {
         for(int i=0; i<multiplier; i++){
           if (curBoard->itsValid(0, 0, -1)){
             curBoard->moveBlockInBoard(0, 0, -1);
@@ -200,7 +206,8 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
             break;
           }
         }
-      } else if (command == "levelup" || commands.at("levelup") == command) {
+      }
+      if (command == "levelup" || commands.at("levelup") == command) {
         int level = curBoard->getLevel();
 
         for (int i = 0; i < multiplier; ++i) {
@@ -210,7 +217,8 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
         curBoard->setCurLevel(level, true, 1); // true for level 3 + 4, set random to false using norandom
         continue;
 
-      } else if (command == "leveldown" || commands.at("leveldown") == command) {
+      }
+      if (command == "leveldown" || commands.at("leveldown") == command) {
         int level = curBoard->getLevel();
 
         for (int i = 0; i < multiplier; ++i) {
@@ -220,7 +228,8 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
         curBoard->setCurLevel(level, true, 1); // same logic as levelup
         continue;
 
-      } else if (command == "norandom" || commands.at("norandom") == command) {
+      }
+      if (command == "norandom" || commands.at("norandom") == command) {
         string file;
         cin >> file;
         int level = curBoard->getLevel();
@@ -228,13 +237,15 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
         if (level == 3 || level == 4) curBoard->setCurLevel(level, false, 0, file);
         continue;
 
-      } else if (command == "random" || commands.at("random") == command) {
+      }
+      if (command == "random" || commands.at("random") == command) {
         int level = curBoard->getLevel();
 
         if (level == 3 || level == 4) curBoard->setCurLevel(level, true, 0);
         continue;
 
-      } else if (command == "sequence" || commands.at("sequence") == command) {
+      }
+      if (command == "sequence" || commands.at("sequence") == command) {
         string fileName;
         string command;
         cin >> fileName;
@@ -245,7 +256,8 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
         }
         continue;
 
-      } else if (command.length() == 1) {
+      }
+      if (command.length() == 1) {
         bool levelHeavy = false;
 
         Block *curBlock = curBoard->getCurBlock();
@@ -278,7 +290,8 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
 
         curBoard->setCurBlock(block);
         
-      } else if (command == "restart" || commands.at("restart") == command) {
+      }
+      if (command == "restart" || commands.at("restart") == command) {
         // restart game
 
         // reset boards
@@ -293,6 +306,10 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
         break;
       }
     }
+    ++turnCount;
+    curBoard->setCurBlock(curBoard->getNextBlock());
+    curBoard->setNextBlock(curBoard->getCurLevel()->createBlock());
+
   }
 
     // when/where do we want to check lines?

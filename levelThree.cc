@@ -15,14 +15,34 @@ Block* LevelThree::createBlock() {
     this->readFile();
     randIdx = index;
   }
-  if (blocksPool[randIdx] == 'I') return new IBlock{3, false, true};
-  if (blocksPool[randIdx] == 'J') return new JBlock{3, false, true};
-  if (blocksPool[randIdx] == 'L') return new LBlock{3, false, true};
-  if (blocksPool[randIdx] == 'O') return new OBlock{3, false, true};
-  if (blocksPool[randIdx] == 'S') return new SBlock{3, false, true};
-  if (blocksPool[randIdx] == 'Z') return new ZBlock{3, false, true};
-  if (blocksPool[randIdx] == 'T') return new TBlock{3, false, true};
-  ++index;
+  if (blocksPool[randIdx] == 'I') {
+    ++index;
+    return new IBlock{3, false, true};
+  }
+  if (blocksPool[randIdx] == 'J') {
+    ++index;
+    return new JBlock{3, false, true};
+  }
+  if (blocksPool[randIdx] == 'L') {
+    ++index;
+    return new LBlock{3, false, true};
+  }
+  if (blocksPool[randIdx] == 'O') {
+    ++index;
+    return new OBlock{3, false, true};
+  }
+  if (blocksPool[randIdx] == 'S') {
+    ++index;
+    return new SBlock{3, false, true};
+  }
+  if (blocksPool[randIdx] == 'Z') {
+    ++index;
+    return new ZBlock{3, false, true};
+  }
+  if (blocksPool[randIdx] == 'T') {
+    ++index;
+    return new TBlock{3, false, true};
+  }
 }
 
 void LevelThree::readFile() {
