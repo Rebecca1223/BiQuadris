@@ -41,6 +41,8 @@ b1{b1}, b2{b2}, width{width}, height{height} {
 void Text::notify() {
   string separatingSpace = "       ";
   string colBorder = "-----------";
+  p1Screen.clear();
+  p2Screen.clear();
 
   // input each char in both player's screens, need to get each Unit in mainBoard
   for (int i = 0; i < height; ++i) {
