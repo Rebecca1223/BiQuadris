@@ -46,11 +46,10 @@ int main(int argc, char **argv) {
   //Graphics* graphicDisplay = nullptr;
   board1->attach(&textDisplay);
   board2->attach(&textDisplay);
-  cout << "here1" << endl;
-
+  cout << "here2" << endl;
   // setting the seed
   srand(7);
-
+  
   // flags in the beginning, in command line
   for (int i = 0; i < argc; ++i) {
     string flag = argv[i];
@@ -69,7 +68,7 @@ int main(int argc, char **argv) {
       }
     }
   }
-  cout << "here2" << endl;
+  cout << "here3" << endl;
   //if (graphicsOn) {
   //  graphicDisplay
   //}
@@ -85,7 +84,7 @@ int main(int argc, char **argv) {
     board2->setCurLevel(startLevel, true);
   }
 
-cout << "here3" << endl;
+  cout << "here4" << endl;
   // get first new blocks???
   board1->setCurBlock((board1->getCurLevel())->createBlock());
   board2->setCurBlock((board2->getCurLevel())->createBlock());

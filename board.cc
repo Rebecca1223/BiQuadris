@@ -22,13 +22,9 @@ void Board::build() {
     for (int i = 0; i < height; i++) {
         cout << "b2" << endl;
         vector<Unit> row;
-        cout << "b2.1" << endl;
         mainBoard.emplace_back(row);
-        cout << "b2.2" << endl;
         for (int j = 0; j < width; j++) {
-            cout << "b2.3" << endl;
             mainBoard[i].emplace_back(Unit(i, j, ' ', false, nullptr)); // problem here
-            cout << "b2.4" << endl;
         }
     }
     cout << "b3" << endl;
