@@ -91,7 +91,6 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
 //board1->moveBlockInBoard(0, 0, 0);
 //board2->moveBlockInBoard(0, 0, 0);
 
-
 // Command loop
   string command;
   int n;
@@ -185,6 +184,7 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
         if(curBoard->checkFilledRow(row)){
           curBoard->removeRow();
         }
+        curBoard->notifyObservers();
 
         // what if more than 1 drop
         
