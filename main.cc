@@ -179,6 +179,7 @@ board2->moveBlockInBoard(0, 0, 0);
           }else{
             break;
           }
+          curBoard->notifyObservers();
         }
       }
       if (command == "drop" || commands.at("drop") == command) {
