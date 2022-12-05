@@ -87,6 +87,8 @@ board2->setCurBlock((board2->getCurLevel())->createBlock());
 board1->setNextBlock((board1->getCurLevel())->createBlock());
 cout << board1->getNextBlock()->getType() << endl;
 board2->setNextBlock((board2->getCurLevel())->createBlock());
+//board1->moveBlockInBoard(0, 0, 0);
+
 
 // Command loop
   string command;
@@ -99,6 +101,17 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
       curBoard = board1;
     }else{
       curBoard = board2;
+    }
+    curBoard->moveBlockInBoard(0, 0, 0);
+
+    cout << "1" << endl;
+
+    for(int i=0; i<4; i++){
+      for(int j=0; j<4; j++){
+        int tempp = curBoard->getCurBlock()->getRotation();
+        cout << curBoard->getCurBlock()->getVector()[tempp][i][j];
+      } 
+      cout << endl;
     }
     
     while (true) {

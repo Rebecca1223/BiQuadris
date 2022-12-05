@@ -102,8 +102,8 @@ vector<vector<vector<int>>> IBlock::positionVector = {
 
 IBlock::~IBlock() {}
 
-// create block with x at 1, y at 15, blockNum=4, and direction N
-IBlock::IBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(0, 3, 4, levelGen, 0, actionHeavy, levelHeavy) {}
+// create block with x at 0, y at 3, blockNum=4, and direction N
+IBlock::IBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(0, 0, 4, levelGen, 0, actionHeavy, levelHeavy) {}
 
 // returns the type of block
 char IBlock::getType() { return 'I'; }
