@@ -88,8 +88,8 @@ board2->setCurBlock((board2->getCurLevel())->createBlock());
 board1->setNextBlock((board1->getCurLevel())->createBlock());
 //cout << board1->getNextBlock()->getType() << endl;
 board2->setNextBlock((board2->getCurLevel())->createBlock());
-//board1->moveBlockInBoard(0, 0, 0);
-//board2->moveBlockInBoard(0, 0, 0);
+board1->moveBlockInBoard(0, 0, 0);
+board2->moveBlockInBoard(0, 0, 0);
 
 // Command loop
   string command;
@@ -103,7 +103,7 @@ board2->setNextBlock((board2->getCurLevel())->createBlock());
     }else{
       curBoard = board2;
     }
-    curBoard->moveBlockInBoard(0, 0, 0);
+   // curBoard->moveBlockInBoard(0, 0, 0);
 
 /*
     for(int i=0; i<4; i++){
