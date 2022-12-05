@@ -168,14 +168,18 @@ void Board::removeRow() {
 
 bool Board::itsValid(int hShift, int vShift, int rotation) {
     ///////////////////////////////////////////////////////////        ***Level 4 Streak Counter Here***                 ////////////////////////////////////////////////////////
-
     int reducedRotation = (curBlock->getRotation() + rotation) % 4;
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
             int x = curBlock->getX() + hShift + j;
             int y = curBlock->getY() + vShift + i;
+            
             char here = curBlock->getVector()[reducedRotation][i][j];
             if (here != ',') {
+                // Check if it goes off board
+                if (y < 0 || x < 0 || y >= height || x >= width){
+                    return false;
+                }
                 // Check if block exists
                 if (mainBoard[y][x].getOcc()) { 
                     cout << curBlock->getRotation() << endl;
@@ -189,13 +193,9 @@ bool Board::itsValid(int hShift, int vShift, int rotation) {
                         return false;
                     }
                 }
-
-                // Check if it goes off board
-                if (y < 0 || x < 0 || y > height || x > width) return false;
             }
         }
     }
-    cout << "here5" << endl;
 
     if (rotation == 0 && hShift == 0 && vShift == 0) {
         for (int i = 0; i < 4; i++) {
@@ -220,7 +220,7 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
     this->removeBlock();
     // calculate the rotation
     int finalRotation = (curBlock->getRotation() + rotation) % 4;
-    cout << "rotation: " << finalRotation << endl;
+    //cout << "rotation: " << finalRotation << endl;
 
     // check every space in block vector
     for(int i=0; i<4; i++){
@@ -229,11 +229,11 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
             char here = curBlock->getVector()[finalRotation][i][j];
             //if a value exist, we place that on the board
             if(here != ','){
-                cout << "v: " << curBlock->getY()+i+vShift << "   ";
-                cout << "h: " << curBlock->getX()+j+hShift << "   ";
+                //cout << "v: " << curBlock->getY()+i+vShift << "   ";
+                //cout << "h: " << curBlock->getX()+j+hShift << "   ";
 
-                mainBoard[curBlock->getY()+i+vShift][curBlock->getX()+j+hShift].placePiece(here, curBlock);
-                cout << "bt: " << mainBoard[curBlock->getY()+i+vShift][curBlock->getX()+j+hShift].getBlockType() << endl;
+                mainBoard[curBlock->getY()+i+vShift][curBlock->getX()+j+hShift].placePiece(here, nullptr);
+                //cout << "bt: " << mainBoard[curBlock->getY()+i+vShift][curBlock->getX()+j+hShift].getBlockType() << endl;
             }
         }
     }
@@ -249,8 +249,8 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
     curBlock->setX(curBlock->getX() + hShift);
 	curBlock->setY(curBlock->getY() + vShift);
 	curBlock->setRotation(finalRotation);
-    cout << "y: " << curBlock->getY() << "   ";
-    cout << "x: " << curBlock->getX() << endl;
+    //cout << "y: " << curBlock->getY() << "   ";
+    //cout << "x: " << curBlock->getX() << endl;
     // add block pointer to unit
     // for(int i=0; i<11; i++){
     //     for(int j=0; j<15; j++){
