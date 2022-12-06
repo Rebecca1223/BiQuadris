@@ -206,6 +206,7 @@ board2->moveBlockInBoard(0, 0, 0);
       }
       if (command == "clockwise" || commands.at("clockwise") == command) {
         for(int i=0; i<multiplier; i++){
+          //curBoard->moveBlockInBoard(0, 0, 1);
           if (curBoard->itsValid(0, 0, 1)){
             curBoard->moveBlockInBoard(0, 0, 1);
           }else{
@@ -216,8 +217,9 @@ board2->moveBlockInBoard(0, 0, 0);
       }
       if (command == "counterclockwise" || commands.at("counterclockwise") == command) {
         for(int i=0; i<multiplier; i++){
-          if (curBoard->itsValid(0, 0, -1)){
-            curBoard->moveBlockInBoard(0, 0, -1);
+          //curBoard->moveBlockInBoard(0, 0, 3);
+          if (curBoard->itsValid(0, 0, 3)){
+            curBoard->moveBlockInBoard(0, 0, 3);
           }else{
             break;
           }
