@@ -317,6 +317,7 @@ board2->moveBlockInBoard(0, 0, 0);
     ++turnCount;
     curBoard->setCurBlock(curBoard->getNextBlock());
     curBoard->setNextBlock(curBoard->getCurLevel()->createBlock());
+    curBoard->moveBlockInBoard(0,0,0);
 
   }
 
