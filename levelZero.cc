@@ -24,7 +24,9 @@ void LevelZero::readFile() {
 
 Block* LevelZero::createBlock() {
   // call readFile outside, only once
-  
+  if (index == blockSequence.size()) {
+    index = 0;
+  }
   if (blockSequence[index] == 'I') {
     ++index;
     return new IBlock{0, false, false};

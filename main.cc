@@ -104,18 +104,10 @@ board2->moveBlockInBoard(0, 0, 0);
       curBoard = board2;
     }
     curBoard->notifyObservers();
-   // curBoard->moveBlockInBoard(0, 0, 0);
 
-/*
-    for(int i=0; i<4; i++){
-      for(int j=0; j<4; j++){
-        int tempp = curBoard->getCurBlock()->getRotation();
-        cout << curBoard->getCurBlock()->getVector()[tempp][i][j];
-      } 
-      cout << endl;
-    } */
     
     while (true) {
+      int multiplier = 1;
       cout << "Command: ";
       if (sequenceCommands.empty()) {
         cin >> command;
@@ -126,7 +118,9 @@ board2->moveBlockInBoard(0, 0, 0);
 
       if (command == "rename") {
         string commandName, aliasName;
+        cout << "Old name: ";
         cin >> commandName;
+        cout << "New name: ";
         cin >> aliasName;
 
         commands[commandName] = aliasName;
@@ -137,14 +131,18 @@ board2->moveBlockInBoard(0, 0, 0);
       if (iss >> n) { 
         multiplier = n; 
         int len = command.length();
+
         for (int i = 0; i < len; ++i) {
           if (isdigit(command[i])) {
-            command.erase(i);
+            cout << command << endl;
+            command.erase(i, 1);
+            --i;
           } else {
             break;
           }
         }
       }
+       cout << command << endl;
       
 
       // number of times controlled by multiplier
