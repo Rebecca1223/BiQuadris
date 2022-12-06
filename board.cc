@@ -92,7 +92,7 @@ void Board::reset() {
     delete nextBlock;
 
     placedBlocks.clear();
-    notifyObservers();
+    
 }
 
 bool Board::checkFilledRow(int index) {
@@ -170,6 +170,7 @@ void Board::removeRow() {
 
 bool Board::itsValid(int hShift, int vShift, int rotation) {
     ///////////////////////////////////////////////////////////        ***Level 4 Streak Counter Here***                 ////////////////////////////////////////////////////////
+    cout << "stop" << endl;
     int reducedRotation = (curBlock->getRotation() + rotation) % 4;
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
