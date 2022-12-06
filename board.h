@@ -23,7 +23,7 @@ class Board : public Subject {
         void build();
         void reset();
         void placePiece(int x, int y, char type, Block* block);
-        void placeBlock(Block& block);
+        //void placeBlock(Block& block);
         void removePiece(int x, int y);
         void removeBlock();
         void removeRow(int row);
@@ -38,7 +38,7 @@ class Board : public Subject {
         Level* getCurLevel();
         int getLevel();
         int getCurScore();
-        Block *getCurBlock();
+        Block* getCurBlock();
         std::vector<std::vector<Unit>> getBoard();
         Block* getNextBlock();
         void setCurLevel(int level, bool rand, int state, string sequenceFile = "");
