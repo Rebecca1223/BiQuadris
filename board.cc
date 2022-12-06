@@ -31,8 +31,6 @@ void Board::build() {
 // Board Constructor
 Board::Board(int width, int height, int level) : width{width}, height{height}, hiScore{0}, curScore{0}, level{level}, blind{false}, heavy{false}, force{false}, withEffect{false}, curBlock{nullptr}, nextBlock{nullptr}, curLevel{nullptr} {
 	this->build();
-
-    // potential problem with ctor
 }
 
 // Board Destructor
@@ -99,11 +97,9 @@ bool Board::checkFilledRow(int index) {
     bool filled = true;
 
     for (int i = 0; i < width; i++) {
-        for (int j = 0; j < 3; j++){
-            if (!mainBoard[index + j][i].getOcc()) {
-                filled = false;
-                break;
-            }
+        if (!mainBoard[index][i].getOcc()) {
+            filled = false;
+            break;
         }
     }
 
