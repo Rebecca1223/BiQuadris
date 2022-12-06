@@ -126,7 +126,9 @@ board2->moveBlockInBoard(0, 0, 0);
 
       if (command == "rename") {
         string commandName, aliasName;
+        cout << "Old name: ";
         cin >> commandName;
+        cout << "New name: ";
         cin >> aliasName;
 
         commands[commandName] = aliasName;
