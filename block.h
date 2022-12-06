@@ -29,9 +29,9 @@ class Block {
     virtual vector<vector<string>> getVector() = 0;
     virtual vector<vector<vector<int>>> getPositionVector() = 0;
     bool getActionHeavy();
-    void setActionHeavy();
+    void setActionHeavy(bool actionHeavy);
     bool getLevelHeavy();
-    void setLevelHeavy();
+    void setLevelHeavy(bool levelHeavy);
     virtual char getType() = 0;
     virtual ~Block();
 };

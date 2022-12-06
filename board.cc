@@ -129,36 +129,42 @@ void Board::removeRow(int row) {
     // Shift rows down
     for (int i = shift; i > 0; i--) {
         for (int j = 0; j < width; j++) {
+            cout << mainBoard[i][j].getOcc() << endl;
             if (mainBoard[i][j].getOcc()) { 
+                cout << "here" << endl;
                 mainBoard[i+1][j].placePiece(mainBoard[i][j].getBlockType(), mainBoard[i][j].getUnitBlock());
+                cout << "heree" << endl;
             } else {
                 mainBoard[i+1][j].removePiece();
             }
         }
     }
+    cout << "exit for loop" << endl;
 
-    for (int i = 0; i < width; i++) {
-        mainBoard[0][i]. removePiece();
-    }
+    // for (int i = 0; i < width; i++) {
+    //     mainBoard[0][i]. removePiece();
+    // }
 
     if (total > 0) {
+        cout << "here1" << endl;
         curScore = curScore + ((level + total) * (level + total));
         if (curScore > hiScore){
             hiScore = curScore;
         }
         ///////////////////////////////////////////////////////////        ***Reset Level 4 Streak Here***                 ////////////////////////////////////////////////////////
 
-        for (int i = 0; i < placedBlocks.size(); i++) {
-            //for (int j = 0; j < 4; j++) {
-                placedBlocks[i].setY(placedBlocks[i].getY() + total);
-            //}
-        }
+        // for (int i = 0; i < placedBlocks.size(); i++) {
+        //     //for (int j = 0; j < 4; j++) {
+        //         placedBlocks[i].setY(placedBlocks[i].getY() + total);
+        //     //}
+        // }
     }
 
     //////////////////////////////////////////////////////////         ***Increase Streak for Level 4***           /////////////////////////////////////////////////////
 
-    delete curBlock;
-    if(total > 1) withEffect = true;
+    //delete curBlock;
+    cout << "here2" << endl;
+    //if(total > 1) withEffect = true;
 }
 
 bool Board::itsValid(int hShift, int vShift, int rotation) {

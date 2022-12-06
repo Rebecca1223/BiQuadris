@@ -153,6 +153,10 @@ int main(int argc, char **argv) {
         for(int i=0; i<multiplier; i++){
           if (curBoard->itsValid(-1, 0, 0)){
             curBoard->moveBlockInBoard(-1, 0, 0);
+            if(curBoard->getHeavy()){
+              curBoard->moveBlockInBoard(0, 1, 0);
+              curBoard->moveBlockInBoard(0, 1, 0);
+            }
           }else{
             break;
           }
@@ -160,13 +164,13 @@ int main(int argc, char **argv) {
         curBoard->notifyObservers();
       }
       if (command == "right" || commands.at("right") == command) {
-        cout << "something" << endl;
         for(int i=0; i<multiplier; i++){
-          cout << "something1" << endl;
           if (curBoard->itsValid(1, 0, 0)){
-            cout << "valid" << endl;
             curBoard->moveBlockInBoard(1, 0, 0);
-            cout << "aftermove" << endl;
+            if(curBoard->getHeavy()){
+              curBoard->moveBlockInBoard(0, 1, 0);
+              curBoard->moveBlockInBoard(0, 1, 0);
+            }
           }else{
             cout << "else" << endl;
             break;
@@ -196,10 +200,17 @@ int main(int argc, char **argv) {
           // have removeRow return number of removed rows for special action?
           int row = curBoard->getCurBlock()->getY();
           // check if line is cleared here
-          for(int i=0; i<4; i++){
-            if(curBoard->checkFilledRow(row+i)){
-              curBoard->removeRow(row+i);
+          int r = row+3;
+          while(r>=row){
+            cout << row << endl;
+            cout << curBoard->checkFilledRow(row+3) << endl;
+            if(curBoard->checkFilledRow(row+3)){
+              curBoard->removeRow(row+3);
+              curBoard->notifyObservers();
               rowsRemoved++;
+            }else{
+              cout << r << endl;
+              r--;
             }
           }
 
@@ -208,10 +219,34 @@ int main(int argc, char **argv) {
             cout << "1. Blind" << endl;
             cout << "2. Heavy" << endl;
             cout << "3. Force" << endl;
+            string input;
+            cin >> input;
+            if(input == "1"){
+              if(player == 1){
+                board2->setBlind(true);
+              }else{
+                board1->setBlind(true);
+              }
+            }else if(input == "2"){
+              if(player == 1){
+                board2->setHeavy(true);
+                board2->getCurBlock()->setActionHeavy(true);
+              }else{
+                board1->setHeavy(true);
+                board1->getCurBlock()->setActionHeavy(true);
+              }
+            }else if(input == "3"){
+              curBoard->setForce(true);
+            }
           }
-
-
-
+          if(curBoard->getBlind()){
+            curBoard->setBlind(false);
+          }if(curBoard->getHeavy()){
+            curBoard->setHeavy(false);
+            curBoard->getCurBlock()->setActionHeavy(false);
+          }if(curBoard->getForce()){
+            curBoard->setForce(false);
+          }
           break;
         } 
         

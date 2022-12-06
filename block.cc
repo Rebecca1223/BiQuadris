@@ -84,16 +84,16 @@ bool Block::getActionHeavy(){
 }
 
 //if player does heavy, setActionHeavy for the block. if actionHeavy=true and moveHorz, the
-void Block::setActionHeavy(){
-    actionHeavy = true;
+void Block::setActionHeavy(bool actionHeavy){
+    this->actionHeavy = actionHeavy;
 }
 
 bool Block::getLevelHeavy(){
     return levelHeavy;
 }
 
-void Block::setLevelHeavy(){
-    levelHeavy = true;
+void Block::setLevelHeavy(bool levelHeavy){
+    this->levelHeavy = levelHeavy;
 }
 
 //IBLOCK
