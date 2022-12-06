@@ -124,6 +124,7 @@ int main(int argc, char **argv) {
         cin >> aliasName;
 
         commands[commandName] = aliasName;
+        continue;
       }
 
       // check for multiplier, then save it, and remove it
@@ -142,8 +143,9 @@ int main(int argc, char **argv) {
         }
       }
 
-      command = cmdInt.getCommand(command);
-      
+      if (command.length() != 1) {
+        command = cmdInt.getCommand(command);
+      }
 
       // number of times controlled by multiplier
       if (command == "left" || commands.at("left") == command) {
@@ -272,7 +274,7 @@ int main(int argc, char **argv) {
         string fileName;
         string command;
         cin >> fileName;
-        ifstream file;
+        ifstream file{fileName};
 
         while (file >> command) {
           sequenceCommands.emplace_back(command);
