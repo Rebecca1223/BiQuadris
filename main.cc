@@ -185,13 +185,12 @@ board2->moveBlockInBoard(0, 0, 0);
           valid = curBoard->itsValid(0, 1, 0);
           
         }
-        curBoard->notifyObservers();
         int row = curBoard->getCurBlock()->getY();
         // check if line is cleared here
         if(curBoard->checkFilledRow(row)){
           curBoard->removeRow();
+          curBoard->notifyObservers();
         }
-        curBoard->notifyObservers();
         break;
         
 
