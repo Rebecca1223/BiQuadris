@@ -18,7 +18,6 @@ void LevelZero::readFile() {
   ifstream file{sequenceFile};
   while (file >> block) {
     blockSequence.emplace_back(block);
-   // cout << block << endl;
   }
 }
 
@@ -29,31 +28,31 @@ Block* LevelZero::createBlock() {
   }
   if (blockSequence[index] == 'I') {
     ++index;
-    return new IBlock{0, false, false};
+    return new IBlock{0};
   }
   if (blockSequence[index] == 'J') {
     ++index;
-    return new JBlock{0, false, false};
+    return new JBlock{0};
   }
   if (blockSequence[index] == 'L') {
     ++index;
-    return new LBlock{0, false, false};
+    return new LBlock{0};
   }
   if (blockSequence[index] == 'O') {
     ++index;
-    return new OBlock{0, false, false};
+    return new OBlock{0};
   }
   if (blockSequence[index] == 'S') {
     ++index;
-    return new SBlock{0, false, false};
+    return new SBlock{0};
   }
   if (blockSequence[index] == 'Z') {
     ++index;
-    return new ZBlock{0, false, false};
+    return new ZBlock{0};
   }
   if (blockSequence[index] == 'T') {
     ++index;
-    return new TBlock{0, false, false};
+    return new TBlock{0};
   }
   
 }

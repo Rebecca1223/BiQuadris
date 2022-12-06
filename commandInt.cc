@@ -16,6 +16,7 @@ string CommandInt::getCommand(std::string input) {
       return left;
     }
     index = 6;
+    substring = input.substr(0, index);
     if (substring == levelup.substr(0, index)) {
       return levelup;
     } else {

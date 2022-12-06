@@ -76,9 +76,9 @@ void Board::removeBlock(){
 void Board::reset() {
     curScore = 0;
 
-    this->blind = false;
-    this->heavy = false;
-    this->force = false;
+    this->setBlind(false);
+    this->setForce(false);
+    this->setHeavy(false);
 
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
@@ -101,7 +101,6 @@ bool Board::checkFilledRow(int index) {
 
     for (int i = 0; i < width; i++) {
         if (!mainBoard[index][i].getOcc()) {
-            cout << mainBoard[index][i].getOcc() << endl;
             filled = false;
             break;
         }
@@ -128,7 +127,6 @@ void Board::removeRow(int row) {
             }
         }
     }
-    cout << "shift start" << endl;
 
     // Shift rows down
     for (int i = shift; i > 0; i--) {
@@ -141,9 +139,9 @@ void Board::removeRow(int row) {
         }
     }
 
-    for (int i = 0; i < width; i++) {
-        mainBoard[0][i]. removePiece();
-    }
+    // for (int i = 0; i < width; i++) {
+    //     mainBoard[0][i]. removePiece();
+    // }
 
     if (total > 0) {
         curScore = curScore + ((level + total) * (level + total));
@@ -152,24 +150,23 @@ void Board::removeRow(int row) {
         }
         ///////////////////////////////////////////////////////////        ***Reset Level 4 Streak Here***                 ////////////////////////////////////////////////////////
 
-        for (int i = 0; i < placedBlocks.size(); i++) {
-            //for (int j = 0; j < 4; j++) {
-                placedBlocks[i].setY(placedBlocks[i].getY() + total);
-            //}
-        }
+        // for (int i = 0; i < placedBlocks.size(); i++) {
+        //     //for (int j = 0; j < 4; j++) {
+        //         placedBlocks[i].setY(placedBlocks[i].getY() + total);
+        //     //}
+        // }
     }
 
     //////////////////////////////////////////////////////////         ***Increase Streak for Level 4***           /////////////////////////////////////////////////////
 
-    delete curBlock;
-    if(total > 1) withEffect = true;
+    //delete curBlock;
+    //if(total > 1) withEffect = true;
 }
 
 // Checks whether a move with horizontal shift of hShift, vertial shift of vShift, and roation of rotation is a valid move
 //      A valid move consists of the block being able to be placed inside the board within the board perimeter constraints
 bool Board::itsValid(int hShift, int vShift, int rotation) {
     ///////////////////////////////////////////////////////////        ***Level 4 Streak Counter Here***                 ////////////////////////////////////////////////////////
-    cout << "stop" << endl;
     int reducedRotation = (curBlock->getRotation() + rotation) % 4;
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
@@ -248,8 +245,6 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
     curBlock->setX(curBlock->getX() + hShift);
 	curBlock->setY(curBlock->getY() + vShift);
 	curBlock->setRotation(finalRotation);
-    //cout << "y: " << curBlock->getY() << "   ";
-    //cout << "x: " << curBlock->getX() << endl;
     // add block pointer to unit
     // for(int i=0; i<11; i++){
     //     for(int j=0; j<15; j++){
@@ -269,8 +264,6 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
  //   notifyObservers();
 }
 
-bool Board::isBlind() {return blind;}
-
 int Board::getHiScore() {return hiScore;}
 Level* Board::getCurLevel() {return curLevel;}
 int Board::getLevel() { return level; }
@@ -283,6 +276,24 @@ void Board::setNextBlock(Block* nextBlock) {
 }
 vector<vector<Unit>> Board::getBoard() { return mainBoard; }
 Block* Board::getNextBlock() { return nextBlock; }
+bool Board:: getHeavy(){
+    return heavy;
+}
+bool Board::getForce(){
+    return force;
+}
+bool Board::getBlind(){
+    return blind;
+}
+void Board::setHeavy(bool heavy){
+    this->heavy = heavy;
+}
+void Board::setForce(bool force){
+    this->force = force;
+}
+void Board::setBlind(bool blind){
+    this->blind = blind;
+}
 
 void Board::setCurLevel(int setLevel, bool rand, int state, string sequenceFile) {
     delete curLevel;

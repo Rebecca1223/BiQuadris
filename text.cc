@@ -51,7 +51,6 @@ void Text::notify() {
     for (int j = 0; j < width; ++j) {
       // need getBoard for Board
       // need getBlockType for Unit
-     // cout << b1->getBoard()[i][j].getBlockType() << endl;
       p1row.emplace_back(b1->getBoard()[i][j].getBlockType());
       p2row.emplace_back(b2->getBoard()[i][j].getBlockType());
     }
@@ -68,9 +67,9 @@ void Text::notify() {
   out << colBorder << separatingSpace << colBorder << endl;
 
   // print screen for both players
-  if (b1->isBlind()) {
+  if (b1->getBlind()) {
     blindEffect(1);
-  } else if (b2->isBlind()) {
+  } else if (b2->getBlind()) {
     blindEffect(2);
   } else {
     for (int i = 0; i < height; ++i) {
