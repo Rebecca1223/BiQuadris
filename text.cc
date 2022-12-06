@@ -60,7 +60,6 @@ void Text::notify() {
 
 
   // print level, hiscore, score for both players
-  out << endl;
   out << "Level:    " << b1->getLevel() << separatingSpace << "Level:    " << b2->getLevel() << endl;
   out << "HiScore:  " << b1->getHiScore() << separatingSpace << "HiScore:  " << b2->getHiScore() << endl;
   out << "Score:    " << b1->getCurScore() << separatingSpace << "Score:    " << b2->getCurScore() << endl;

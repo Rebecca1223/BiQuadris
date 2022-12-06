@@ -93,6 +93,7 @@ int main(int argc, char **argv) {
   int n;
   int multiplier = 1;
   CommandInt cmdInt;
+  cout << endl;
   while (true) {
     bool restart = 0;
     int rowsRemoved = 0;
@@ -104,17 +105,21 @@ int main(int argc, char **argv) {
       curBoard = board2;
       player = 2;
     }
+    
     curBoard->notifyObservers();
 
     while (true) {
       int multiplier = 1;
+      cout << "Player " << player <<"'s turn" << endl;
       cout << "Command: ";
       if (sequenceCommands.empty()) {
         cin >> command;
       } else {
         command = sequenceCommands.front();
+        cout << command << endl;
         sequenceCommands.erase(sequenceCommands.begin());
       }
+      cout << endl;
 
       if (command == "rename") {
         string commandName, aliasName;
@@ -227,17 +232,21 @@ int main(int argc, char **argv) {
           if (level == 4) {
             cout << "level4 here" << endl;
             curBoard->addPlacedBlocks();
+            cout << curBoard->getPlacedBlocks() << endl;
             if (curBoard->getPlacedBlocks() % 5 == 0 && rowsRemoved == 0) {
               //drop a OneBlock
+              cout << "dropppp" << endl;
               Block* temp = curBoard->getCurBlock();
               Block* newOneBlock = new OneBlock(4);
               curBoard->setCurBlock(newOneBlock);
 
               bool valid = curBoard->itsValid(0, 1, 0);
               while (valid == true){
+                cout << "oneblock" << endl;
                 curBoard->moveBlockInBoard(0,1,0);
                 valid = curBoard->itsValid(0, 1, 0);
               }
+              
 
               int row = curBoard->getCurBlock()->getY();
               int r = row+3;
@@ -253,7 +262,9 @@ int main(int argc, char **argv) {
               curBoard->removeBlock();
               curBoard->setCurBlock(temp);
             } else {
-              curBoard->resetPlacedBlocks();
+              if (rowsRemoved > 0) {
+                curBoard->resetPlacedBlocks();
+              }
             }
 
             if (rowsRemoved >= 2) {
@@ -348,21 +359,13 @@ int main(int argc, char **argv) {
 
       }
       if (command == "norandom" || commands.at("norandom") == command) {
-        // how is works
-        // is "file" sequence of commands or sequence of blocks???
 
         string file;
         cin >> file;
         int level = curBoard->getLevel();
 
         if (level == 3 || level == 4) curBoard->setCurLevel(level, false, 0, file);
-        string command;
-        ifstream f{file};
 
-        while (f >> command) {
-          sequenceCommands.emplace_back(command);
-        }
-        curBoard->notifyObservers();
         continue;
 
       }
@@ -370,7 +373,6 @@ int main(int argc, char **argv) {
         int level = curBoard->getLevel();
 
         if (level == 3 || level == 4) curBoard->setCurLevel(level, true, 0);
-        curBoard->notifyObservers();
         continue;
 
       }
