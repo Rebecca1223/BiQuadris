@@ -96,6 +96,7 @@ int main(int argc, char **argv) {
   CommandInt cmdInt;
   while (true) {
     bool restart = 0;
+    int rowsRemoved = 0;
     Board *curBoard;
     if (turnCount % 2 == 0) {
       curBoard = board1;
@@ -141,9 +142,7 @@ int main(int argc, char **argv) {
         }
       }
 
-      cout << command << endl;
       command = cmdInt.getCommand(command);
-      cout << command << endl;
       
 
       // number of times controlled by multiplier
@@ -190,6 +189,9 @@ int main(int argc, char **argv) {
             valid = curBoard->itsValid(0, 1, 0);
             
           }
+
+          // can we check multiple rows?
+          // have removeRow return number of removed rows for special action?
           int row = curBoard->getCurBlock()->getY();
           // check if line is cleared here
           if(curBoard->checkFilledRow(row)){
