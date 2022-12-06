@@ -21,8 +21,6 @@ class Unit{
     int getX();
     int getY();
     Block *getUnitBlock();
-    //void setUnitBlock(Block *unitBlock);
-    //void removeUnitBlock();
 };
 
 #endif

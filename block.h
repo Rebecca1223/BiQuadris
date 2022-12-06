@@ -36,10 +36,6 @@ class IBlock : public Block {
   static vector<vector<vector<int>>> positionVector;
   public:
     IBlock(int levelGen);
-    // void rotate() override;
-    // void moveHorz(std::string dir) override;
-    // void down() override;
-    // void drop() override;
     char getType() override;
     vector<vector<string>> getVector() override;
     vector<vector<vector<int>>> getPositionVector() override;
@@ -51,10 +47,6 @@ class JBlock : public Block {
   static vector<vector<vector<int>>> positionVector;
   public:
     JBlock(int levelGen);
-    // void rotate() override;
-    // void moveHorz(std::string dir) override;
-    // void down() override;
-    // void drop() override;
     char getType() override;
     vector<vector<string>> getVector() override;
     vector<vector<vector<int>>> getPositionVector() override;
@@ -66,10 +58,6 @@ class LBlock : public Block {
   static vector<vector<vector<int>>> positionVector;
   public:
     LBlock(int levelGen);
-    // void rotate() override;
-    // void moveHorz(std::string dir) override;
-    // void down() override;
-    // void drop() override;
     char getType() override;
     vector<vector<string>> getVector() override;
     vector<vector<vector<int>>> getPositionVector() override;
@@ -81,10 +69,6 @@ class OBlock : public Block {
   static vector<vector<vector<int>>> positionVector;
   public:
     OBlock(int levelGen);
-    // void rotate() override;
-    // void moveHorz(std::string dir) override;
-    // void down() override;
-    // void drop() override;
     char getType() override;
     vector<vector<string>> getVector() override;
     vector<vector<vector<int>>> getPositionVector() override;
@@ -96,10 +80,6 @@ class OneBlock : public Block {
   static vector<vector<vector<int>>> positionVector;
   public:
     OneBlock(int levelGen);
-    // void rotate() override;
-    // void moveHorz(std::string dir) override;
-    // void down() override;
-    // void drop() override;
     char getType() override;
     vector<vector<string>> getVector() override;
     vector<vector<vector<int>>> getPositionVector() override;
@@ -111,10 +91,6 @@ class SBlock : public Block {
   static vector<vector<vector<int>>> positionVector;
   public:
     SBlock(int levelGen);
-    // void rotate() override;
-    // void moveHorz(std::string dir) override;
-    // void down() override;
-    // void drop() override;
     char getType() override;
     vector<vector<string>> getVector() override;
     vector<vector<vector<int>>> getPositionVector() override;
@@ -126,10 +102,6 @@ class TBlock : public Block {
   static vector<vector<vector<int>>> positionVector;
   public:
     TBlock(int levelGen);
-    // void rotate() override;
-    // void moveHorz(std::string dir) override;
-    // void down() override;
-    // void drop() override;
     char getType() override;
     vector<vector<string>> getVector() override;
     vector<vector<vector<int>>> getPositionVector() override;
@@ -141,10 +113,6 @@ class ZBlock : public Block {
   static vector<vector<vector<int>>> positionVector;
   public:
     ZBlock(int levelGen);
-    // void rotate() override;
-    // void moveHorz(std::string dir) override;
-    // void down() override;
-    // void drop() override;
     char getType() override;
     vector<vector<string>> getVector() override;
     vector<vector<vector<int>>> getPositionVector() override;
