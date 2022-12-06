@@ -116,6 +116,7 @@ board2->moveBlockInBoard(0, 0, 0);
     } */
     
     while (true) {
+      cout << "Command: ";
       if (sequenceCommands.empty()) {
         cin >> command;
       } else {
@@ -189,10 +190,6 @@ board2->moveBlockInBoard(0, 0, 0);
           valid = curBoard->itsValid(0, 1, 0);
           
         }
-<<<<<<< HEAD
-       
-=======
->>>>>>> 3417cedf88c68d5325d2a5d9c980d0cb9de67a71
         int row = curBoard->getCurBlock()->getY();
         // check if line is cleared here
         if(curBoard->checkFilledRow(row)){
