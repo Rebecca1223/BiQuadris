@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
   srand(7);
 
   // flags in the beginning, in command line
-  for (int i = 1; i < argc; ++i) {
+  for (int i = 1; i < argc - 1; ++i) {
     string flag = argv[i];
     if (flag == "-text") {
       graphicsOn = false;
@@ -237,6 +237,10 @@ int main(int argc, char **argv) {
               }
             }else if(input == "3"){
               curBoard->setForce(true);
+              string type;
+              cout << "Enter a block type: ";
+              cin >> type;
+              sequenceCommands.emplace_back(type);
             }
           }
           if(curBoard->getBlind()){
@@ -274,7 +278,9 @@ int main(int argc, char **argv) {
         curBoard->notifyObservers();
       }
       if (command == "levelup" || commands.at("levelup") == command) {
+        cout << "hiiiii" << endl;
         int level = curBoard->getLevel();
+        cout << level << endl;
 
         for (int i = 0; i < multiplier; ++i) {
           if (level == 4) break;

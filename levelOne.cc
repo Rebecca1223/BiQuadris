@@ -1,5 +1,6 @@
 #include "levelOne.h"
 #include <cstdlib>
+#include <iostream>
 
 LevelOne::LevelOne(): level{1} {
   blocksPool = {'I','I','J','J','L','L','O','O','S','Z','T','T'};
@@ -7,6 +8,7 @@ LevelOne::LevelOne(): level{1} {
 
 Block* LevelOne::createBlock() {
   int randIdx = rand() % blocksPool.size();
+  cout << randIdx << endl;
   if (blocksPool[randIdx] == 'I') return new IBlock{1, false, false};
   else if (blocksPool[randIdx] == 'J') return new JBlock{1, false, false};
   else if (blocksPool[randIdx] == 'L') return new LBlock{1, false, false};
