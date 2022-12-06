@@ -29,7 +29,7 @@ void Board::build() {
 }
 
 // Board Constructor
-Board::Board(int width, int height, int level) : width{width}, height{height}, hiScore{0}, curScore{0}, level{level}, blind{false}, heavy{false}, force{false}, withEffect{false}, curBlock{nullptr}, nextBlock{nullptr}, curLevel{nullptr} {
+Board::Board(int width, int height, int level) : width{width}, height{height}, hiScore{0}, curScore{0}, level{level}, placedBlocks{0}, blind{false}, heavy{false}, force{false}, withEffect{false}, curBlock{nullptr}, nextBlock{nullptr}, curLevel{nullptr} {
 	this->build();
 }
 
@@ -88,8 +88,6 @@ void Board::reset() {
 
     delete curBlock;
     delete nextBlock;
-
-    placedBlocks.clear();
     
 }
 
@@ -287,6 +285,14 @@ void Board::setForce(bool force){
 }
 void Board::setBlind(bool blind){
     this->blind = blind;
+}
+
+int Board::getPlacedBlocks() {
+    return placedBlocks;
+}
+
+void Board::addPlacedBlocks() {
+    ++placedBlocks;
 }
 
 void Board::setCurLevel(int setLevel, bool rand, int state, string sequenceFile) {

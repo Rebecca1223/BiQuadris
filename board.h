@@ -9,12 +9,11 @@ class Unit;
 class Level;
 
 class Board : public Subject {
-    int hiScore, curScore, width, height, level;
+    int hiScore, curScore, width, height, level, placedBlocks;
     bool blind, heavy, force, withEffect;
     Block* curBlock; // Pointer to current block
 	Block* nextBlock; // Pointer to next block
 	Level* curLevel;
-    std::vector<Block> placedBlocks;
     std::vector<std::vector<Unit>> mainBoard;
 
     public:
@@ -49,6 +48,8 @@ class Board : public Subject {
         void setHeavy(bool heavy);
         void setForce(bool force);
         void setBlind(bool blind);
+        int getPlacedBlocks();
+        void addPlacedBlocks();
 };
 
 #endif

@@ -157,6 +157,10 @@ int main(int argc, char **argv) {
               curBoard->moveBlockInBoard(0, 1, 0);
               curBoard->moveBlockInBoard(0, 1, 0);
             }
+            int level = curBoard->getLevel();
+            if (level == 3 || level == 4) {
+              curBoard->moveBlockInBoard(0, 1, 0);
+            }
           }else{
             break;
           }
@@ -171,6 +175,10 @@ int main(int argc, char **argv) {
               curBoard->moveBlockInBoard(0, 1, 0);
               curBoard->moveBlockInBoard(0, 1, 0);
             }
+            int level = curBoard->getLevel();
+            if (level == 3 || level == 4) {
+              curBoard->moveBlockInBoard(0, 1, 0);
+            }
           }else{
             break;
           }
@@ -181,6 +189,10 @@ int main(int argc, char **argv) {
         for(int i=0; i<multiplier; i++){
           if (curBoard->itsValid(0, 1, 0)){
             curBoard->moveBlockInBoard(0, 1, 0);
+            int level = curBoard->getLevel();
+            if (level == 3 || level == 4) {
+              curBoard->moveBlockInBoard(0, 1, 0);
+            }
           }else{
             break;
           }
@@ -188,12 +200,14 @@ int main(int argc, char **argv) {
         }
       }
       if (command == "drop" || commands.at("drop") == command) {
+        int level = curBoard->getLevel();
         if (multiplier != 0) {
           bool valid = curBoard->itsValid(0, 1, 0);
           while (valid == true){
             curBoard->moveBlockInBoard(0,1,0);
             valid = curBoard->itsValid(0, 1, 0);
           }
+          curBoard->addPlacedBlocks();
 
           // can we check multiple rows?
           // have removeRow return number of removed rows for special action?
@@ -209,6 +223,14 @@ int main(int argc, char **argv) {
               r--;
             }
           }
+
+          if (curBoard->getPlacedBlocks() % 5 == 0 && rowsRemoved == 0) {
+            
+          }
+
+          
+
+
 
           if (rowsRemoved >= 2) {
             cout << "Special Action!!!" << endl;
@@ -253,6 +275,10 @@ int main(int argc, char **argv) {
           //curBoard->moveBlockInBoard(0, 0, 1);
           if (curBoard->itsValid(0, 0, 1)){
             curBoard->moveBlockInBoard(0, 0, 1);
+            int level = curBoard->getLevel();
+            if (level == 3 || level == 4) {
+              curBoard->moveBlockInBoard(0, 1, 0);
+            }
           }else{
             break;
           }
@@ -264,6 +290,10 @@ int main(int argc, char **argv) {
           //curBoard->moveBlockInBoard(0, 0, 3);
           if (curBoard->itsValid(0, 0, 3)){
             curBoard->moveBlockInBoard(0, 0, 3);
+            int level = curBoard->getLevel();
+            if (level == 3 || level == 4) {
+              curBoard->moveBlockInBoard(0, 1, 0);
+            }
           }else{
             break;
           }
