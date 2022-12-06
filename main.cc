@@ -212,9 +212,8 @@ int main(int argc, char **argv) {
             valid = curBoard->itsValid(0, 1, 0);
           }
 
-          // can we check multiple rows?
-          // have removeRow return number of removed rows for special action?
           int row = curBoard->getCurBlock()->getY();
+          
           // check if line is cleared here
           int r = row+3;
           while(r>=row){
@@ -230,24 +229,21 @@ int main(int argc, char **argv) {
           cout << level << endl;
 
           if (level == 4) {
-            cout << "level4 here" << endl;
             curBoard->addPlacedBlocks();
             cout << curBoard->getPlacedBlocks() << endl;
             if (curBoard->getPlacedBlocks() % 5 == 0 && rowsRemoved == 0) {
               //drop a OneBlock
-              cout << "dropppp" << endl;
               Block* temp = curBoard->getCurBlock();
               Block* newOneBlock = new OneBlock(4);
               curBoard->setCurBlock(newOneBlock);
+              curBoard->moveBlockInBoard(0,0,0);
+              cout << curBoard->getCurBlock()->getType() << endl;
 
               bool valid = curBoard->itsValid(0, 1, 0);
               while (valid == true){
-                cout << "oneblock" << endl;
                 curBoard->moveBlockInBoard(0,1,0);
                 valid = curBoard->itsValid(0, 1, 0);
               }
-              
-
               int row = curBoard->getCurBlock()->getY();
               int r = row+3;
               while(r>=row){
@@ -259,7 +255,6 @@ int main(int argc, char **argv) {
                   r--;
                 }
               }
-              curBoard->removeBlock();
               curBoard->setCurBlock(temp);
             } else {
               if (rowsRemoved > 0) {

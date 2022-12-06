@@ -207,7 +207,7 @@ vector<vector<vector<int>>> OBlock::getPositionVector() {
 //OneBLOCK
 OneBlock::~OneBlock() {}
 
-OneBlock::OneBlock(int levelGen) : Block(6, 0, 1, levelGen, 0) {}
+OneBlock::OneBlock(int levelGen) : Block(5, 0, 1, levelGen, 0) {}
 
 //vectors for the Oneblock
 vector<vector<string>> OneBlock::rotationVector = {
