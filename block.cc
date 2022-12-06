@@ -69,7 +69,7 @@ int Block::getRotation(){
 }
 
 void Block::setRotation(int rotation){
-    this->curRotation = curRotation;
+    this->curRotation = rotation;
 }
 
 bool Block::getActionHeavy(){
