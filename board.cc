@@ -99,9 +99,11 @@ bool Board::checkFilledRow(int index) {
     bool filled = true;
 
     for (int i = 0; i < width; i++) {
-        if (!mainBoard[curBlock->getY() + index][i].getOcc()) {
-            filled = false;
-            break;
+        for (int j = 0; j < 3; j++){
+            if (!mainBoard[index + j][i].getOcc()) {
+                filled = false;
+                break;
+            }
         }
     }
 
