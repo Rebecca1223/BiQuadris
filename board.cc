@@ -98,7 +98,6 @@ bool Board::checkFilledRow(int index) {
 
     for (int i = 0; i < width; i++) {
         if (!mainBoard[index][i].getOcc()) {
-            cout << mainBoard[index][i].getOcc() << endl;
             filled = false;
             break;
         }
@@ -124,29 +123,23 @@ void Board::removeRow(int row) {
             }
         }
     }
-    cout << "shift start" << endl;
 
     // Shift rows down
     for (int i = shift; i > 0; i--) {
         for (int j = 0; j < width; j++) {
-            cout << mainBoard[i][j].getOcc() << endl;
             if (mainBoard[i][j].getOcc()) { 
-                cout << "here" << endl;
                 mainBoard[i+1][j].placePiece(mainBoard[i][j].getBlockType(), mainBoard[i][j].getUnitBlock());
-                cout << "heree" << endl;
             } else {
                 mainBoard[i+1][j].removePiece();
             }
         }
     }
-    cout << "exit for loop" << endl;
 
     // for (int i = 0; i < width; i++) {
     //     mainBoard[0][i]. removePiece();
     // }
 
     if (total > 0) {
-        cout << "here1" << endl;
         curScore = curScore + ((level + total) * (level + total));
         if (curScore > hiScore){
             hiScore = curScore;
@@ -163,13 +156,11 @@ void Board::removeRow(int row) {
     //////////////////////////////////////////////////////////         ***Increase Streak for Level 4***           /////////////////////////////////////////////////////
 
     //delete curBlock;
-    cout << "here2" << endl;
     //if(total > 1) withEffect = true;
 }
 
 bool Board::itsValid(int hShift, int vShift, int rotation) {
     ///////////////////////////////////////////////////////////        ***Level 4 Streak Counter Here***                 ////////////////////////////////////////////////////////
-    cout << "stop" << endl;
     int reducedRotation = (curBlock->getRotation() + rotation) % 4;
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
@@ -248,8 +239,6 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
     curBlock->setX(curBlock->getX() + hShift);
 	curBlock->setY(curBlock->getY() + vShift);
 	curBlock->setRotation(finalRotation);
-    //cout << "y: " << curBlock->getY() << "   ";
-    //cout << "x: " << curBlock->getX() << endl;
     // add block pointer to unit
     // for(int i=0; i<11; i++){
     //     for(int j=0; j<15; j++){

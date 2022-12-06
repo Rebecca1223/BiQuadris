@@ -172,7 +172,6 @@ int main(int argc, char **argv) {
               curBoard->moveBlockInBoard(0, 1, 0);
             }
           }else{
-            cout << "else" << endl;
             break;
           }
         }
@@ -202,14 +201,11 @@ int main(int argc, char **argv) {
           // check if line is cleared here
           int r = row+3;
           while(r>=row){
-            cout << row << endl;
-            cout << curBoard->checkFilledRow(row+3) << endl;
             if(curBoard->checkFilledRow(row+3)){
               curBoard->removeRow(row+3);
               curBoard->notifyObservers();
               rowsRemoved++;
             }else{
-              cout << r << endl;
               r--;
             }
           }
@@ -230,10 +226,8 @@ int main(int argc, char **argv) {
             }else if(input == "2"){
               if(player == 1){
                 board2->setHeavy(true);
-                board2->getCurBlock()->setActionHeavy(true);
               }else{
                 board1->setHeavy(true);
-                board1->getCurBlock()->setActionHeavy(true);
               }
             }else if(input == "3"){
               curBoard->setForce(true);
@@ -247,7 +241,6 @@ int main(int argc, char **argv) {
             curBoard->setBlind(false);
           }if(curBoard->getHeavy()){
             curBoard->setHeavy(false);
-            curBoard->getCurBlock()->setActionHeavy(false);
           }if(curBoard->getForce()){
             curBoard->setForce(false);
           }
@@ -333,7 +326,6 @@ int main(int argc, char **argv) {
         bool levelHeavy = false;
 
         Block *curBlock = curBoard->getCurBlock();
-        bool actionHeavy = curBlock->getActionHeavy();
 
         int tempLevel = curBoard->getLevel();
 
@@ -345,19 +337,19 @@ int main(int argc, char **argv) {
         Block *block;
         if (command == "I") {
           // create new block each with respective fields
-          block = new IBlock(tempLevel, actionHeavy, levelHeavy);
+          block = new IBlock(tempLevel);
         } else if (command == "J") {
-          block = new JBlock(tempLevel, actionHeavy, levelHeavy);
+          block = new JBlock(tempLevel);
         } else if (command == "L") {
-          block = new LBlock(tempLevel, actionHeavy, levelHeavy);
+          block = new LBlock(tempLevel);
         } else if (command == "O") {
-          block = new OBlock(tempLevel, actionHeavy, levelHeavy);
+          block = new OBlock(tempLevel);
         } else if (command == "S") {
-          block = new SBlock(tempLevel, actionHeavy, levelHeavy);
+          block = new SBlock(tempLevel);
         } else if (command == "Z") {
-          block = new ZBlock(tempLevel, actionHeavy, levelHeavy);
+          block = new ZBlock(tempLevel);
         } else if (command == "T") {
-          block = new TBlock(tempLevel, actionHeavy, levelHeavy);
+          block = new TBlock(tempLevel);
         }
 
         curBoard->removeBlock();

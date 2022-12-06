@@ -17,31 +17,31 @@ Block* LevelThree::createBlock() {
   }
   if (blocksPool[randIdx] == 'I') {
     ++index;
-    return new IBlock{3, false, true};
+    return new IBlock{3};
   }
   if (blocksPool[randIdx] == 'J') {
     ++index;
-    return new JBlock{3, false, true};
+    return new JBlock{3};
   }
   if (blocksPool[randIdx] == 'L') {
     ++index;
-    return new LBlock{3, false, true};
+    return new LBlock{3};
   }
   if (blocksPool[randIdx] == 'O') {
     ++index;
-    return new OBlock{3, false, true};
+    return new OBlock{3};
   }
   if (blocksPool[randIdx] == 'S') {
     ++index;
-    return new SBlock{3, false, true};
+    return new SBlock{3};
   }
   if (blocksPool[randIdx] == 'Z') {
     ++index;
-    return new ZBlock{3, false, true};
+    return new ZBlock{3};
   }
   if (blocksPool[randIdx] == 'T') {
     ++index;
-    return new TBlock{3, false, true};
+    return new TBlock{3};
   }
 }
 

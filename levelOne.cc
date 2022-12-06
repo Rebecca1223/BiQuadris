@@ -8,14 +8,13 @@ LevelOne::LevelOne(): level{1} {
 
 Block* LevelOne::createBlock() {
   int randIdx = rand() % blocksPool.size();
-  cout << randIdx << endl;
-  if (blocksPool[randIdx] == 'I') return new IBlock{1, false, false};
-  else if (blocksPool[randIdx] == 'J') return new JBlock{1, false, false};
-  else if (blocksPool[randIdx] == 'L') return new LBlock{1, false, false};
-  else if (blocksPool[randIdx] == 'O') return new OBlock{1, false, false};
-  else if (blocksPool[randIdx] == 'S') return new SBlock{1, false, false};
-  else if (blocksPool[randIdx] == 'Z') return new ZBlock{1, false, false};
-  else if (blocksPool[randIdx] == 'T') return new TBlock{1, false, false};
+  if (blocksPool[randIdx] == 'I') return new IBlock{1};
+  else if (blocksPool[randIdx] == 'J') return new JBlock{1};
+  else if (blocksPool[randIdx] == 'L') return new LBlock{1};
+  else if (blocksPool[randIdx] == 'O') return new OBlock{1};
+  else if (blocksPool[randIdx] == 'S') return new SBlock{1};
+  else if (blocksPool[randIdx] == 'Z') return new ZBlock{1};
+  else if (blocksPool[randIdx] == 'T') return new TBlock{1};
 }
 
 void LevelOne::readFile() {}
