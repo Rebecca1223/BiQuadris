@@ -109,24 +109,22 @@ bool Board::checkFilledRow(int index) {
 
 void Board::removeRow(int row) {
     int total = 0;
-
-
-    int shift = curBlock->getY() + row - 1;
+    int shift = row - 1;
     total++;
 
     // subtracting blockNum from all the blocks in that row
     for(int j=0; j<width; j++){
-        cout << j << endl;
-        cout << row << endl;
         int newBlockNum = mainBoard[row][j].getUnitBlock()->getblockNum() - 1;
-        cout << "num: " << newBlockNum << endl;
         mainBoard[row][j].getUnitBlock()->setBlockNum(newBlockNum);
         // Check if entire block is cleared and update score
         if(newBlockNum == 0){
             curScore += (mainBoard[row][j].getUnitBlock()->getlevelGen()+1) * (mainBoard[row][j].getUnitBlock()->getlevelGen()+1);
+            if (curScore > hiScore){
+                hiScore = curScore;
+            }
         }
     }
-
+    cout << "shift start" << endl;
 
     // Shift rows down
     for (int i = shift; i > 0; i--) {
@@ -145,6 +143,9 @@ void Board::removeRow(int row) {
 
     if (total > 0) {
         curScore = curScore + ((level + total) * (level + total));
+        if (curScore > hiScore){
+            hiScore = curScore;
+        }
         ///////////////////////////////////////////////////////////        ***Reset Level 4 Streak Here***                 ////////////////////////////////////////////////////////
 
         for (int i = 0; i < placedBlocks.size(); i++) {

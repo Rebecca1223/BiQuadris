@@ -196,15 +196,10 @@ int main(int argc, char **argv) {
           int row = curBoard->getCurBlock()->getY();
           // check if line is cleared here
           for(int i=0; i<4; i++){
-            cout << "here" << endl;
             if(curBoard->checkFilledRow(row+i)){
-              cout << "row: " << row << endl;
-              cout << "check filled row: " << row+i << endl;
               curBoard->removeRow(row+i);
-              cout << "here1" << endl;
               rowsRemoved++;
             }
-            cout << "here2" << endl;
           }
           break;
         } 
