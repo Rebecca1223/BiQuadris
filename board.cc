@@ -42,13 +42,13 @@ Board::~Board() {
 }
 
 // Places a specific unit piece at coordinates (x, y)
-void Board::placePiece(int x, int y, char type, Block* block) {        ///////////////////////////////////////////////////////////// what is this function for and when do we ever need it?
+void Board::placePiece(int x, int y, char type, Block* block) {        
     Unit &temp = mainBoard[x][y];
     temp.placePiece(type, block);
 }
 
 // Removes the specific unit at coordinates (x, y)
-void Board::removePiece(int x, int y) {                             ///////////////////////////////////////////////////////////// what is this function for and when do we ever need it?
+void Board::removePiece(int x, int y) {                             
     Unit &temp = mainBoard[x][y];
 	temp.placePiece(' ', nullptr);
 }
