@@ -14,8 +14,7 @@ using namespace std;
 
 int main(int argc, char **argv) {
   bool graphicsOn = true;
-  int player1 = 1;
-  int player2 = 2;
+  int player = 1;
   int startLevel = 0;
   string p1LevelZeroFile = "sequence3.txt";
   string p2LevelZeroFile = "sequence2.txt";
@@ -100,8 +99,10 @@ int main(int argc, char **argv) {
     Board *curBoard;
     if (turnCount % 2 == 0) {
       curBoard = board1;
+      player = 1;
     }else{
       curBoard = board2;
+      player = 2;
     }
     curBoard->notifyObservers();
 
@@ -349,7 +350,16 @@ int main(int argc, char **argv) {
       ++turnCount;
       curBoard->setCurBlock(curBoard->getNextBlock());
       curBoard->setNextBlock(curBoard->getCurLevel()->createBlock());
-      curBoard->moveBlockInBoard(0,0,0);
+      if(curBoard->itsValid(0,0,0)){
+        curBoard->moveBlockInBoard(0,0,0);
+      }else{
+        if(player == 1){
+          cout << "Player 2 wins!" << endl;
+        }else{
+          cout << "Player 1 wins!" << endl;
+        }
+        break;
+      }
 
     }
 
