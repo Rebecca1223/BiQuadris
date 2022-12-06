@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
   srand(7);
 
   // flags in the beginning, in command line
-  for (int i = 1; i < argc; ++i) {
+  for (int i = 1; i < argc - 1; ++i) {
     string flag = argv[i];
     if (flag == "-text") {
       graphicsOn = false;
@@ -156,6 +156,10 @@ int main(int argc, char **argv) {
               curBoard->moveBlockInBoard(0, 1, 0);
               curBoard->moveBlockInBoard(0, 1, 0);
             }
+            int level = curBoard->getLevel();
+            if (level == 3 || level == 4) {
+              curBoard->moveBlockInBoard(0, 1, 0);
+            }
           }else{
             break;
           }
@@ -170,6 +174,10 @@ int main(int argc, char **argv) {
               curBoard->moveBlockInBoard(0, 1, 0);
               curBoard->moveBlockInBoard(0, 1, 0);
             }
+            int level = curBoard->getLevel();
+            if (level == 3 || level == 4) {
+              curBoard->moveBlockInBoard(0, 1, 0);
+            }
           }else{
             break;
           }
@@ -180,6 +188,10 @@ int main(int argc, char **argv) {
         for(int i=0; i<multiplier; i++){
           if (curBoard->itsValid(0, 1, 0)){
             curBoard->moveBlockInBoard(0, 1, 0);
+            int level = curBoard->getLevel();
+            if (level == 3 || level == 4) {
+              curBoard->moveBlockInBoard(0, 1, 0);
+            }
           }else{
             break;
           }
@@ -187,6 +199,7 @@ int main(int argc, char **argv) {
         }
       }
       if (command == "drop" || commands.at("drop") == command) {
+        int level = curBoard->getLevel();
         if (multiplier != 0) {
           bool valid = curBoard->itsValid(0, 1, 0);
           while (valid == true){
@@ -209,6 +222,19 @@ int main(int argc, char **argv) {
             }
           }
 
+          if (level == 4) {
+            curBoard->addPlacedBlocks();
+            if (curBoard->getPlacedBlocks() % 5 == 0 && rowsRemoved == 0) {
+             cout << "hi" << endl;
+            }
+          } else {
+            curBoard->resetPlacedBlocks();
+          }
+
+          
+
+
+
           if (rowsRemoved >= 2) {
             cout << "Special Action!!!" << endl;
             cout << "1. Blind" << endl;
@@ -230,6 +256,10 @@ int main(int argc, char **argv) {
               }
             }else if(input == "3"){
               curBoard->setForce(true);
+              string type;
+              cout << "Enter a block type: ";
+              cin >> type;
+              sequenceCommands.emplace_back(type);
             }
           }
           if(curBoard->getBlind()){
@@ -239,8 +269,9 @@ int main(int argc, char **argv) {
           }if(curBoard->getForce()){
             curBoard->setForce(false);
           }
-          break;
+        
         } 
+        break;
         
       }
       if (command == "clockwise" || commands.at("clockwise") == command) {
@@ -248,6 +279,10 @@ int main(int argc, char **argv) {
           //curBoard->moveBlockInBoard(0, 0, 1);
           if (curBoard->itsValid(0, 0, 1)){
             curBoard->moveBlockInBoard(0, 0, 1);
+            int level = curBoard->getLevel();
+            if (level == 3 || level == 4) {
+              curBoard->moveBlockInBoard(0, 1, 0);
+            }
           }else{
             break;
           }
@@ -259,6 +294,10 @@ int main(int argc, char **argv) {
           //curBoard->moveBlockInBoard(0, 0, 3);
           if (curBoard->itsValid(0, 0, 3)){
             curBoard->moveBlockInBoard(0, 0, 3);
+            int level = curBoard->getLevel();
+            if (level == 3 || level == 4) {
+              curBoard->moveBlockInBoard(0, 1, 0);
+            }
           }else{
             break;
           }
@@ -267,6 +306,7 @@ int main(int argc, char **argv) {
       }
       if (command == "levelup" || commands.at("levelup") == command) {
         int level = curBoard->getLevel();
+        cout << level << endl;
 
         for (int i = 0; i < multiplier; ++i) {
           if (level == 4) break;
@@ -288,11 +328,21 @@ int main(int argc, char **argv) {
 
       }
       if (command == "norandom" || commands.at("norandom") == command) {
+        // how is works
+        // is "file" sequence of commands or sequence of blocks???
+
         string file;
         cin >> file;
         int level = curBoard->getLevel();
 
         if (level == 3 || level == 4) curBoard->setCurLevel(level, false, 0, file);
+        string command;
+        ifstream f{file};
+
+        while (f >> command) {
+          sequenceCommands.emplace_back(command);
+        }
+        curBoard->notifyObservers();
         continue;
 
       }
@@ -300,6 +350,7 @@ int main(int argc, char **argv) {
         int level = curBoard->getLevel();
 
         if (level == 3 || level == 4) curBoard->setCurLevel(level, true, 0);
+        curBoard->notifyObservers();
         continue;
 
       }

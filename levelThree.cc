@@ -13,6 +13,9 @@ Block* LevelThree::createBlock() {
   } else {
     blocksPool.clear();
     this->readFile();
+    if (index == blocksPool.size()) {
+      index = 0;
+    }
     randIdx = index;
   }
   if (blocksPool[randIdx] == 'I') {

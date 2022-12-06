@@ -1,5 +1,6 @@
 #include "levelOne.h"
 #include <cstdlib>
+#include <iostream>
 
 LevelOne::LevelOne(): level{1} {
   blocksPool = {'I','I','J','J','L','L','O','O','S','Z','T','T'};

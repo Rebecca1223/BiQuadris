@@ -29,7 +29,7 @@ void Board::build() {
 }
 
 // Board Constructor
-Board::Board(int width, int height, int level) : width{width}, height{height}, hiScore{0}, curScore{0}, level{level}, blind{false}, heavy{false}, force{false}, withEffect{false}, curBlock{nullptr}, nextBlock{nullptr}, curLevel{nullptr} {
+Board::Board(int width, int height, int level) : width{width}, height{height}, hiScore{0}, curScore{0}, level{level}, placedBlocks{0}, blind{false}, heavy{false}, force{false}, withEffect{false}, curBlock{nullptr}, nextBlock{nullptr}, curLevel{nullptr} {
 	this->build();
 }
 
@@ -52,6 +52,7 @@ void Board::removePiece(int x, int y) {                             ////////////
 	temp.placePiece(' ', nullptr);
 }
 
+// Removes a complete Block
 void Board::removeBlock(){
     for(int i=0; i<4; i++){
         for(int j=0; j<4; j++){
@@ -71,6 +72,7 @@ void Board::removeBlock(){
     ////
 //}
 
+// Set board state to default
 void Board::reset() {
     curScore = 0;
 
@@ -88,11 +90,10 @@ void Board::reset() {
 
     delete curBlock;
     delete nextBlock;
-
-    placedBlocks.clear();
     
 }
 
+// Checks whether a row is filled and needs to be cleared. Returns true if it is filled and false otherwise
 bool Board::checkFilledRow(int index) {
     bool filled = true;
 
@@ -106,6 +107,7 @@ bool Board::checkFilledRow(int index) {
     return filled;
 }
 
+// Clears a horizontal row at row from the board
 void Board::removeRow(int row) {
     int total = 0;
     int shift = row - 1;
@@ -159,6 +161,8 @@ void Board::removeRow(int row) {
     //if(total > 1) withEffect = true;
 }
 
+// Checks whether a move with horizontal shift of hShift, vertial shift of vShift, and roation of rotation is a valid move
+//      A valid move consists of the block being able to be placed inside the board within the board perimeter constraints
 bool Board::itsValid(int hShift, int vShift, int rotation) {
     ///////////////////////////////////////////////////////////        ***Level 4 Streak Counter Here***                 ////////////////////////////////////////////////////////
     int reducedRotation = (curBlock->getRotation() + rotation) % 4;
@@ -287,6 +291,18 @@ void Board::setForce(bool force){
 }
 void Board::setBlind(bool blind){
     this->blind = blind;
+}
+
+int Board::getPlacedBlocks() {
+    return placedBlocks;
+}
+
+void Board::addPlacedBlocks() {
+    ++placedBlocks;
+}
+
+void Board::resetPlacedBlocks() {
+    this->placedBlocks = 0;
 }
 
 void Board::setCurLevel(int setLevel, bool rand, int state, string sequenceFile) {
