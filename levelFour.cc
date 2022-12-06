@@ -17,14 +17,34 @@ Block* LevelFour::createBlock() {
   }
   // return new 1x1 block
   //if ((placedBlocks % 5 == 0) && (placedBlocks != 0))
-  if (blocksPool[randIdx] == 'I') return new IBlock{4, false, true};
-  if (blocksPool[randIdx] == 'J') return new JBlock{4, false, true};
-  if (blocksPool[randIdx] == 'L') return new LBlock{4, false, true};
-  if (blocksPool[randIdx] == 'O') return new OBlock{4, false, true};
-  if (blocksPool[randIdx] == 'S') return new SBlock{4, false, true};
-  if (blocksPool[randIdx] == 'Z') return new ZBlock{4, false, true};
-  if (blocksPool[randIdx] == 'T') return new TBlock{4, false, true};
-  ++index;
+  if (blocksPool[randIdx] == 'I') {
+    ++index;
+    return new IBlock{4, false, true};
+  }
+  if (blocksPool[randIdx] == 'J') {
+    ++index;
+    return new JBlock{4, false, true};
+  }
+  if (blocksPool[randIdx] == 'L') {
+    ++index;
+    return new LBlock{4, false, true};
+  }
+  if (blocksPool[randIdx] == 'O') {
+    ++index;
+    return new OBlock{4, false, true};
+  }
+  if (blocksPool[randIdx] == 'S') {
+    ++index;
+    return new SBlock{4, false, true};
+  }
+  if (blocksPool[randIdx] == 'Z') {
+    ++index;
+    return new ZBlock{4, false, true};
+  }
+  if (blocksPool[randIdx] == 'T') {
+    ++index;
+    return new TBlock{4, false, true};
+  }
 }
 
 void LevelFour::readFile() {
