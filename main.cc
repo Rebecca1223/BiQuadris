@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
   int player1 = 1;
   int player2 = 2;
   int startLevel = 0;
-  string p1LevelZeroFile = "sequence1.txt";
+  string p1LevelZeroFile = "sequence3.txt";
   string p2LevelZeroFile = "sequence2.txt";
   map<string, string> commands;
   commands = {
@@ -183,22 +183,26 @@ int main(int argc, char **argv) {
       }
       if (command == "drop" || commands.at("drop") == command) {
         if (multiplier != 0) {
-          bool valid = curBoard->itsValid(0, 1, 0);
-          while (valid == true){
+          while (curBoard->itsValid(0, 1, 0)){
             curBoard->moveBlockInBoard(0,1,0);
-            valid = curBoard->itsValid(0, 1, 0);
-            
+            cout << "hereeee" << endl;
           }
 
           // can we check multiple rows?
           // have removeRow return number of removed rows for special action?
           int row = curBoard->getCurBlock()->getY();
           // check if line is cleared here
-        for(int i=0; i<3; i++){
+          for(int i=0; i<3; i++){
+            cout << "here" << endl;
             if(curBoard->checkFilledRow(row+i)){
+              cout << "check filled row: " << row+i << endl;
               curBoard->removeRow();
+              cout << "here1" << endl;
               curBoard->notifyObservers();
-          }
+              cout << "here2" << endl;
+              rowsRemoved++;
+            }
+            cout << "here3" << endl;
           }
           break;
         } 
