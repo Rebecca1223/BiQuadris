@@ -154,11 +154,11 @@ void Board::removeRow() {
         notifyObservers();
         ///////////////////////////////////////////////////////////        ***Reset Level 4 Streak Here***                 ////////////////////////////////////////////////////////
 
-        // for (int i = 0; i < placedBlocks.size(); i++) {
-        //     for (int j = 0; j < 4; j++) {
-        //         placedBlocks[i][j].setY(placedBlocks[i][j].getY() + total);
-        //     }
-        // }
+        for (int i = 0; i < placedBlocks.size(); i++) {
+            //for (int j = 0; j < 4; j++) {
+                placedBlocks[i].setY(placedBlocks[i].getY() + total);
+            //}
+        }
     }
 
     //////////////////////////////////////////////////////////         ***Increase Streak for Level 4***           /////////////////////////////////////////////////////
