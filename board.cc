@@ -184,14 +184,11 @@ bool Board::itsValid(int hShift, int vShift, int rotation) {
                 }
                 // Check if block exists
                 if (mainBoard[y][x].getOcc()) { 
-                    cout << curBlock->getRotation() << endl;
-                    cout << i + y << endl;
-                    cout << j+x << endl;
-                    if (curBlock->getVector()[curBlock->getRotation()][i + vShift][j + hShift] == ',') {
+                    if (y < curBlock->getY() || x < curBlock->getX() || y > 3 + curBlock->getY() || x > 3 + curBlock->getX()) {
                         return false;
                     }
-                    
-                    if (y < curBlock->getY() || x < curBlock->getX() || y > 3 + curBlock->getY() || x > 3 + curBlock->getX()) {
+
+                    if (curBlock->getVector()[curBlock->getRotation()][i + vShift][j + hShift] == ',') {
                         return false;
                     }
                 }
