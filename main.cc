@@ -116,6 +116,7 @@ board2->moveBlockInBoard(0, 0, 0);
     } */
     
     while (true) {
+      cout << "Command: ";
       if (sequenceCommands.empty()) {
         cin >> command;
       } else {
