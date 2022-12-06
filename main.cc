@@ -202,6 +202,16 @@ int main(int argc, char **argv) {
               rowsRemoved++;
             }
           }
+
+          if (rowsRemoved >= 2) {
+            cout << "Special Action!!!" << endl;
+            cout << "1. Blind" << endl;
+            cout << "2. Heavy" << endl;
+            cout << "3. Force" << endl;
+          }
+
+
+
           break;
         } 
         
