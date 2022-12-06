@@ -5,6 +5,7 @@
 #include <sstream>
 #include <fstream>
 #include "board.h"
+#include "level.h"
 #include "block.h"
 #include "text.h"
 #include "graphics.h"
@@ -226,8 +227,6 @@ int main(int argc, char **argv) {
             }
           }
 
-          cout << level << endl;
-
           if (level == 4) {
             curBoard->addPlacedBlocks();
             cout << curBoard->getPlacedBlocks() << endl;
@@ -332,7 +331,6 @@ int main(int argc, char **argv) {
       }
       if (command == "levelup" || commands.at("levelup") == command) {
         int level = curBoard->getLevel();
-        cout << level << endl;
 
         for (int i = 0; i < multiplier; ++i) {
           if (level == 4) break;
@@ -349,7 +347,15 @@ int main(int argc, char **argv) {
           if (level == 0) break;
           --level;
         }
-        curBoard->setCurLevel(level, true, 1); // same logic as levelup
+        
+        //if level is 0, need to set file again
+        if(level == 0 && player == 1){
+          curBoard->setCurLevel(level, true, 1, p1LevelZeroFile);
+        }else if(level == 0 && player == 2){
+          curBoard->setCurLevel(level, true, 1, p2LevelZeroFile);
+        }else{
+          curBoard->setCurLevel(level, true, 1); 
+        }
         continue;
 
       }

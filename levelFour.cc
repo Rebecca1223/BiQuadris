@@ -1,6 +1,9 @@
 #include "levelFour.h"
+#include "block.h"
 #include <cstdlib>
 #include <fstream>
+#include <string>
+using namespace std;
 
 LevelFour::LevelFour(bool random, string file): level{4}, index{0}, placedBlocks{0}, randOn{random}, sequenceFile{file} {
   blocksPool = {'I','J','L','O','S','S','Z','Z','T'};

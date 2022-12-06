@@ -1,12 +1,12 @@
 #ifndef BOARD_H
 #define BOARD_H
+#include <string>
 #include <vector>
 #include "subject.h"
-#include "unit.h"
-#include "level.h"
 class Block;
 class Unit;
 class Level;
+using namespace std;
 
 class Board : public Subject {
     int hiScore, curScore, width, height, level, placedBlocks;

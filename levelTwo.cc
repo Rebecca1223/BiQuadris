@@ -1,5 +1,8 @@
 #include "levelTwo.h"
+#include "block.h"
 #include <cstdlib>
+#include <string>
+using namespace std;
 
 LevelTwo::LevelTwo(): level{2} {
   blocksPool = {'I','J','L','O','S','Z','T'};

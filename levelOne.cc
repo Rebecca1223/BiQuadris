@@ -1,6 +1,9 @@
 #include "levelOne.h"
+#include "block.h"
 #include <cstdlib>
 #include <iostream>
+#include <string>
+using namespace std;
 
 LevelOne::LevelOne(): level{1} {
   blocksPool = {'I','I','J','J','L','L','O','O','S','Z','T','T'};

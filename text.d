@@ -1,2 +1,1 @@
-text.o: text.cc text.h observer.h board.h subject.h unit.h level.h \
- block.h
+text.o: text.cc text.h observer.h board.h subject.h block.h unit.h

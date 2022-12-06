@@ -1,6 +1,5 @@
 #ifndef _LEVEL_H_
 #define _LEVEL_H_
-#include "block.h"
 class Block;
 
 class Level {

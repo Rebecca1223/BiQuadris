@@ -1,6 +1,9 @@
 #include "levelThree.h"
+#include "block.h"
 #include <fstream>
 #include <cstdlib>
+#include <string>
+using namespace std;
 
 LevelThree::LevelThree(bool random, string file): level{3}, index{0}, randOn{random}, sequenceFile{file} {
   blocksPool = {'I','J','L','O','S','S','Z','Z','T'};

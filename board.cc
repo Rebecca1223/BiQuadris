@@ -10,6 +10,7 @@
 #include "levelThree.h"
 #include "levelFour.h"
 #include <iostream>
+#include <string>
 
 using namespace std;
 

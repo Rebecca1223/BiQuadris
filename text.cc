@@ -1,5 +1,7 @@
 #include "text.h"
 #include "board.h"
+#include "block.h"
+#include "unit.h"
 #include <string>
 #include <iostream>
 
