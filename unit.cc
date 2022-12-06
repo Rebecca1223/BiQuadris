@@ -37,11 +37,3 @@ int Unit::getY() {
 Block *Unit::getUnitBlock(){
     return unitBlock;
 }
-
-//void Unit::setUnitBlock(Block *unitBlock){
-//    this->unitBlock = unitBlock;
-//}
-
-//void Unit::removeUnitBlock(){
-//    this->unitBlock = nullptr;
-//}

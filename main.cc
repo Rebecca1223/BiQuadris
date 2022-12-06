@@ -106,7 +106,6 @@ int main(int argc, char **argv) {
     }
     curBoard->notifyObservers();
 
-    
     while (true) {
       int multiplier = 1;
       cout << "Command: ";
@@ -401,9 +400,4 @@ int main(int argc, char **argv) {
     }
 
   }
-
-    // when/where do we want to check lines?
-    // when/where do we want to check and apply special actions?
-  
-
 }
