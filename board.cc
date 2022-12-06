@@ -214,7 +214,7 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
     this->removeBlock();
     // calculate the rotation
     int finalRotation = (curBlock->getRotation() + rotation) % 4;
-    cout << "rotation: " << finalRotation << endl;
+  //  cout << "rotation: " << finalRotation << endl;
     //remove block pointer to unit
     // for(int i=0; i<11; i++){
     //     for(int j=0; j<15; j++){
@@ -231,11 +231,11 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
             char here = curBlock->getVector()[finalRotation][i][j];
             //if a value exist, we place that on the board
             if(here != ','){
-                cout << "v: " << curBlock->getY()+i+vShift << "   ";
-                cout << "h: " << curBlock->getX()+j+hShift << "   ";
+              //  cout << "v: " << curBlock->getY()+i+vShift << "   ";
+              //  cout << "h: " << curBlock->getX()+j+hShift << "   ";
 
                 mainBoard[curBlock->getY()+i+vShift][curBlock->getX()+j+hShift].placePiece(here, curBlock);
-                cout << "bt: " << mainBoard[curBlock->getY()+i+vShift][curBlock->getX()+j+hShift].getBlockType() << endl;
+              //  cout << "bt: " << mainBoard[curBlock->getY()+i+vShift][curBlock->getX()+j+hShift].getBlockType() << endl;
             }
         }
     }

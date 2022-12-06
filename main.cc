@@ -93,6 +93,7 @@ int main(int argc, char **argv) {
   int n;
   int multiplier = 1;
   CommandInt cmdInt;
+  cout << endl;
   while (true) {
     bool restart = 0;
     int rowsRemoved = 0;
@@ -104,18 +105,22 @@ int main(int argc, char **argv) {
       curBoard = board2;
       player = 2;
     }
+    
     curBoard->notifyObservers();
 
     
     while (true) {
       int multiplier = 1;
+      cout << "Player " << player <<"'s turn" << endl;
       cout << "Command: ";
       if (sequenceCommands.empty()) {
         cin >> command;
       } else {
         command = sequenceCommands.front();
+        cout << command << endl;
         sequenceCommands.erase(sequenceCommands.begin());
       }
+      cout << endl;
 
       if (command == "rename") {
         string commandName, aliasName;
@@ -238,9 +243,11 @@ int main(int argc, char **argv) {
 
           if (rowsRemoved >= 2) {
             cout << "Special Action!!!" << endl;
+            cout << "Player " << player << " choose:" << endl;
             cout << "1. Blind" << endl;
             cout << "2. Heavy" << endl;
             cout << "3. Force" << endl;
+            cout << "Enter a number: ";
             string input;
             cin >> input;
             if(input == "1"){
@@ -329,21 +336,13 @@ int main(int argc, char **argv) {
 
       }
       if (command == "norandom" || commands.at("norandom") == command) {
-        // how is works
-        // is "file" sequence of commands or sequence of blocks???
 
         string file;
         cin >> file;
         int level = curBoard->getLevel();
 
         if (level == 3 || level == 4) curBoard->setCurLevel(level, false, 0, file);
-        string command;
-        ifstream f{file};
 
-        while (f >> command) {
-          sequenceCommands.emplace_back(command);
-        }
-        curBoard->notifyObservers();
         continue;
 
       }
@@ -351,7 +350,6 @@ int main(int argc, char **argv) {
         int level = curBoard->getLevel();
 
         if (level == 3 || level == 4) curBoard->setCurLevel(level, true, 0);
-        curBoard->notifyObservers();
         continue;
 
       }
