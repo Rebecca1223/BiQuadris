@@ -158,10 +158,15 @@ board2->moveBlockInBoard(0, 0, 0);
         curBoard->notifyObservers();
       }
       if (command == "right" || commands.at("right") == command) {
+        cout << "something" << endl;
         for(int i=0; i<multiplier; i++){
+          cout << "something1" << endl;
           if (curBoard->itsValid(1, 0, 0)){
+            cout << "valid" << endl;
             curBoard->moveBlockInBoard(1, 0, 0);
+            cout << "aftermove" << endl;
           }else{
+            cout << "else" << endl;
             break;
           }
         }
@@ -172,7 +177,6 @@ board2->moveBlockInBoard(0, 0, 0);
           if (curBoard->itsValid(0, 1, 0)){
             curBoard->moveBlockInBoard(0, 1, 0);
           }else{
-            cout << "not valid" << endl;
             break;
           }
           curBoard->notifyObservers();
@@ -185,6 +189,10 @@ board2->moveBlockInBoard(0, 0, 0);
           valid = curBoard->itsValid(0, 1, 0);
           
         }
+<<<<<<< HEAD
+       
+=======
+>>>>>>> 3417cedf88c68d5325d2a5d9c980d0cb9de67a71
         int row = curBoard->getCurBlock()->getY();
         // check if line is cleared here
         if(curBoard->checkFilledRow(row)){
@@ -192,7 +200,7 @@ board2->moveBlockInBoard(0, 0, 0);
           curBoard->notifyObservers();
         }
         break;
-        
+         
 
         // what if more than 1 drop
         
@@ -205,6 +213,7 @@ board2->moveBlockInBoard(0, 0, 0);
             break;
           }
         }
+        curBoard->notifyObservers();
       }
       if (command == "counterclockwise" || commands.at("counterclockwise") == command) {
         for(int i=0; i<multiplier; i++){
@@ -214,6 +223,7 @@ board2->moveBlockInBoard(0, 0, 0);
             break;
           }
         }
+        curBoard->notifyObservers();
       }
       if (command == "levelup" || commands.at("levelup") == command) {
         int level = curBoard->getLevel();
