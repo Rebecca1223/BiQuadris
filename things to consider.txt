@@ -1,6 +1,0 @@
-1. for block functions (e.g, rotate, moveHorz, down, drop), are the functions really all
-  different for each block?
-   - like would down and drop actually be same implementation for all block subclasses?
-     - if so, maybe don't make those functions virtual
-
-2. How should we go about implementing the next block section?
