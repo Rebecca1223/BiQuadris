@@ -51,7 +51,6 @@ void Text::notify() {
     for (int j = 0; j < width; ++j) {
       // need getBoard for Board
       // need getBlockType for Unit
-     // cout << b1->getBoard()[i][j].getBlockType() << endl;
       p1row.emplace_back(b1->getBoard()[i][j].getBlockType());
       p2row.emplace_back(b2->getBoard()[i][j].getBlockType());
     }

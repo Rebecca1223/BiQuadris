@@ -8,11 +8,10 @@ class Block {
   protected:
     // set as protected in abstract class to prevent repetitions in each subclass
     int x, y, blockNum, levelGen; //x and y tracks bottom left corner of the block on the board
-    int curRotation;
-    bool actionHeavy, levelHeavy; 
+    int curRotation; 
 
   public:
-    Block(int x, int y, int blockNum, int levelGen, int curRotation, bool actionHeavy, bool levelHeavy);
+    Block(int x, int y, int blockNum, int levelGen, int curRotation);
     void cwrotate();
     void ccwrotate();
     void moveHorz(std::string dir);
@@ -28,10 +27,6 @@ class Block {
     void setRotation(int rotation);
     virtual vector<vector<string>> getVector() = 0;
     virtual vector<vector<vector<int>>> getPositionVector() = 0;
-    bool getActionHeavy();
-    void setActionHeavy(bool actionHeavy);
-    bool getLevelHeavy();
-    void setLevelHeavy(bool levelHeavy);
     virtual char getType() = 0;
     virtual ~Block();
 };
@@ -40,7 +35,7 @@ class IBlock : public Block {
   static vector<vector<string>> rotationVector;
   static vector<vector<vector<int>>> positionVector;
   public:
-    IBlock(int levelGen, bool actionHeavy, bool levelHeavy);
+    IBlock(int levelGen);
     // void rotate() override;
     // void moveHorz(std::string dir) override;
     // void down() override;
@@ -55,7 +50,7 @@ class JBlock : public Block {
   static vector<vector<string>> rotationVector;
   static vector<vector<vector<int>>> positionVector;
   public:
-    JBlock(int levelGen, bool actionHeavy, bool levelHeavy);
+    JBlock(int levelGen);
     // void rotate() override;
     // void moveHorz(std::string dir) override;
     // void down() override;
@@ -70,7 +65,7 @@ class LBlock : public Block {
   static vector<vector<string>> rotationVector;
   static vector<vector<vector<int>>> positionVector;
   public:
-    LBlock(int levelGen, bool actionHeavy, bool levelHeavy);
+    LBlock(int levelGen);
     // void rotate() override;
     // void moveHorz(std::string dir) override;
     // void down() override;
@@ -85,7 +80,7 @@ class OBlock : public Block {
   static vector<vector<string>> rotationVector;
   static vector<vector<vector<int>>> positionVector;
   public:
-    OBlock(int levelGen, bool actionHeavy, bool levelHeavy);
+    OBlock(int levelGen);
     // void rotate() override;
     // void moveHorz(std::string dir) override;
     // void down() override;
@@ -115,7 +110,7 @@ class SBlock : public Block {
   static vector<vector<string>> rotationVector;
   static vector<vector<vector<int>>> positionVector;
   public:
-    SBlock(int levelGen, bool actionHeavy, bool levelHeavy);
+    SBlock(int levelGen);
     // void rotate() override;
     // void moveHorz(std::string dir) override;
     // void down() override;
@@ -130,7 +125,7 @@ class TBlock : public Block {
   static vector<vector<string>> rotationVector;
   static vector<vector<vector<int>>> positionVector;
   public:
-    TBlock(int levelGen, bool actionHeavy, bool levelHeavy);
+    TBlock(int levelGen);
     // void rotate() override;
     // void moveHorz(std::string dir) override;
     // void down() override;
@@ -145,7 +140,7 @@ class ZBlock : public Block {
   static vector<vector<string>> rotationVector;
   static vector<vector<vector<int>>> positionVector;
   public:
-    ZBlock(int levelGen, bool actionHeavy, bool levelHeavy);
+    ZBlock(int levelGen);
     // void rotate() override;
     // void moveHorz(std::string dir) override;
     // void down() override;

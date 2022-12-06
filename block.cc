@@ -6,7 +6,7 @@ using namespace std;
 
 Block::~Block() {}
 
-Block::Block(int x, int y, int blockNum, int levelGen, int curRotation, bool actionHeavy, bool levelHeavy): x{x}, y{y}, blockNum{blockNum}, levelGen{levelGen}, curRotation{curRotation}, actionHeavy{actionHeavy}, levelHeavy{levelHeavy} {}
+Block::Block(int x, int y, int blockNum, int levelGen, int curRotation): x{x}, y{y}, blockNum{blockNum}, levelGen{levelGen}, curRotation{curRotation} {}
 
 void Block::cwrotate(){ // clockwise
     if(curRotation == 3){
@@ -29,13 +29,6 @@ void Block::moveHorz(std::string dir){
         x++;
     }else{
         x--;
-    }
-    if(this->getLevelHeavy() == true){
-        this->down();
-    }
-    if(this->getActionHeavy() == true){
-        this->down();
-        this->down();
     }
 }
 
@@ -79,23 +72,6 @@ void Block::setRotation(int rotation){
     this->curRotation = rotation;
 }
 
-bool Block::getActionHeavy(){
-    return actionHeavy;
-}
-
-//if player does heavy, setActionHeavy for the block. if actionHeavy=true and moveHorz, the
-void Block::setActionHeavy(bool actionHeavy){
-    this->actionHeavy = actionHeavy;
-}
-
-bool Block::getLevelHeavy(){
-    return levelHeavy;
-}
-
-void Block::setLevelHeavy(bool levelHeavy){
-    this->levelHeavy = levelHeavy;
-}
-
 //IBLOCK
 //vectors for the iblock
 vector<vector<string>> IBlock::rotationVector = {
@@ -113,8 +89,8 @@ vector<vector<vector<int>>> IBlock::positionVector = {
 
 IBlock::~IBlock() {}
 
-// create block with x at 0, y at 3, blockNum=4, and direction N
-IBlock::IBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(0, 0, 4, levelGen, 0, actionHeavy, levelHeavy) {}
+// create block with x at 0, y at 0, blockNum=4, and direction N
+IBlock::IBlock(int levelGen) : Block(0, 0, 4, levelGen, 0) {}
 
 // returns the type of block
 char IBlock::getType() { return 'I'; }
@@ -132,7 +108,7 @@ vector<vector<vector<int>>> IBlock::getPositionVector() {
 //JBLOCK
 JBlock::~JBlock() {}
 
-JBlock::JBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(0, 0, 4, levelGen, 0, actionHeavy, levelHeavy) {}
+JBlock::JBlock(int levelGen) : Block(0, 0, 4, levelGen, 0) {}
 
 //vectors for the jblock
 vector<vector<string>> JBlock::rotationVector = {
@@ -165,7 +141,7 @@ vector<vector<vector<int>>> JBlock::getPositionVector() {
 //LBLOCK
 LBlock::~LBlock() {}
 
-LBlock::LBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(0, 0, 4, levelGen, 0, actionHeavy, levelHeavy) {}
+LBlock::LBlock(int levelGen) : Block(0, 0, 4, levelGen, 0) {}
 
 //vectors for the Lblock
 vector<vector<string>> LBlock::rotationVector = {
@@ -198,7 +174,7 @@ vector<vector<vector<int>>> LBlock::getPositionVector() {
 //OBLOCK
 OBlock::~OBlock() {}
 
-OBlock::OBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(0, 0, 4, levelGen, 0, actionHeavy, levelHeavy) {}
+OBlock::OBlock(int levelGen) : Block(0, 0, 4, levelGen, 0) {}
 
 //vectors for the Oblock
 vector<vector<string>> OBlock::rotationVector = {
@@ -231,7 +207,7 @@ vector<vector<vector<int>>> OBlock::getPositionVector() {
 //OneBLOCK
 OneBlock::~OneBlock() {}
 
-OneBlock::OneBlock(int levelGen) : Block(6, 0, 1, levelGen, 0, false, false) {}
+OneBlock::OneBlock(int levelGen) : Block(6, 0, 1, levelGen, 0) {}
 
 //vectors for the Oneblock
 vector<vector<string>> OneBlock::rotationVector = {
@@ -264,7 +240,7 @@ vector<vector<vector<int>>> OneBlock::getPositionVector() {
 //SBLOCK
 SBlock::~SBlock() {}
 
-SBlock::SBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(0, 0, 4, levelGen, 0, actionHeavy, levelHeavy) {}
+SBlock::SBlock(int levelGen) : Block(0, 0, 4, levelGen, 0) {}
 
 //vectors for the Sblock
 vector<vector<string>> SBlock::rotationVector = {
@@ -297,7 +273,7 @@ vector<vector<vector<int>>> SBlock::getPositionVector() {
 //TBLOCK
 TBlock::~TBlock() {}
 
-TBlock::TBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(0, 0, 4, levelGen, 0, actionHeavy, levelHeavy) {}
+TBlock::TBlock(int levelGen) : Block(0, 0, 4, levelGen, 0) {}
 
 //vectors for the Tblock
 vector<vector<string>> TBlock::rotationVector = {
@@ -330,7 +306,7 @@ vector<vector<vector<int>>> TBlock::getPositionVector() {
 //ZBLOCK
 ZBlock::~ZBlock() {}
 
-ZBlock::ZBlock(int levelGen, bool actionHeavy, bool levelHeavy) : Block(0, 0, 4, levelGen, 0, actionHeavy, levelHeavy) {}
+ZBlock::ZBlock(int levelGen) : Block(0, 0, 4, levelGen, 0) {}
 
 //vectors for the Zblock
 vector<vector<string>> ZBlock::rotationVector = {
