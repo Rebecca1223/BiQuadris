@@ -30,6 +30,13 @@ void Block::moveHorz(std::string dir){
     }else{
         x--;
     }
+    if(this->getLevelHeavy() == true){
+        this->down();
+    }
+    if(this->getActionHeavy() == true){
+        this->down();
+        this->down();
+    }
 }
 
 void Block::down(){
@@ -79,6 +86,10 @@ bool Block::getActionHeavy(){
 //if player does heavy, setActionHeavy for the block. if actionHeavy=true and moveHorz, the
 void Block::setActionHeavy(){
     actionHeavy = true;
+}
+
+bool Block::getLevelHeavy(){
+    return levelHeavy;
 }
 
 void Block::setLevelHeavy(){

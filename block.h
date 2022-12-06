@@ -30,6 +30,7 @@ class Block {
     virtual vector<vector<vector<int>>> getPositionVector() = 0;
     bool getActionHeavy();
     void setActionHeavy();
+    bool getLevelHeavy();
     void setLevelHeavy();
     virtual char getType() = 0;
     virtual ~Block();

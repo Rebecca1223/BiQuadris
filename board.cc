@@ -74,9 +74,9 @@ void Board::removeBlock(){
 void Board::reset() {
     curScore = 0;
 
-    this->blind = false;
-    this->heavy = false;
-    this->force = false;
+    this->setBlind(false);
+    this->setForce(false);
+    this->setHeavy(false);
 
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
@@ -263,8 +263,6 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
  //   notifyObservers();
 }
 
-bool Board::isBlind() {return blind;}
-
 int Board::getHiScore() {return hiScore;}
 Level* Board::getCurLevel() {return curLevel;}
 int Board::getLevel() { return level; }
@@ -277,6 +275,24 @@ void Board::setNextBlock(Block* nextBlock) {
 }
 vector<vector<Unit>> Board::getBoard() { return mainBoard; }
 Block* Board::getNextBlock() { return nextBlock; }
+bool Board:: getHeavy(){
+    return heavy;
+}
+bool Board::getForce(){
+    return force;
+}
+bool Board::getBlind(){
+    return blind;
+}
+void Board::setHeavy(bool heavy){
+    this->heavy = heavy;
+}
+void Board::setForce(bool force){
+    this->force = force;
+}
+void Board::setBlind(bool blind){
+    this->blind = blind;
+}
 
 void Board::setCurLevel(int setLevel, bool rand, int state, string sequenceFile) {
     delete curLevel;

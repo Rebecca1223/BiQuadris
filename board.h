@@ -34,7 +34,6 @@ class Board : public Subject {
 
         bool itsValid(int hShift, int vShift, int rotation);
         bool checkFilledRow(int index);
-        bool isBlind();
 
         int getHiScore();
         Level* getCurLevel();
@@ -44,6 +43,12 @@ class Board : public Subject {
         std::vector<std::vector<Unit>> getBoard();
         Block* getNextBlock();
         void setCurLevel(int level, bool rand, int state, string sequenceFile = "");
+        bool getHeavy();
+        bool getForce();
+        bool getBlind();
+        void setHeavy(bool heavy);
+        void setForce(bool force);
+        void setBlind(bool blind);
 };
 
 #endif

@@ -68,9 +68,9 @@ void Text::notify() {
   out << colBorder << separatingSpace << colBorder << endl;
 
   // print screen for both players
-  if (b1->isBlind()) {
+  if (b1->getBlind()) {
     blindEffect(1);
-  } else if (b2->isBlind()) {
+  } else if (b2->getBlind()) {
     blindEffect(2);
   } else {
     for (int i = 0; i < height; ++i) {
