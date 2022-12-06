@@ -223,59 +223,77 @@ int main(int argc, char **argv) {
           }
 
           if (level == 4) {
+            cout << "level4 here" << endl;
             curBoard->addPlacedBlocks();
             if (curBoard->getPlacedBlocks() % 5 == 0 && rowsRemoved == 0) {
-             cout << "hi" << endl;
-            }
-          } else {
-            curBoard->resetPlacedBlocks();
-          }
+              //drop a OneBlock
+              Block* temp = curBoard->getCurBlock();
+              Block* newOneBlock = new OneBlock(4);
+              curBoard->setCurBlock(newOneBlock);
 
-          
-
-
-
-          if (rowsRemoved >= 2) {
-            cout << "Special Action!!!" << endl;
-            cout << "1. Blind" << endl;
-            cout << "2. Heavy" << endl;
-            cout << "3. Force" << endl;
-            string input;
-            cin >> input;
-            if(input == "1"){
-              if(player == 1){
-                board2->setBlind(true);
-              }else{
-                board1->setBlind(true);
+              bool valid = curBoard->itsValid(0, 1, 0);
+              while (valid == true){
+                curBoard->moveBlockInBoard(0,1,0);
+                valid = curBoard->itsValid(0, 1, 0);
               }
-            }else if(input == "2"){
-              if(player == 1){
-                board2->setHeavy(true);
-              }else{
-                board1->setHeavy(true);
+
+              int row = curBoard->getCurBlock()->getY();
+              int r = row+3;
+              while(r>=row){
+                if(curBoard->checkFilledRow(row+3)){
+                  curBoard->removeRow(row+3);
+                  curBoard->notifyObservers();
+                  rowsRemoved++;
+                }else{
+                  r--;
+                }
               }
-            }else if(input == "3"){
-              curBoard->setForce(true);
-              string type;
-              cout << "Enter a block type: ";
-              cin >> type;
-              sequenceCommands.emplace_back(type);
+              curBoard->removeBlock();
+              curBoard->setCurBlock(temp);
+            } else {
+              curBoard->resetPlacedBlocks();
             }
-          }
-          if(curBoard->getBlind()){
-            curBoard->setBlind(false);
-          }if(curBoard->getHeavy()){
-            curBoard->setHeavy(false);
-          }if(curBoard->getForce()){
-            curBoard->setForce(false);
-          }
-        
-        } 
-        break;
-        
+
+            if (rowsRemoved >= 2) {
+              cout << "Special Action!!!" << endl;
+              cout << "1. Blind" << endl;
+              cout << "2. Heavy" << endl;
+              cout << "3. Force" << endl;
+              string input;
+              cin >> input;
+              if(input == "1"){
+                if(player == 1){
+                  board2->setBlind(true);
+                }else{
+                  board1->setBlind(true);
+                }
+              }else if(input == "2"){
+                if(player == 1){
+                  board2->setHeavy(true);
+                }else{
+                  board1->setHeavy(true);
+                }
+              }else if(input == "3"){
+                curBoard->setForce(true);
+                string type;
+                cout << "Enter a block type: ";
+                cin >> type;
+                sequenceCommands.emplace_back(type);
+              }
+            }
+            if(curBoard->getBlind()){
+              curBoard->setBlind(false);
+            }if(curBoard->getHeavy()){
+              curBoard->setHeavy(false);
+            }if(curBoard->getForce()){
+              curBoard->setForce(false);
+            }
+          } 
+          break;
+        }
       }
       if (command == "clockwise" || commands.at("clockwise") == command) {
-        for(int i=0; i<multiplier; i++){
+          for(int i=0; i<multiplier; i++){
           //curBoard->moveBlockInBoard(0, 0, 1);
           if (curBoard->itsValid(0, 0, 1)){
             curBoard->moveBlockInBoard(0, 0, 1);
