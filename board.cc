@@ -127,6 +127,8 @@ void Board::removeRow(int row) {
         }
     }
 
+    cout << curScore << endl;
+
 
     // Shift rows down
     for (int i = shift; i > 0; i--) {
