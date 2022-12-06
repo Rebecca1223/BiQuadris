@@ -197,10 +197,10 @@ int main(int argc, char **argv) {
           for(int i=0; i<4; i++){
             cout << "here" << endl;
             if(curBoard->checkFilledRow(row+i)){
+              cout << "row: " << row << endl;
               cout << "check filled row: " << row+i << endl;
-              curBoard->removeRow();
+              curBoard->removeRow(row+i);
               cout << "here1" << endl;
-              curBoard->notifyObservers();
               cout << "here2" << endl;
               rowsRemoved++;
             }

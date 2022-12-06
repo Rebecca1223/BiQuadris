@@ -95,7 +95,6 @@ void Board::reset() {
 
 bool Board::checkFilledRow(int index) {
     bool filled = true;
-    cout << index << endl;
 
     for (int i = 0; i < width; i++) {
         if (!mainBoard[index][i].getOcc()) {
@@ -108,42 +107,40 @@ bool Board::checkFilledRow(int index) {
     return filled;
 }
 
-void Board::removeRow() {
+void Board::removeRow(int row) {
     int total = 0;
 
-    for (int i = 0; i < 4; i++) {
-        if (curBlock->getY() + i < height) {
-            bool complete = checkFilledRow(i);
-            if (complete) {
-                int shift = curBlock->getY() + i - 1;
-                total++;
 
-                // subtracting blockNum from all the blocks in that row
-                for(int j=0; j<width; j++){
-                    int newBlockNum = mainBoard[i][j].getUnitBlock()->getblockNum() - 1;
-                    mainBoard[i][j].getUnitBlock()->setBlockNum(newBlockNum);
-                    // Check if entire block is cleared and update score
-                    if(newBlockNum == 0){
-                        curScore += (mainBoard[i][j].getUnitBlock()->getlevelGen()+1) * (mainBoard[i][j].getUnitBlock()->getlevelGen()+1);
-                    }
-                }
+    int shift = curBlock->getY() + row - 1;
+    total++;
 
-                // Shift rows down
-                for (int i = shift; i > 0; i--) {
-                    for (int j = 0; j < width; j++) {
-                        if (mainBoard[i][j].getOcc()) { 
-                            mainBoard[i+1][j].placePiece(mainBoard[i][j].getBlockType(), mainBoard[i][j].getUnitBlock());
-                        } else {
-                            mainBoard[i+1][j].removePiece();
-                        }
-                    }
-                }
+    // subtracting blockNum from all the blocks in that row
+    for(int j=0; j<width; j++){
+        cout << j << endl;
+        cout << row << endl;
+        int newBlockNum = mainBoard[row][j].getUnitBlock()->getblockNum() - 1;
+        cout << "num: " << newBlockNum << endl;
+        mainBoard[row][j].getUnitBlock()->setBlockNum(newBlockNum);
+        // Check if entire block is cleared and update score
+        if(newBlockNum == 0){
+            curScore += (mainBoard[row][j].getUnitBlock()->getlevelGen()+1) * (mainBoard[row][j].getUnitBlock()->getlevelGen()+1);
+        }
+    }
 
-                for (int i = 0; i < width; i++) {
-                    mainBoard[0][i]. removePiece();
-                }
+
+    // Shift rows down
+    for (int i = shift; i > 0; i--) {
+        for (int j = 0; j < width; j++) {
+            if (mainBoard[i][j].getOcc()) { 
+                mainBoard[i+1][j].placePiece(mainBoard[i][j].getBlockType(), mainBoard[i][j].getUnitBlock());
+            } else {
+                mainBoard[i+1][j].removePiece();
             }
         }
+    }
+
+    for (int i = 0; i < width; i++) {
+        mainBoard[0][i]. removePiece();
     }
 
     if (total > 0) {
