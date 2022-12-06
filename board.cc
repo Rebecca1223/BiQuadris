@@ -301,6 +301,10 @@ void Board::addPlacedBlocks() {
     ++placedBlocks;
 }
 
+void Board::resetPlacedBlocks() {
+    this->placedBlocks = 0;
+}
+
 void Board::setCurLevel(int setLevel, bool rand, int state, string sequenceFile) {
     delete curLevel;
     if (setLevel == 0) {

@@ -207,7 +207,6 @@ int main(int argc, char **argv) {
             curBoard->moveBlockInBoard(0,1,0);
             valid = curBoard->itsValid(0, 1, 0);
           }
-          curBoard->addPlacedBlocks();
 
           // can we check multiple rows?
           // have removeRow return number of removed rows for special action?
@@ -224,8 +223,13 @@ int main(int argc, char **argv) {
             }
           }
 
-          if (curBoard->getPlacedBlocks() % 5 == 0 && rowsRemoved == 0) {
-            
+          if (level == 4) {
+            curBoard->addPlacedBlocks();
+            if (curBoard->getPlacedBlocks() % 5 == 0 && rowsRemoved == 0) {
+             cout << "hi" << endl;
+            }
+          } else {
+            curBoard->resetPlacedBlocks();
           }
 
           
@@ -266,8 +270,9 @@ int main(int argc, char **argv) {
           }if(curBoard->getForce()){
             curBoard->setForce(false);
           }
-          break;
+        
         } 
+        break;
         
       }
       if (command == "clockwise" || commands.at("clockwise") == command) {
@@ -301,7 +306,6 @@ int main(int argc, char **argv) {
         curBoard->notifyObservers();
       }
       if (command == "levelup" || commands.at("levelup") == command) {
-        cout << "hiiiii" << endl;
         int level = curBoard->getLevel();
         cout << level << endl;
 
@@ -325,11 +329,21 @@ int main(int argc, char **argv) {
 
       }
       if (command == "norandom" || commands.at("norandom") == command) {
+        // how is works
+        // is "file" sequence of commands or sequence of blocks???
+
         string file;
         cin >> file;
         int level = curBoard->getLevel();
 
         if (level == 3 || level == 4) curBoard->setCurLevel(level, false, 0, file);
+        string command;
+        ifstream f{file};
+
+        while (f >> command) {
+          sequenceCommands.emplace_back(command);
+        }
+        curBoard->notifyObservers();
         continue;
 
       }
@@ -337,6 +351,7 @@ int main(int argc, char **argv) {
         int level = curBoard->getLevel();
 
         if (level == 3 || level == 4) curBoard->setCurLevel(level, true, 0);
+        curBoard->notifyObservers();
         continue;
 
       }

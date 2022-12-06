@@ -13,6 +13,9 @@ Block* LevelFour::createBlock() {
   } else {
     blocksPool.clear();
     this->readFile();
+    if (index == blocksPool.size()) {
+      index = 0;
+    }
     randIdx = index;
   }
   // return new 1x1 block

@@ -50,6 +50,7 @@ class Board : public Subject {
         void setBlind(bool blind);
         int getPlacedBlocks();
         void addPlacedBlocks();
+        void resetPlacedBlocks();
 };
 
 #endif
