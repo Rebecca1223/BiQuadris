@@ -222,6 +222,8 @@ int main(int argc, char **argv) {
             }
           }
 
+          cout << level << endl;
+
           if (level == 4) {
             cout << "level4 here" << endl;
             curBoard->addPlacedBlocks();
