@@ -268,7 +268,7 @@ int main(int argc, char **argv) {
         string fileName;
         string command;
         cin >> fileName;
-        ifstream file;
+        ifstream file{fileName};
 
         while (file >> command) {
           sequenceCommands.emplace_back(command);
