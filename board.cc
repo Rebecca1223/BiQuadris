@@ -213,6 +213,14 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
     // calculate the rotation
     int finalRotation = (curBlock->getRotation() + rotation) % 4;
     cout << "rotation: " << finalRotation << endl;
+    //remove block pointer to unit
+    // for(int i=0; i<11; i++){
+    //     for(int j=0; j<15; j++){
+    //         if(mainBoard[i][j].getUnitBlock()==curBlock){
+    //             mainBoard[i][j].removePiece();    
+    //         }
+    //     }
+    // }
 
     // check every space in block vector
     for(int i=0; i<4; i++){
@@ -224,16 +232,8 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
                 cout << "v: " << curBlock->getY()+i+vShift << "   ";
                 cout << "h: " << curBlock->getX()+j+hShift << "   ";
 
-                mainBoard[curBlock->getY()+i+vShift][curBlock->getX()+j+hShift].placePiece(here, nullptr);
+                mainBoard[curBlock->getY()+i+vShift][curBlock->getX()+j+hShift].placePiece(here, curBlock);
                 cout << "bt: " << mainBoard[curBlock->getY()+i+vShift][curBlock->getX()+j+hShift].getBlockType() << endl;
-            }
-        }
-    }
-    //remove block pointer to unit
-    for(int i=0; i<11; i++){
-        for(int j=0; j<15; j++){
-            if(mainBoard[i][j].getUnitBlock()==curBlock){
-                mainBoard[i][j].removePiece();    
             }
         }
     }

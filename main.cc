@@ -185,9 +185,10 @@ int main(int argc, char **argv) {
       }
       if (command == "drop" || commands.at("drop") == command) {
         if (multiplier != 0) {
-          while (curBoard->itsValid(0, 1, 0)){
+          bool valid = curBoard->itsValid(0, 1, 0);
+          while (valid == true){
             curBoard->moveBlockInBoard(0,1,0);
-            cout << "hereeee" << endl;
+            valid = curBoard->itsValid(0, 1, 0);
           }
 
           // can we check multiple rows?
@@ -201,10 +202,9 @@ int main(int argc, char **argv) {
               cout << "check filled row: " << row+i << endl;
               curBoard->removeRow(row+i);
               cout << "here1" << endl;
-              cout << "here2" << endl;
               rowsRemoved++;
             }
-            cout << "here3" << endl;
+            cout << "here2" << endl;
           }
           break;
         } 
