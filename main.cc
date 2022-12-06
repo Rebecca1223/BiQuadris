@@ -8,6 +8,7 @@
 #include "block.h"
 #include "text.h"
 #include "graphics.h"
+#include "commandInt.h"
 
 using namespace std;
 
@@ -80,23 +81,22 @@ int main(int argc, char **argv) {
     board2->setCurLevel(startLevel, true, 0);
   }
 
-  // get first new blocks???
-board1->setCurBlock((board1->getCurLevel())->createBlock());
-//cout << board1->getCurBlock()->getType() << endl;
-board2->setCurBlock((board2->getCurLevel())->createBlock());
-//cout << board2->getCurBlock()->getType() << endl;
-board1->setNextBlock((board1->getCurLevel())->createBlock());
-//cout << board1->getNextBlock()->getType() << endl;
-board2->setNextBlock((board2->getCurLevel())->createBlock());
-board1->moveBlockInBoard(0, 0, 0);
-board2->moveBlockInBoard(0, 0, 0);
+
+  board1->setCurBlock((board1->getCurLevel())->createBlock());
+  board2->setCurBlock((board2->getCurLevel())->createBlock());
+  board1->setNextBlock((board1->getCurLevel())->createBlock());
+  board2->setNextBlock((board2->getCurLevel())->createBlock());
+  board1->moveBlockInBoard(0, 0, 0);
+  board2->moveBlockInBoard(0, 0, 0);
 
 // Command loop
   string command;
   int n;
   int multiplier = 1;
+  CommandInt cmdInt;
   while (true) {
-
+    bool restart = 0;
+    int rowsRemoved = 0;
     Board *curBoard;
     if (turnCount % 2 == 0) {
       curBoard = board1;
@@ -134,7 +134,6 @@ board2->moveBlockInBoard(0, 0, 0);
 
         for (int i = 0; i < len; ++i) {
           if (isdigit(command[i])) {
-            cout << command << endl;
             command.erase(i, 1);
             --i;
           } else {
@@ -142,7 +141,8 @@ board2->moveBlockInBoard(0, 0, 0);
           }
         }
       }
-       cout << command << endl;
+
+      command = cmdInt.getCommand(command);
       
 
       // number of times controlled by multiplier
@@ -182,24 +182,26 @@ board2->moveBlockInBoard(0, 0, 0);
         }
       }
       if (command == "drop" || commands.at("drop") == command) {
-        bool valid = curBoard->itsValid(0, 1, 0);
-        while (valid == true){
-          curBoard->moveBlockInBoard(0,1,0);
-          valid = curBoard->itsValid(0, 1, 0);
-          
-        }
-        int row = curBoard->getCurBlock()->getY();
-        // check if line is cleared here
-        for(int i=0; i<3; i++){
-          if(curBoard->checkFilledRow(row+i)){
-            curBoard->removeRow();
-            curBoard->notifyObservers();
+        if (multiplier != 0) {
+          bool valid = curBoard->itsValid(0, 1, 0);
+          while (valid == true){
+            curBoard->moveBlockInBoard(0,1,0);
+            valid = curBoard->itsValid(0, 1, 0);
+            
           }
-        }
-        break;
-         
 
-        // what if more than 1 drop
+          // can we check multiple rows?
+          // have removeRow return number of removed rows for special action?
+          int row = curBoard->getCurBlock()->getY();
+          // check if line is cleared here
+        for(int i=0; i<3; i++){
+            if(curBoard->checkFilledRow(row+i)){
+              curBoard->removeRow();
+              curBoard->notifyObservers();
+          }
+          }
+          break;
+        } 
         
       }
       if (command == "clockwise" || commands.at("clockwise") == command) {
@@ -305,12 +307,15 @@ board2->moveBlockInBoard(0, 0, 0);
           block = new TBlock(tempLevel, actionHeavy, levelHeavy);
         }
 
+        curBoard->removeBlock();
         curBoard->setCurBlock(block);
+        curBoard->moveBlockInBoard(0,0,0);
+        curBoard->notifyObservers();
         
       }
       if (command == "restart" || commands.at("restart") == command) {
         // restart game
-
+        restart = 1;
         // reset boards
         board1->reset();
         board2->reset();
@@ -318,15 +323,34 @@ board2->moveBlockInBoard(0, 0, 0);
         turnCount = 0;
         startLevel = 0;
 
+        if (startLevel == 0) {
+          board1->setCurLevel(startLevel, false, 0, p1LevelZeroFile);
+          board2->setCurLevel(startLevel, false, 0, p2LevelZeroFile);
+        } else if (startLevel == 1 || startLevel == 2) {
+          board1->setCurLevel(startLevel, false, 0);
+          board2->setCurLevel(startLevel, false, 0);
+        } else {
+          board1->setCurLevel(startLevel, true, 0);
+          board2->setCurLevel(startLevel, true, 0);
+        }
+
         // reset blocks
-        
+        board1->setCurBlock((board1->getCurLevel())->createBlock());
+        board2->setCurBlock((board2->getCurLevel())->createBlock());
+        board1->setNextBlock((board1->getCurLevel())->createBlock());
+        board2->setNextBlock((board2->getCurLevel())->createBlock());
+        board1->moveBlockInBoard(0, 0, 0);
+        board2->moveBlockInBoard(0, 0, 0);
         break;
       }
     }
-    ++turnCount;
-    curBoard->setCurBlock(curBoard->getNextBlock());
-    curBoard->setNextBlock(curBoard->getCurLevel()->createBlock());
-    curBoard->moveBlockInBoard(0,0,0);
+    if (restart == 0) {
+      ++turnCount;
+      curBoard->setCurBlock(curBoard->getNextBlock());
+      curBoard->setNextBlock(curBoard->getCurLevel()->createBlock());
+      curBoard->moveBlockInBoard(0,0,0);
+
+    }
 
   }
 
