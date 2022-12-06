@@ -194,7 +194,7 @@ int main(int argc, char **argv) {
           // have removeRow return number of removed rows for special action?
           int row = curBoard->getCurBlock()->getY();
           // check if line is cleared here
-          for(int i=0; i<3; i++){
+          for(int i=0; i<4; i++){
             cout << "here" << endl;
             if(curBoard->checkFilledRow(row+i)){
               cout << "check filled row: " << row+i << endl;

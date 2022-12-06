@@ -95,9 +95,11 @@ void Board::reset() {
 
 bool Board::checkFilledRow(int index) {
     bool filled = true;
+    cout << index << endl;
 
     for (int i = 0; i < width; i++) {
         if (!mainBoard[index][i].getOcc()) {
+            cout << mainBoard[index][i].getOcc() << endl;
             filled = false;
             break;
         }
@@ -123,7 +125,6 @@ void Board::removeRow() {
                     // Check if entire block is cleared and update score
                     if(newBlockNum == 0){
                         curScore += (mainBoard[i][j].getUnitBlock()->getlevelGen()+1) * (mainBoard[i][j].getUnitBlock()->getlevelGen()+1);
-                        notifyObservers();
                     }
                 }
 
@@ -147,7 +148,6 @@ void Board::removeRow() {
 
     if (total > 0) {
         curScore = curScore + ((level + total) * (level + total));
-        notifyObservers();
         ///////////////////////////////////////////////////////////        ***Reset Level 4 Streak Here***                 ////////////////////////////////////////////////////////
 
         for (int i = 0; i < placedBlocks.size(); i++) {
@@ -161,7 +161,6 @@ void Board::removeRow() {
 
     delete curBlock;
     if(total > 1) withEffect = true;
-    notifyObservers();
 }
 
 bool Board::itsValid(int hShift, int vShift, int rotation) {
