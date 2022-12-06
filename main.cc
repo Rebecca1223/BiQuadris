@@ -230,17 +230,21 @@ int main(int argc, char **argv) {
           if (level == 4) {
             cout << "level4 here" << endl;
             curBoard->addPlacedBlocks();
+            cout << curBoard->getPlacedBlocks() << endl;
             if (curBoard->getPlacedBlocks() % 5 == 0 && rowsRemoved == 0) {
               //drop a OneBlock
+              cout << "dropppp" << endl;
               Block* temp = curBoard->getCurBlock();
               Block* newOneBlock = new OneBlock(4);
               curBoard->setCurBlock(newOneBlock);
 
               bool valid = curBoard->itsValid(0, 1, 0);
               while (valid == true){
+                cout << "oneblock" << endl;
                 curBoard->moveBlockInBoard(0,1,0);
                 valid = curBoard->itsValid(0, 1, 0);
               }
+              
 
               int row = curBoard->getCurBlock()->getY();
               int r = row+3;
@@ -256,7 +260,9 @@ int main(int argc, char **argv) {
               curBoard->removeBlock();
               curBoard->setCurBlock(temp);
             } else {
-              curBoard->resetPlacedBlocks();
+              if (rowsRemoved > 0) {
+                curBoard->resetPlacedBlocks();
+              }
             }
 
             if (rowsRemoved >= 2) {
