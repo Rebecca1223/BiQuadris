@@ -41,7 +41,7 @@ int main(int argc, char **argv) {
   Board* board2 = new Board(11, 18, board2lvl);
   int turnCount = 0;
   Text textDisplay{board1, board2, 11, 18};
-  //Graphics* graphicDisplay = nullptr;
+  Graphics* graphicDisplay = nullptr;
   board1->attach(&textDisplay);
   board2->attach(&textDisplay);
   // setting the seed
@@ -53,6 +53,9 @@ int main(int argc, char **argv) {
     if (flag == "-text") {
       graphicsOn = false;
     } else {
+      if(i+1==argc){
+        break;
+      }
       string field = argv[i+1];
       if (flag == "-seed") {
         srand(stoi(field));
@@ -65,9 +68,11 @@ int main(int argc, char **argv) {
       }
     }
   }
-  //if (graphicsOn) {
-  //  graphicDisplay
-  //}
+  if (graphicsOn) {
+    graphicDisplay = new Graphics{board1, board2, 18, 11, 70, 75};
+    board1->attach(graphicDisplay);
+    board2->attach(graphicDisplay);
+  }
 
 
   if (startLevel == 0) {
