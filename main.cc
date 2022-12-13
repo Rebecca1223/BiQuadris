@@ -14,7 +14,7 @@
 using namespace std;
 
 int main(int argc, char **argv) {
-  bool graphicsOn = true;
+  bool graphicsOn = false;
   int player = 1;
   int startLevel = 0;
   string p1LevelZeroFile = "sequence3.txt";
@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
     {"norandom", "norandom"},
     {"random", "random"},
     {"sequence", "sequence"},
-    {"restart" ,"restart"}
+    {"restart" ,"restart"},
   };
   vector<string> sequenceCommands;
   int board1lvl = 0;
@@ -41,7 +41,7 @@ int main(int argc, char **argv) {
   Board* board2 = new Board(11, 18, board2lvl);
   int turnCount = 0;
   Text textDisplay{board1, board2, 11, 18};
-  Graphics* graphicDisplay = nullptr;
+  //Graphics* graphicDisplay = nullptr;
   board1->attach(&textDisplay);
   board2->attach(&textDisplay);
   // setting the seed
@@ -68,11 +68,11 @@ int main(int argc, char **argv) {
       }
     }
   }
-  if (graphicsOn) {
-    graphicDisplay = new Graphics{board1, board2, 18, 11, 70, 75};
-    board1->attach(graphicDisplay);
-    board2->attach(graphicDisplay);
-  }
+  // if (graphicsOn) {
+  //   graphicDisplay = new Graphics{board1, board2, 18, 11, 70, 75};
+  //   board1->attach(graphicDisplay);
+  //   board2->attach(graphicDisplay);
+  // }
 
 
   if (startLevel == 0) {
