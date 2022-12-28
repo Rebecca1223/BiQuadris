@@ -67,12 +67,6 @@ void Board::removeBlock(){
     }
 }
 
-// Adds Block to the vector of placed blocks
-//void Board::placeBlock(Block& block) {
-//    placedBlocks.emplace_back(block);
-    ////
-//}
-
 // Set board state to default
 void Board::reset() {
     curScore = 0;
@@ -86,8 +80,6 @@ void Board::reset() {
             mainBoard[i][j].removePiece();
         }
     }
-
-    ///////////////////////////////////////////////////////////        ***Reset Level 4 Counter Here***                 ////////////////////////////////////////////////////////
 
     delete curBlock;
     delete nextBlock;
@@ -138,34 +130,17 @@ void Board::removeRow(int row) {
         }
     }
 
-    // for (int i = 0; i < width; i++) {
-    //     mainBoard[0][i]. removePiece();
-    // }
-
     if (total > 0) {
         curScore = curScore + ((level + total) * (level + total));
         if (curScore > hiScore){
             hiScore = curScore;
         }
-        ///////////////////////////////////////////////////////////        ***Reset Level 4 Streak Here***                 ////////////////////////////////////////////////////////
-
-        // for (int i = 0; i < placedBlocks.size(); i++) {
-        //     //for (int j = 0; j < 4; j++) {
-        //         placedBlocks[i].setY(placedBlocks[i].getY() + total);
-        //     //}
-        // }
     }
-
-    //////////////////////////////////////////////////////////         ***Increase Streak for Level 4***           /////////////////////////////////////////////////////
-
-    //delete curBlock;
-    //if(total > 1) withEffect = true;
 }
 
 // Checks whether a move with horizontal shift of hShift, vertial shift of vShift, and roation of rotation is a valid move
 //      A valid move consists of the block being able to be placed inside the board within the board perimeter constraints
 bool Board::itsValid(int hShift, int vShift, int rotation) {
-    ///////////////////////////////////////////////////////////        ***Level 4 Streak Counter Here***                 ////////////////////////////////////////////////////////
     int reducedRotation = (curBlock->getRotation() + rotation) % 4;
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
@@ -215,15 +190,6 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
     this->removeBlock();
     // calculate the rotation
     int finalRotation = (curBlock->getRotation() + rotation) % 4;
-  //  cout << "rotation: " << finalRotation << endl;
-    //remove block pointer to unit
-    // for(int i=0; i<11; i++){
-    //     for(int j=0; j<15; j++){
-    //         if(mainBoard[i][j].getUnitBlock()==curBlock){
-    //             mainBoard[i][j].removePiece();    
-    //         }
-    //     }
-    // }
 
     // check every space in block vector
     for(int i=0; i<4; i++){
@@ -244,23 +210,6 @@ void Board::moveBlockInBoard(int hShift, int vShift, int rotation){
     curBlock->setX(curBlock->getX() + hShift);
 	curBlock->setY(curBlock->getY() + vShift);
 	curBlock->setRotation(finalRotation);
-    // add block pointer to unit
-    // for(int i=0; i<11; i++){
-    //     for(int j=0; j<15; j++){
-    //         for(int k=0; k<3; k++){
-    //             //if the mainBoard position is equal to the curent block position
-    //             int blockSegPositionX = curBlock->getPositionVector()[finalRotation][k][0]+curBlock->getX()-1;
-    //             int blockSegPositionY = curBlock->getPositionVector()[finalRotation][k][1]+curBlock->getX()-1;
-    //             int unitPositionX = mainBoard[i][j].getX();
-    //             int unitPositionY = mainBoard[i][j].getY();
-    //             if(blockSegPositionX==unitPositionX &&  blockSegPositionY==unitPositionY){ 
-    //                 //set that unit to point to curBlock
-    //                 mainBoard[i][j].placePiece(curBlock->getType(), curBlock);  
-    //             }
-    //         }
-    //     }
-    // }
- //   notifyObservers();
 }
 
 int Board::getHiScore() {return hiScore;}

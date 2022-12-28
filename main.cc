@@ -68,12 +68,6 @@ int main(int argc, char **argv) {
       }
     }
   }
-  // if (graphicsOn) {
-  //   graphicDisplay = new Graphics{board1, board2, 18, 11, 70, 75};
-  //   board1->attach(graphicDisplay);
-  //   board2->attach(graphicDisplay);
-  // }
-
 
   if (startLevel == 0) {
     board1->setCurLevel(startLevel, false, 0, p1LevelZeroFile);

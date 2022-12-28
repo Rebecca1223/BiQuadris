@@ -8,14 +8,12 @@ void Unit::placePiece(char c, Block *unitBlock){
     occ = true;
     blockType = c;
     this->unitBlock = unitBlock;
-    //notify();
 }
 
 void Unit::removePiece(){
     occ = false;
     blockType = ' ';
     this->unitBlock = nullptr;
-    //notifyObservers();
 }
 
 bool Unit::getOcc() {
